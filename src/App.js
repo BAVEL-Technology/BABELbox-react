@@ -1,13 +1,19 @@
 import "./App.css";
 import Wrapper from "./components/Wrapper";
 import BBLogo from "./components/BBLogo";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Main from "./pages/Main"
 
 function App() {
   return (
     <div className="App">
-      <Wrapper classes="h-screen w-screen bg-blue-200 flex flex-col justify-center">
+      <Router>
         <BBLogo />
-      </Wrapper>
+          <Wrapper classes="h-screen w-screen bg-blue-200 flex flex-col justify-center">
+            {/* route to each page enter path name and component uses imported page name */}
+            <Route exact path="/" component={Main} />
+          </Wrapper>
+      </Router>
     </div>
   );
 }
