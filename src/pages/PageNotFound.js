@@ -4,7 +4,7 @@ class PageNotFound extends Component {
   render() {
     return (
       <div>
-        <h1 className="">BABEL 404</h1>
+        <h1 className="brand flex flex-col items-center">Umm.....</h1>
       </div>
     );
   }
