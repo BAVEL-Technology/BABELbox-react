@@ -12,7 +12,9 @@ function App() {
         <Wrapper classes="h-screen w-screen bg-blue-200 flex flex-col justify-center">
           {/* Switch statement for the router. */}
           <Switch>
+            {/* Render main page. */}
             <Route exact path="/" component={Main} />
+            {/* Render About Us page on route. */}
             <Route exact path="/about-us" component={AboutUs} />
             {/* Render this if no other page was found. */}
             <Route component={PageNotFound} />
