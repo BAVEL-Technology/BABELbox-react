@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Wrapper classes="h-screen w-screen bg-blue-200 flex flex-col justify-center">
+        <Wrapper classes="h-screen w-screen bg-blue-200 flex flex-col items-center">
           {/* Switch statement for the router. */}
           <Switch>
             {/* Render main page. */}
@@ -20,7 +20,6 @@ function App() {
             <Route component={PageNotFound} />
           </Switch>
         </Wrapper>
-        
       </div>
     </Router>
   );
