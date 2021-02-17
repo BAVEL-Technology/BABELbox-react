@@ -20,7 +20,7 @@ const index = (props) => {
         const gitHubURL = res.html_url;
 
         setReturnedJSX((
-          <button className="bg-blue-300 hover:bg-blue-400 shadow-2xl p-6 m-4 rounded-2xl text-2xl" onClick={()=>{
+          <button className="bg-blue-300 hover:bg-blue-400 focus:bg-blue-400 shadow-2xl p-6 m-4 rounded-2xl text-2xl" onClick={()=>{
             window.open(`${gitHubURL}`,"_blank");}}>
             <img src={profilePic} alt={props.gitHubUsername} className="rounded-full mb-4"/>
             <h1>{props.name}</h1>
