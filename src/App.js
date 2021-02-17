@@ -1,14 +1,17 @@
 import "./App.css";
 import Wrapper from "./components/Wrapper";
-import BBLogo from "./components/BBLogo";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Main from "./pages/main";
 
 function App() {
   return (
-    <div className="App">
-      <Wrapper classes="h-screen w-screen bg-blue-200 flex flex-col justify-center">
-        <BBLogo />
-      </Wrapper>
-    </div>
+    <Router>
+      <div>
+        <Wrapper classes="h-screen w-screen bg-blue-200 flex flex-col justify-center">
+          <Route exact path="/" component={Main} />
+        </Wrapper>
+      </div>
+    </Router>
   );
 }
 
