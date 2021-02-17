@@ -1,7 +1,7 @@
 import "./App.css";
 import Wrapper from "./components/Wrapper";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Main from "./pages/main";
+import BBLogo from "./components/BBLogo";
+import GameButton from "./components/GameButton";
 
 function App() {
   return (
