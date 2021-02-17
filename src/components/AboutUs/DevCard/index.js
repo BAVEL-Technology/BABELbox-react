@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 const index = (props) => {
-  const [returnedJSX, setReturnedJSX] = useState((<h1>Loading...</h1>));
+  const [returnedJSX, setReturnedJSX] = useState((
+    <div className="bg-blue-300 m-8 px-24 py-48">
+      <h1>Loading...</h1>
+    </div>
+  ));
   
   if(props.gitHubUsername && props.name)
   {
@@ -32,13 +36,13 @@ const index = (props) => {
     },[]);
     
 
-    return returnedJSX;
+    return returnedJSX; 
   }
   else
   {
     // Return an error if proper info is not provided.
     return(
-      <h1>Username not found.</h1>
+        <h1>Username not found.</h1>
     );
   }
   
