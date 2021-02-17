@@ -5,8 +5,10 @@ class AboutUs extends Component {
   render() {
     return (
       <>
-        <h1 className="text-6xl mb-12">The Team</h1>
-        <div className="grid grid-cols-4">
+        {/* TODO: Insert a BB logo to go home. */}
+        <a href="/">(TEMP)Home</a>
+        <h1 className="text-6xl m-12">The BABEL Team</h1>
+        <div className="grid xl:grid-cols-4 md:grid-cols-2">
           <DevCard name="Steve Tong" gitHubUsername="steversonTong"/>
           <DevCard name="Nick Graffis" gitHubUsername="NickGraffis"/>
           <DevCard name="Dustin Pidcock" gitHubUsername="DustinPiddy"/>

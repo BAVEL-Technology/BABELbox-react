@@ -16,14 +16,16 @@ const index = (props) => {
       .then((res) => {
         const profilePic = res.avatar_url;
         const bio = res.bio;
+        const location = res.location;
         const gitHubURL = res.html_url;
 
         setReturnedJSX((
-          <button className="bg-blue-300 p-6 m-4 rounded-2xl text-2xl" onClick={()=>{
+          <button className="bg-blue-300 hover:bg-blue-400 shadow-2xl p-6 m-4 rounded-2xl text-2xl" onClick={()=>{
             window.open(`${gitHubURL}`,"_blank");}}>
             <img src={profilePic} alt={props.gitHubUsername} className="rounded-full mb-4"/>
             <h1>{props.name}</h1>
-            <p className="text-lg">{bio}</p>
+            <p className="text-lg m-2">{bio}</p>
+            <p className="text-lg m-2">{location}</p>
           </button>
         ));
       });
