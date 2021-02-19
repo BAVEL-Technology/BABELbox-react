@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Lobby from "./Lobby";
+import Lobby from "./Lobby";
 
 class LiarLiar extends Component {
   render() {
