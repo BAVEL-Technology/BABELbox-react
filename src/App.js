@@ -13,11 +13,17 @@ function App() {
           {/* Switch statement for the router. */}
           <Switch>
             {/* Render main page. */}
-            <Route exact path="/" component={Main} />
+            <Route exact path="/">
+              <Main />
+            </Route>
             {/* Render About Us page on route. */}
-            <Route exact path="/about-us" component={AboutUs} />
+            <Route exact path="/about-us">
+              <AboutUs />
+            </Route>
             {/* Render this if no other page was found. */}
-            <Route component={PageNotFound} />
+            <Route>
+              <PageNotFound />
+            </Route>
           </Switch>
         </Wrapper>
       </div>
