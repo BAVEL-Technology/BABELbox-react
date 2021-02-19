@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { Component, useEffect, useState } from 'react';
 import Lobby from "./Lobby";
 import LiarLiarContext from './utils/LiarLiarContext';
@@ -35,7 +36,12 @@ function LiarLiar () {
   return (
     <>
       <LiarLiarContext.Provider value={liarLiarState}>
-        <Lobby />
+        <Router>
+          {/* TODO: Figure out how to nest routes. */}
+          <Route path="/how-to-play">
+            <Lobby />
+          </Route>
+        </Router>
       </LiarLiarContext.Provider>
     </>
   );

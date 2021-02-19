@@ -10,6 +10,7 @@ function App() {
   return (
     <Router>
       <div>
+        {/* Wrapper for background and centering things on the page. */}
         <Wrapper classes="h-full min-h-screen w-screen bg-blue-200 flex flex-col items-center">
           {/* Switch statement for the router. */}
           <Switch>
@@ -17,6 +18,7 @@ function App() {
             <Route exact path="/">
               <Main />
             </Route>
+            {/* Render Liar Liar */}
             <Route exact path="/liarliar">
               <LiarLiar />
             </Route>
