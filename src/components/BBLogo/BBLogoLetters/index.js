@@ -8,7 +8,7 @@ const BBLogoLetters = (props) => {
 
   return (
     <span
-      class={`${classes} ${props.charColor}`}
+      className={`${classes} ${props.charColor}`}
     >
       {props.character}
     </span>

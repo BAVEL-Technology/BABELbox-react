@@ -18,19 +18,19 @@ function LiarLiar () {
   }), []);
 
   // Functions for updating certain parts of the state.
-  function updatePortalID (newID)  {setLiarLiarState({...liarLiarState, newID});}
+  function updatePortalID (portalID)  {setLiarLiarState({...liarLiarState, portalID});}
 
-  function updatePhase (newPhase) {setLiarLiarState({...liarLiarState, newPhase});}
+  function updatePhase (portalPhase) {setLiarLiarState({...liarLiarState, portalPhase});}
 
-  function updateUsers (newUsers) {setLiarLiarState({...liarLiarState, newUsers});}
+  function updateUsers (users) {setLiarLiarState({...liarLiarState, users});}
 
-  function updateSpectators (newSpectators) {setLiarLiarState({...liarLiarState, newSpectators});}
+  function updateSpectators (spectators) {setLiarLiarState({...liarLiarState, spectators});}
 
-  function updateQuestion (newQuestion) {setLiarLiarState({...liarLiarState, newQuestion});}
+  function updateQuestion (question) {setLiarLiarState({...liarLiarState, question});}
 
-  function updateAnswers (newAnswers) {setLiarLiarState({...liarLiarState, newAnswers});}
+  function updateAnswers (answers) {setLiarLiarState({...liarLiarState, answers});}
 
-  function updateRound (newRound) {setLiarLiarState({...liarLiarState, newRound});}
+  function updateRound (round) {setLiarLiarState({...liarLiarState, round});}
   
   return (
     <>

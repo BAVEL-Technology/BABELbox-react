@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class index extends Component {
   render(props) {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div>
         <div>
