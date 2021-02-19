@@ -4,11 +4,10 @@ const BBLogo = (props) => {
     if(props.small === true)
     {
         return (
-            // TODO: Add small logo
-            <div className="brand-small text-center text-gray-700 font-semibold hidden lg:block md:block">
+            <button onClick={()=>{window.location = "/";}} className="focus:outline-none brand-small text-center text-gray-700 font-semibold hidden lg:block md:block">
                 <BBLogoLetters charColor="text-yellow-600" character="B"/>
                 <BBLogoLetters charColor="text-indigo-600" character="B"/>
-            </div>
+            </button>
         );
     }
     else
