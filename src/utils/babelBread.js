@@ -69,6 +69,14 @@ class Babeljax {
 
   }
 
+  random () {
+    this.chain(async (data) => {
+      this.data = data[Math.floor(Math.random() * Math.floor(data.length)))]
+    })
+
+    return this.data
+  }
+
   where (filters) {
     this.chain(async (data) => {
       let keys = Object.keys(filters)

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import BBLogo from '../../components/BBLogo';
 import Lobby from "./Lobby";
-import PlayButton from "./PlayButton";
-import GameTitle from "./GameTitle";
 
 class LiarLiar extends Component {
   render() {
     return (
       <>
+<<<<<<< HEAD
         <div className="position-absolute">
           <BBLogo small={true}/>
         </div>
@@ -19,6 +18,9 @@ class LiarLiar extends Component {
           name="Liar Liar"
         />
         {/* <PlayButton /> */}
+=======
+        <Lobby />
+>>>>>>> 1b9044134740b6527e403a607aa2d2cfaa399b87
       </>
     );
   }
