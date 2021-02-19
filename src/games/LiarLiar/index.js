@@ -1,29 +1,44 @@
-import React, { Component } from 'react';
-import BBLogo from '../../components/BBLogo';
+import React, { Component, useEffect, useState } from 'react';
 import Lobby from "./Lobby";
+import LiarLiarContext from './utils/LiarLiarContext';
 
-class LiarLiar extends Component {
-  render() {
-    return (
-      <>
-<<<<<<< HEAD
-        <div className="position-absolute">
-          <BBLogo small={true}/>
-        </div>
-        <Lobby/>
-        
-        <GameTitle
-          classes="font-bold w-full my-4 flex items-center justify-around text-yellow-600 p-4 lg:text-5xl md:text-5xl text-3xl text-center rounded-xl tracking-widest"
-          src="https://twemoji.maxcdn.com/v/13.0.1/72x72/1f925.png"
-          name="Liar Liar"
-        />
-        {/* <PlayButton /> */}
-=======
+function LiarLiar () {
+  const [liarLiarState, setLiarLiarState] = useState({
+    portalID: "",
+    portalPhase: "",
+    users: [],
+    spectators: [],
+    question: "",
+    answers: [],
+    round: 1
+  });
+
+  useEffect((()=> {
+    // TODO: Get API data here and set new state when received. 
+  }), []);
+
+  // Functions for updating certain parts of the state.
+  function updatePortalID (newID)  {setLiarLiarState({...liarLiarState, newID});}
+
+  function updatePhase (newPhase) {setLiarLiarState({...liarLiarState, newPhase});}
+
+  function updateUsers (newUsers) {setLiarLiarState({...liarLiarState, newUsers});}
+
+  function updateSpectators (newSpectators) {setLiarLiarState({...liarLiarState, newSpectators});}
+
+  function updateQuestion (newQuestion) {setLiarLiarState({...liarLiarState, newQuestion});}
+
+  function updateAnswers (newAnswers) {setLiarLiarState({...liarLiarState, newAnswers});}
+
+  function updateRound (newRound) {setLiarLiarState({...liarLiarState, newRound});}
+  
+  return (
+    <>
+      <LiarLiarContext.Provider value={liarLiarState}>
         <Lobby />
->>>>>>> 1b9044134740b6527e403a607aa2d2cfaa399b87
-      </>
-    );
-  }
+      </LiarLiarContext.Provider>
+    </>
+  );
 }
 
 export default LiarLiar;
