@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class index extends Component {
+class PlayButton extends Component {
   render() {
     return (
       <div className="w-full flex item-center justify-center">
@@ -27,4 +27,4 @@ class index extends Component {
   }
 }
 
-export default index;
+export default PlayButton;
