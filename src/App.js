@@ -19,7 +19,7 @@ function App() {
               <Main />
             </Route>
             {/* Render Liar Liar */}
-            <Route exact path="/liarliar">
+            <Route path="/liarliar">
               <LiarLiar />
             </Route>
             {/* Render About Us page on route. */}

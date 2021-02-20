@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, useRouteMatch } from 'react-router-dom';
 import React, { Component, useEffect, useState } from 'react';
 import Lobby from "./Lobby";
 import LiarLiarContext from './utils/LiarLiarContext';
@@ -13,6 +13,8 @@ function LiarLiar () {
     answers: [],
     round: 1
   });
+
+  const path = useRouteMatch().path;
 
   useEffect((()=> {
     // TODO: Get API data here and set new state when received. 
@@ -36,12 +38,16 @@ function LiarLiar () {
   return (
     <>
       <LiarLiarContext.Provider value={liarLiarState}>
-        <Router>
-          {/* TODO: Figure out how to nest routes. */}
-          <Route path="/how-to-play">
-            <Lobby />
-          </Route>
-        </Router>
+          <Switch>
+            {/* Render the How To Play component */}
+            <Route path={`${path}/how-to-play`}>
+              {/* TODO: Render How to Play component. */}
+            </Route>
+            {/* Render the Gateway component */}
+            <Route>
+              {/* TODO: Render the Gateway component */}
+            </Route>
+          </Switch>
       </LiarLiarContext.Provider>
     </>
   );
