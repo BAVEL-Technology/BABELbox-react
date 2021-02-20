@@ -1,16 +1,15 @@
-
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useState } from "react";
 import Gateway from "../../components/Gateway";
-import LiarLiarContext from './utils/LiarLiarContext';
+import LiarLiarContext from "./utils/LiarLiarContext";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   useRouteMatch,
 } from "react-router-dom";
-import HowToPlay from "./HowToPlay";
+import HowToPlay from "../../components/Gateway/HowToPlay";
 
-function LiarLiar () {
+function LiarLiar() {
   const [liarLiarState, setLiarLiarState] = useState({
     portalID: "",
     portalPhase: "",
@@ -18,43 +17,65 @@ function LiarLiar () {
     spectators: [],
     question: "",
     answers: [],
-    round: 1
+    round: 1,
   });
 
   // Hook function for refreshing / performing an action on value changes. Also called once when component mounts.
-  useEffect((()=> {
-    // TODO: Get API data here and set new state when received. 
-  }), []);
+  useEffect(() => {
+    // TODO: Get API data here and set new state when received.
+  }, []);
 
   // Functions for updating certain parts of the state.
-  function updatePortalID   (portalID)    {setLiarLiarState({...liarLiarState, portalID});}
-  function updatePhase      (portalPhase) {setLiarLiarState({...liarLiarState, portalPhase});}
-  function updateUsers      (users)       {setLiarLiarState({...liarLiarState, users});}
-  function updateSpectators (spectators)  {setLiarLiarState({...liarLiarState, spectators});}
-  function updateQuestion   (question)    {setLiarLiarState({...liarLiarState, question});}
-  function updateAnswers    (answers)     {setLiarLiarState({...liarLiarState, answers});}
-  function updateRound      (round)       {setLiarLiarState({...liarLiarState, round});}
-  
+  function updatePortalID(portalID) {
+    setLiarLiarState({ ...liarLiarState, portalID });
+  }
+  function updatePhase(portalPhase) {
+    setLiarLiarState({ ...liarLiarState, portalPhase });
+  }
+  function updateUsers(users) {
+    setLiarLiarState({ ...liarLiarState, users });
+  }
+  function updateSpectators(spectators) {
+    setLiarLiarState({ ...liarLiarState, spectators });
+  }
+  function updateQuestion(question) {
+    setLiarLiarState({ ...liarLiarState, question });
+  }
+  function updateAnswers(answers) {
+    setLiarLiarState({ ...liarLiarState, answers });
+  }
+  function updateRound(round) {
+    setLiarLiarState({ ...liarLiarState, round });
+  }
+
   // This gets the current path on the browser. Used in nested routing.
   const path = useRouteMatch().path;
-  
+
   return (
     <>
       {/* Liar Liar state provider context to pass state to any Liar Liar child component. */}
       <LiarLiarContext.Provider value={liarLiarState}>
-        
-        
         <Switch>
           {/* Render the How To Play component */}
           <Route path={`${path}/howtoplay`}>
-            <HowToPlay />
+            <HowToPlay
+              title="Liar Liar"
+              color="yellow-500"
+              description="There are three phases: Question, Answer, and Waiting"
+              type="Question Phase:"
+              rule="You'll be given a piece of trivia with a missing word. Fill in the blank with the most convincing thing you can think of. The more people that guess your answer, the more points you get!"
+            />
           </Route>
 
           <Route>
-            <Gateway color="yellow-500" tagline="The game where knowing the right answer is only half the challenge." title="Liar Liar" font="Sniglet"/>
+            <Gateway
+              color="yellow-500"
+              tagline="The game where knowing the right answer is only half the challenge."
+              title="Liar Liar"
+              font="Sniglet"
+            />
           </Route>
         </Switch>
-        
       </LiarLiarContext.Provider>
     </>
   );
