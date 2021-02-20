@@ -2,8 +2,10 @@ import React from "react";
 import BBLogo from "../components/BBLogo";
 import GameButton from "../components/GameButton";
 import ToAboutUsButton from '../components/AboutUs/ToAboutUsButton';
+import bb from "./utils/babelBread"
 
 function Main() {
+
   return (
     <div>
       <BBLogo />
