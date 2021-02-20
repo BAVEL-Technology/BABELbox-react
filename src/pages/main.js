@@ -1,6 +1,7 @@
 import React from "react";
 import BBLogo from "../components/BBLogo";
 import GameButton from "../components/GameButton";
+import PortalCodeCard from "../components/LobbyCards/PortalCodeCard";
 import ToAboutUsButton from '../components/AboutUs/ToAboutUsButton';
 
 function Main() {
@@ -16,6 +17,13 @@ function Main() {
           location="/liarliar"
         />
       </div>
+      <PortalCodeCard
+      background="bg-yellow-500"
+        portalCode="happy-poppy"
+        roundNumTextColor="text-yellow-500"
+        roundBackground="bg-red-600"
+        roundNum="1"
+      />
       <ToAboutUsButton/>
     </div>
   );
