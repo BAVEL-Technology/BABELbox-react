@@ -1,8 +1,14 @@
 
 import React, { Component, useEffect, useState } from 'react';
-import Lobby from "./Lobby";
 import Gateway from "../../components/Gateway";
 import LiarLiarContext from './utils/LiarLiarContext';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useRouteMatch,
+} from "react-router-dom";
+import HowToPlay from "./HowToPlay";
 
 function LiarLiar () {
   const [liarLiarState, setLiarLiarState] = useState({
@@ -29,12 +35,25 @@ function LiarLiar () {
   function updateAnswers    (answers)     {setLiarLiarState({...liarLiarState, answers});}
   function updateRound      (round)       {setLiarLiarState({...liarLiarState, round});}
   
+  // This gets the current path on the browser. Used in nested routing.
+  const path = useRouteMatch().path;
+  
   return (
     <>
       {/* Liar Liar state provider context to pass state to any Liar Liar child component. */}
       <LiarLiarContext.Provider value={liarLiarState}>
-        <Gateway color="yellow-500" tagline="The game where knowing the right answer is only half the challenge." title="Liar Liar" font="Sniglet"/>
         
+        
+        <Switch>
+          {/* Render the How To Play component */}
+          <Route path={`${path}/howtoplay`}>
+            <HowToPlay />
+          </Route>
+
+          <Route>
+            <Gateway color="yellow-500" tagline="The game where knowing the right answer is only half the challenge." title="Liar Liar" font="Sniglet"/>
+          </Route>
+        </Switch>
         
       </LiarLiarContext.Provider>
     </>
