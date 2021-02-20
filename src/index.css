@@ -13,6 +13,15 @@
     font-size: 16vh;
 }
 
+.brand-small {
+    font-family: 'Bungee Outline', cursive;
+    font-size: 4vh;
+}
+
 .game-button-p {
+    font-family: 'Sniglet', cursive;
+}
+
+.sniglet {
     font-family: 'Sniglet', cursive;
 }
