@@ -4,11 +4,28 @@ Array.prototype.asyncForEach = async function (callback) {
   }
 }
 
+Array.prototype.compare = function compare(param, dir) {
+  const parameter = param
+  const direction = dir
+  return this.sort((a, b) => {
+    // Use toUpperCase() to ignore character casing
+    const A = a[parameter].toUpperCase();
+    const B = b[parameter].toUpperCase();
+
+    let comparison = 0;
+    if (A > B) {
+      comparison = 1;
+    } else if (A < B) {
+      comparison = -1;
+    }
+    if (direction == 'ASC') return comparison
+    else if (direction == 'DESC' || direction == 'DSC') return comparison * -1
+  });
+}
+
 class Babeljax {
-  constructor (table, filter) {
-    this.base_url = 'https://babelboxdb.herokuapp.com/api/'
-    this.table = table,
-    this.filter = filter,
+  constructor () {
+    this.base_url = 'https://babelbox.herokuapp.com/api/'
     this.data,
     this.queue = Promise.resolve();
   }
@@ -22,18 +39,26 @@ class Babeljax {
    }
 
    isRegExp (pattern) {
-     console.log(typeof pattern)
      if (typeof pattern == 'string') return 'String'
      else if (typeof pattern == 'number') return 'Number'
      else return 'RegExp'
    }
 
-   browse (table = this.table, raw = false) {
+   browse (table, limit, skip, sort, direction) {
     this.chain(async () => {
-      let data = await fetch(`${this.base_url}${table}`)
+      let params = {}
+      if (limit) params.limit = limit
+      if (skip) params.skip = skip
+      if (sort) params.sort = sort
+      if (direction) params.direction = direction
+      let query
+      if (params) {
+        let array = Object.keys(params)
+        query = array.map((p) => `${p}=${params[p]}`).join('')
+      }
+      let data = await fetch(`${this.base_url}${table}?${query}`)
       data = await data.json()
       this.data = data
-      console.log(this.data)
       return this.data
     })
     return this
@@ -47,35 +72,77 @@ class Babeljax {
      return this;
    }
 
-  async read (table = this.table, filter = this.filter, raw = false) {
-    let data = await fetch(`${this.base_url}${table}`)
-    data = await data.json()
-    if (raw) return data
-    else {
-      this.data = data
-      return this
-    }
-  }
+read (table, filter) {
+     this.chain(async () => {
+       let params = Object.keys(filter)
+       let query = params.map((p) => `${p}=${filter[p]}`).join('')
+       let data = await fetch(`${this.base_url}${table}?${query}`)
+       data = await data.json()
+       this.data = data
+       return this.data
+     })
+     return this
+   }
 
-  edit (table = this.table, filter = this.filte) {
+   edit (table, filters, updates) {
+     this.chain(async () => {
+       let data = await fetch(`${this.base_url}${table}`, {
+         method: 'PUT',
+         headers: {
+           'Accept': 'application/json',
+           'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({
+           filters,
+           updates
+         })
+       })
+       data = await data.json()
+       this.data = data
+       return this.data
+     })
+     return this
+   }
 
-  }
+   add (table, body) {
+     this.chain(async () => {
+       let data = await fetch(`${this.base_url}${table}`, {
+         method: 'POST',
+         headers: {
+           'Accept': 'application/json',
+           'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(body)
+       })
+       data = await data.json()
+       this.data = data
+       return this.data
+     })
+     return this
+   }
 
-  add (table = this.table, filter = this.filte) {
+   destroy (table = this.table, filter = this.filte) {
 
-  }
+   }
 
-  destroy (table = this.table, filter = this.filte) {
+   random () {
+     this.chain(async (data) => {
+       this.data = data[Math.floor(Math.random() * Math.floor(data.length))]
+       return this.data
+     })
 
-  }
+     return this
+   }
 
-  random () {
-    this.chain(async (data) => {
-      this.data = data[Math.floor(Math.random() * Math.floor(data.length)))]
-    })
-
-    return this.data
-  }
+   sort (param, caseInsensitive) {
+     this.chain(async (data) => {
+       let direction = param[0] == '-' ? 'DESC' : 'ASC'
+       param = param.substring(1)
+       this.data = data.compare(param, direction)
+       return this.data
+     })
+     return this
+   }
 
   where (filters) {
     this.chain(async (data) => {
@@ -96,7 +163,6 @@ class Babeljax {
             this.data = data
         }
       })
-      console.log(this.data)
       return this.data
     })
 
@@ -106,7 +172,7 @@ class Babeljax {
   join (...tables) {
     this.chain(async (data) => {
       await tables.asyncForEach( async (c) => {
-        console.log(c) //{}
+        console.log(c) //{col: table, "col": param}
         await data.asyncForEach( async (d, i) => {
           if (d[Object.keys(c)[0]]) {
             let connection = await new Babeljax().browse(c[Object.keys(c)[0]])
