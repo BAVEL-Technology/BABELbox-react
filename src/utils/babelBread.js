@@ -25,7 +25,7 @@ Array.prototype.compare = function compare(param, dir) {
 
 class Babeljax {
   constructor () {
-    this.base_url = 'https://babelbox.herokuapp.com/api/'
+    this.base_url = 'https://babelboxdb.herokuapp.com/api/'
     this.data,
     this.queue = Promise.resolve();
   }
