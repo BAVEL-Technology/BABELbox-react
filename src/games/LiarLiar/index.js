@@ -8,7 +8,7 @@ import {
   Switch,
   useRouteMatch,
 } from "react-router-dom";
-import HowToPlay from "./HowToPlay";
+import HowToPlay from "../../components/Gateway/HowToPlay";
 
 function LiarLiar () {
   const [liarLiarState, setLiarLiarState] = useState({
