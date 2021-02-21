@@ -3,6 +3,7 @@ import BBLogo from "../components/BBLogo";
 import GameButton from "../components/GameButton";
 import PortalCodeCard from "../components/LobbyCards/PortalCodeCard";
 import ToAboutUsButton from '../components/AboutUs/ToAboutUsButton';
+import MarioGame from '../components/MiniGames/Mario/Game';
 
 function Main() {
 
@@ -25,6 +26,7 @@ function Main() {
         roundNum="1"
       />
       <ToAboutUsButton/>
+      <MarioGame />
     </div>
   );
 }
