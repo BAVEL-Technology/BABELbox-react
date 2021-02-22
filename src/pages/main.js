@@ -1,5 +1,5 @@
 import React from "react";
-import BBLogo from "../components/BBLogo";
+import BBLogo from "../components/BBLogo/NewLogo/Wrapper";
 import GameButton from "../components/GameButton";
 import PortalCodeCard from "../components/LobbyCards/PortalCodeCard";
 import ToAboutUsButton from '../components/AboutUs/ToAboutUsButton';
@@ -13,7 +13,8 @@ function Main() {
     <div className="grid grid-cols-12 h-full pt-12">
       <LeftSide />
       <div className="col-span-6 flex flex-col items-center space-y-24">
-        <BBLogo />
+        {/* Accepts array of colors and positions, and size, and any text */}
+        <BBLogo>BABELBOX</BBLogo>
         <GameButton
           classes="game-button w-full my-4 flex items-center justify-around bg-yellow-500 active:bg-yellow-600 text-gray-700 p-4 lg:text-5xl md:text-5xl text-3xl text-center rounded-xl tracking-widest shadow-lg duration-100 transition duration-200 ease-in-out transform hover:-translate-y-1 hover:scale-110 cursor-pointer"
           src="https://twemoji.maxcdn.com/v/13.0.1/72x72/1f925.png"
