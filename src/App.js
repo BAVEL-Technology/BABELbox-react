@@ -5,6 +5,7 @@ import Main from "./pages/main";
 import AboutUs from "./pages/AboutUs";
 import PageNotFound from "./pages/PageNotFound";
 import LiarLiar from "./games/LiarLiar";
+import NavBar from "./components/Navbar";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <div>
         {/* Wrapper for background and centering things on the page. */}
         <Wrapper classes="min-h-screen h-full bg-gradient-to-tl from-babelBlue-1000 via-babelBlue-900 to-babelCyan-700">
+          <NavBar />
           {/* Switch statement for the router. */}
           <Switch>
             {/* Render main page. */}

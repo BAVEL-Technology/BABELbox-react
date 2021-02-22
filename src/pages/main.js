@@ -3,16 +3,16 @@ import BBLogo from "../components/BBLogo/NewLogo/Wrapper";
 import GameButton from "../components/GameButton";
 import PortalCodeCard from "../components/LobbyCards/PortalCodeCard";
 import ToAboutUsButton from '../components/AboutUs/ToAboutUsButton';
-import LeftSide from "../components/HeroComponents/LeftSide.js";
-import RightSide from "../components/HeroComponents/RightSide.js";
+import Background from "../components/HeroComponents/Background.js";
 import Box from "../components/Box";
 
 function Main() {
 
   return (
-    <div className="grid grid-cols-12 h-full pt-12">
-      <LeftSide />
-      <div className="col-span-6 flex flex-col items-center space-y-24">
+    <>
+    <Background />
+    <div className="h-full flex justify-center">
+      <div className="flex flex-col items-center space-y-24">
         {/* Accepts array of colors and positions, and size, and any text */}
         <BBLogo>BABELBOX</BBLogo>
         <GameButton
@@ -30,8 +30,8 @@ function Main() {
         />
         <ToAboutUsButton/>
       </div>
-      <RightSide />
     </div>
+    </>
   );
 }
 
