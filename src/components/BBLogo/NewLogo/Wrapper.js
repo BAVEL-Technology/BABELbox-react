@@ -10,8 +10,8 @@ const BBLogo = (props) => {
     '-mt-4 rotate-12',
     'mt-12 -rotate-12',
     'mt-6 ml-3 rotate-3',
-    '-rotate-6 mt-6 ml-2',
-    'rotate-12 ml-2',
+    '-rotate-6 -mt-8 ml-2',
+    'rotate-12 mt-6',
     'mt-16 -rotate-12'
   ];
   const colors = props.colors ||

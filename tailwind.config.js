@@ -25,6 +25,7 @@ module.exports = {
         'slide-up-vertical-slow': 'slideUpY 12s linear infinite',
         'slide-up-vertical-medium': 'slideUpY 8s linear infinite',
         'slide-up-vertical-fast': 'slideUpY 4s linear infinite',
+        'game-on': 'gameOn 4s ease-in-out forwards',
       },
       keyframes: {
         wiggle: {
@@ -38,6 +39,11 @@ module.exports = {
         slideDownY: {
           '50%': { transform: 'translateY(100vh)' },
           '50.0001%': { transform: 'translateY(-60vh)' }
+        },
+        gameOn: {
+          '0%': { transform: 'scale(0)', width: '12rem' },
+          '50': { transform: 'scale(1)', width: '12rem' },
+          '100%': { transform: 'scale(1)', width: '100%' }
         }
       }
     },
@@ -53,6 +59,7 @@ module.exports = {
         classes: [
           'animate__animated',
           'animate__fadeInUp',
+          'animate__fadeInDown',
           'animate__infinite',
           'animate__delay',
           'animate__delay-1',
