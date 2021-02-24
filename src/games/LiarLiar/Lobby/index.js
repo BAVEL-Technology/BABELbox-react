@@ -3,7 +3,7 @@ import PlayButton from "../PlayButton";
 import GameTitle from "../GameTitle";
 import BBLogo from "../../../components/BBLogo";
 
-function index () {
+function Lobby () {
 
   return (
     <div>
@@ -21,4 +21,4 @@ function index () {
 }
 
 
-export default index;
+export default Lobby;

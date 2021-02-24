@@ -1,22 +1,49 @@
 import React from "react";
+import { useState, setState } from "react";
 import LiarLiar from "../../games/LiarLiar";
 import BB from "../../utils/babelBread";
+import LiarLiarContext from "../../games/LiarLiar/utils/LiarLiarContext";
 
 const CreateProtal = (props) => {
-  const createPortal = async () => {
-    const portalresults = await BB().add("portals", {
-      params: { game: "LiarLiar", phase: "waiting", round: "1" },
+  const getAvatar = () => {
+    const avatars = [
+      "🐵",
+      "🦊",
+      "🐨",
+      "🐲",
+      "🥸",
+      "🤓",
+      "🤖",
+      "👺",
+      "🤡"
+    ];
+    return avatars[Math.floor(Math.random() * avatars.length)];
+  };
+  const [userName, setUserName] = useState(0);
+  const createPortal = async (setLiarLiarState) => {
+    const portal = await BB().add("portals", {
+      params: { game: "LiarLiar", phase: "waiting", round: "1", players: [{
+        name: userName,
+        avatar: getAvatar()
+      }] },
     });
-    console.log(portalresults);
-    const nameresults = await BB().add("liar-liar-players", {
-      name: "your name",
-      portalId: portalresults._id,
+    setLiarLiarState({
+      portalID: portal.code,
+      portalPhase: portal.params.phase,
+      users: BB().where({type: 'player'}, portal.params.players),
+      spectators: BB().where({type: 'spectator'}, portal.params.players),
+      question: "",
+      answers: [],
+      round: portal.params.round,
     });
-    console.log(nameresults);
+  };
+
+  const handleChange = (event) => {
+    setUserName(event.target.value);
   };
 
   return (
-    <>
+    <LiarLiarContext.Consumer>
       <div
         className={`bg-${props.color} w-full flex flex-col text-gray-100 p-8 rounded-xl tracking-widest my-8 cursor-pointer`}
         style={{ fontFamily: props.font }}
@@ -28,7 +55,7 @@ const CreateProtal = (props) => {
         >
           <div className="w-full mx-6 relative">
             <input
-              id="user-name"
+              onChange={handleChange}
               type="text"
               name="user-name"
               placeholder=" "
@@ -36,19 +63,19 @@ const CreateProtal = (props) => {
                 appearance-none focus:outline-none border-b-4 border-gray-100 w-full bg-transparent
                 text-xl text-gray-100"
             />
-            {/* <label
+            <label
               htmlFor="user-name"
               className="duration-300 absolute left-0 top-0 mt-8 w-full
                     -top-10 -z-1 label lg:text-3xl md:text-3xl text-xl"
-            > */}
+            >
             User name
-            {/* </label> */}
+            </label>
           </div>
         </div>
       </div>
       <button
         id="create-user-button"
-        onClick={createPortal}
+        onClick={ () => createPortal(setLiarLiarState) }
         className="place-self-center
   my-4 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl rounded-br-xl rounded-tr
   rounded-bl flex items-center justify-center w-full lg:w-2/3 md:w-2/3 lg:text-3xl md:text-3xl text-xl border-4 border-blue-400
@@ -57,7 +84,7 @@ const CreateProtal = (props) => {
       >
         Create Portal
       </button>
-    </>
+    </LiarLiarContext.Consumer>
   );
 };
 
