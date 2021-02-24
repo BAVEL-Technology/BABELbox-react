@@ -1,11 +1,10 @@
 import "./App.css";
 import Wrapper from "./components/Wrapper";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Main from "./pages/main";
+import Main from "./pages/Main";
 import AboutUs from "./pages/AboutUs";
 import PageNotFound from "./pages/PageNotFound";
 import LiarLiar from "./games/LiarLiar";
-import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -18,7 +17,7 @@ function App() {
             {/* Render main page. */}
             <Route exact path="/">
               <Main />
-              <Footer/>
+              
             </Route>
             {/* Render Liar Liar */}
             <Route path="/liarliar">

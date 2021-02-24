@@ -4,7 +4,11 @@
 @tailwind utilities;
 
 /* fonts */
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap'); */
+@font-face{
+  font-family: Bungee Outline;
+  src: url('./fonts/BungeeOutline-Regular.ttf');
+} 
 @import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans+Condensed:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=IBM+Plex+Serif:ital@0;1&display=swap');
 @font-face {
