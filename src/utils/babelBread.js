@@ -106,6 +106,26 @@ class Babeljax {
     return this;
   }
 
+  push(table, filters, push) {
+    this.chain(async () => {
+      let data = await fetch(`${this.base_url}${table}`, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          filters,
+          push,
+        }),
+      });
+      data = await data.json();
+      this.data = data;
+      return this.data;
+    });
+    return this;
+  }
+
   add(table, body) {
     this.chain(async () => {
       let data = await fetch(`${this.base_url}${table}`, {
@@ -172,7 +192,7 @@ class Babeljax {
   join(...tables) {
     this.chain(async (data) => {
       await tables.asyncForEach(async (c) => {
-        console.log(c); //{col: table, "col": param}
+        console.log(c);
         await data.asyncForEach(async (d, i) => {
           if (d[Object.keys(c)[0]]) {
             const connection = await new Babeljax()
