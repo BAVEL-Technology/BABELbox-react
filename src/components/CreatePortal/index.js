@@ -1,5 +1,5 @@
 import React from "react";
-import LiarLiar from "../../games/LiarLiar";
+import "./style.css";
 import BB from "../../utils/babelBread";
 
 const CreateProtal = (props) => {

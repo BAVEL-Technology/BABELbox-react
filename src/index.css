@@ -4,7 +4,6 @@
 @tailwind utilities;
 
 /* fonts */
-<<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Sniglet&display=swap");
 
@@ -12,53 +11,6 @@
 .brand {
   font-family: "Bungee Outline", cursive;
   font-size: 16vh;
-=======
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans+Condensed:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=IBM+Plex+Serif:ital@0;1&display=swap');
-@font-face {
-    font-family: Baloons;
-    src: url("./fonts/BalonkuRegular-la1w.svg") format("svg");
-}
-
-@layer utilities {
-  .animation-delay-75 {
-    animation-delay: 75ms;
-  }
-  .animation-delay-500 {
-    animation-delay: 500ms;
-  }
-  .animation-delay-750 {
-    animation-delay: 750ms;
-  }
-  .animation-delay-1000 {
-    animation-delay: 1s;
-  }
-  .font-plex-mono {
-    font-family: 'IBM Plex Mono', monospace;
-  }
-  .font-plex-sans {
-    font-family: 'IBM Plex Sans', sans-serif;
-  }
-  .font-plex-serif {
-    font-family: 'IBM Plex Serif', serif;
-  }
-  .font-plex-condensed {
-    font-family: 'IBM Plex Sans Condensed', sans-serif;
-  }
-  .font-ballons {
-    font-family: 'Baloons'
-  }
-  .font-sniglet {
-    font-family: 'Sniglet', cursive;
-  }
-}
-
-/* brand */
-.brand {
-    font-family: 'Bungee Outline', cursive;
-    font-size: 12vh;
->>>>>>> 5c09cf37137f6ee8ffd7bebf8edb64eba0c1f6e6
 }
 
 .brand-small {
@@ -69,7 +21,6 @@
 .game-button-p {
   font-family: "Sniglet", cursive;
 }
-<<<<<<< HEAD
 
 .sniglet {
   font-family: "Sniglet", cursive;
@@ -220,5 +171,3 @@ footer img.emoji,
     transform: translate(1px, -2px) rotate(-1deg);
   }
 }
-=======
->>>>>>> 5c09cf37137f6ee8ffd7bebf8edb64eba0c1f6e6
