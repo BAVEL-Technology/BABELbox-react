@@ -5,6 +5,7 @@ import Main from "./pages/main";
 import AboutUs from "./pages/AboutUs";
 import PageNotFound from "./pages/PageNotFound";
 import LiarLiar from "./games/LiarLiar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             {/* Render main page. */}
             <Route exact path="/">
               <Main />
+              <Footer/>
             </Route>
             {/* Render Liar Liar */}
             <Route path="/liarliar">

@@ -40,3 +40,11 @@
 .textShadow{
   text-shadow: 1px 1px 2px #3f3f3f73;
 }
+
+footer img.emoji, .center img.emoji, #about img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 .05em 0 .1em;
+  vertical-align: -0.1em;
+  display: inline-block;
+}
