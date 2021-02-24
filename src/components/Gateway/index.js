@@ -1,7 +1,6 @@
 import React from "react";
-
+import CreatePortal from "../CreatePortal";
 const Gateway = (props) => {
-
   return (
     <div className="flex flex-col w-full items-center min-h-screen">
       <div className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4">
@@ -19,6 +18,7 @@ const Gateway = (props) => {
           {props.tagline}
         </p>
       </div>
+      <CreatePortal color="babelYellow-700" font=" 'Sniglet', cursive" />
     </div>
   );
 };
