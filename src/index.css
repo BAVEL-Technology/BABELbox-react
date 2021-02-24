@@ -4,22 +4,16 @@
 @tailwind utilities;
 
 /* fonts */
-<<<<<<< HEAD
-@import url("https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Sniglet&display=swap");
-
-/* brand */
-.brand {
-  font-family: "Bungee Outline", cursive;
-  font-size: 16vh;
-=======
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans+Condensed:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=IBM+Plex+Serif:ital@0;1&display=swap');
-@font-face {
-    font-family: Baloons;
-    src: url("./fonts/BalonkuRegular-la1w.svg") format("svg");
+@font-face{
+  font-family: Bungee Outline;
+  src: url('./fonts/BungeeOutline-Regular.ttf');
 }
+
+@font-face{
+  font-family: Sniglet;
+  src: url('./fonts/Sniglet-Regular.ttf');
+}
+
 
 @layer utilities {
   .animation-delay-75 {
@@ -58,7 +52,6 @@
 .brand {
     font-family: 'Bungee Outline', cursive;
     font-size: 12vh;
->>>>>>> 5c09cf37137f6ee8ffd7bebf8edb64eba0c1f6e6
 }
 
 .brand-small {
@@ -69,7 +62,6 @@
 .game-button-p {
   font-family: "Sniglet", cursive;
 }
-<<<<<<< HEAD
 
 .sniglet {
   font-family: "Sniglet", cursive;
@@ -220,5 +212,3 @@ footer img.emoji,
     transform: translate(1px, -2px) rotate(-1deg);
   }
 }
-=======
->>>>>>> 5c09cf37137f6ee8ffd7bebf8edb64eba0c1f6e6
