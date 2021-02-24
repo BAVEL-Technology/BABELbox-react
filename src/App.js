@@ -6,6 +6,7 @@ import AboutUs from "./pages/AboutUs";
 import PageNotFound from "./pages/PageNotFound";
 import LiarLiar from "./games/LiarLiar";
 import Footer from "./components/Footer";
+import War from "./games/War";
 
 function App() {
   return (
@@ -27,6 +28,10 @@ function App() {
             {/* Render About Us page on route. */}
             <Route exact path="/about-us">
               <AboutUs />
+            </Route>
+            {/* Card Testing */}
+            <Route exact path="/war">
+              <War/>
             </Route>
             {/* Render this if no other page was found. */}
             <Route>
