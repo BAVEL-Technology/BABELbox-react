@@ -13,7 +13,7 @@ const BBLogo = (props) => {
     else
     {
         return (
-            <div className="brand text-center text-gray-700 font-semibold hidden lg:block md:block">
+            <div className="brand text-center text-gray-700 font-bold hidden lg:block md:block">
                 <BBLogoLetters charColor="text-yellow-600" character="B" hover={true}/>
                 <BBLogoLetters charColor="text-green-600" character="A" hover={true}/>
                 <BBLogoLetters charColor="text-indigo-600" character="B" hover={true}/>
