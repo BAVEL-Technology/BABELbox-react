@@ -4,15 +4,9 @@
 @tailwind utilities;
 
 /* fonts */
-<<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Sniglet&display=swap");
 
-/* brand */
-.brand {
-  font-family: "Bungee Outline", cursive;
-  font-size: 16vh;
-=======
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans+Condensed:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=IBM+Plex+Serif:ital@0;1&display=swap');
@@ -21,6 +15,7 @@
     src: url("./fonts/BalonkuRegular-la1w.svg") format("svg");
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @layer utilities {
   .animation-delay-75 {
     animation-delay: 75ms;
@@ -52,13 +47,25 @@
   .font-sniglet {
     font-family: 'Sniglet', cursive;
   }
+
+  /*Homepage Styles*/
+  .babelBg {
+    background: linear-gradient(136.16deg, rgba(46, 9, 22, 0.97) 12.91%, rgba(32, 10, 43, 0.69) 87.68%);
+  }
+
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .font-roboto {
+    font-family: 'Roboto', sans-serif;
+  }
 }
 
 /* brand */
 .brand {
     font-family: 'Bungee Outline', cursive;
     font-size: 12vh;
->>>>>>> 5c09cf37137f6ee8ffd7bebf8edb64eba0c1f6e6
 }
 
 .brand-small {
@@ -69,7 +76,6 @@
 .game-button-p {
   font-family: "Sniglet", cursive;
 }
-<<<<<<< HEAD
 
 .sniglet {
   font-family: "Sniglet", cursive;
@@ -220,5 +226,3 @@ footer img.emoji,
     transform: translate(1px, -2px) rotate(-1deg);
   }
 }
-=======
->>>>>>> 5c09cf37137f6ee8ffd7bebf8edb64eba0c1f6e6
