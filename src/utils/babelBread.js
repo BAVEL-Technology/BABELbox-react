@@ -25,8 +25,9 @@ Array.prototype.compare = function compare(param, dir) {
 
 class Babeljax {
   constructor() {
-    this.base_url = "https://babelbox.herokuapp.com/api/";
-    this.data, (this.queue = Promise.resolve());
+    this.base_url = "https://babelboxdb.herokuapp.com/api/";
+    this.data;
+    this.queue = Promise.resolve();
   }
 
   then(callback) {
@@ -45,14 +46,14 @@ class Babeljax {
 
   browse(table, limit, skip, sort, direction) {
     this.chain(async () => {
-      let params = {};
+      const params = {};
       if (limit) params.limit = limit;
       if (skip) params.skip = skip;
       if (sort) params.sort = sort;
       if (direction) params.direction = direction;
       let query;
       if (params) {
-        let array = Object.keys(params);
+        const array = Object.keys(params);
         query = array.map((p) => `${p}=${params[p]}`).join("");
       }
       let data = await fetch(`${this.base_url}${table}?${query}`);
@@ -75,8 +76,8 @@ class Babeljax {
 
   read(table, filter) {
     this.chain(async () => {
-      let params = Object.keys(filter);
-      let query = params.map((p) => `${p}=${filter[p]}`).join("");
+      const params = Object.keys(filter);
+      const query = params.map((p) => `${p}=${filter[p]}`).join("");
       let data = await fetch(`${this.base_url}${table}?${query}`);
       data = await data.json();
       this.data = data;
@@ -135,7 +136,7 @@ class Babeljax {
 
   sort(param, caseInsensitive) {
     this.chain(async (data) => {
-      let direction = param[0] == "-" ? "DESC" : "ASC";
+      const direction = param[0] == "-" ? "DESC" : "ASC";
       param = param.substring(1);
       this.data = data.compare(param, direction);
       return this.data;
@@ -145,9 +146,9 @@ class Babeljax {
 
   where(filters) {
     this.chain(async (data) => {
-      let keys = Object.keys(filters);
+      const keys = Object.keys(filters);
       keys.forEach((filter, i) => {
-        let type = this.isRegExp(filters[filter]);
+        const type = this.isRegExp(filters[filter]);
         switch (type) {
           case "String":
             this.data = data.filter((d) => d[filter] == filters[filter]);
@@ -174,7 +175,7 @@ class Babeljax {
         console.log(c); //{col: table, "col": param}
         await data.asyncForEach(async (d, i) => {
           if (d[Object.keys(c)[0]]) {
-            let connection = await new Babeljax()
+            const connection = await new Babeljax()
               .browse(c[Object.keys(c)[0]])
               .where({ [c.col]: d[Object.keys(c)[0]] });
             console.log(connection);
