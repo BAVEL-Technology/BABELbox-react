@@ -106,6 +106,26 @@ class Babeljax {
     return this;
   }
 
+  push(table, filters, push) {
+    this.chain(async () => {
+      let data = await fetch(`${this.base_url}${table}`, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          filters,
+          push,
+        }),
+      });
+      data = await data.json();
+      this.data = data;
+      return this.data;
+    });
+    return this;
+  }
+
   add(table, body) {
     this.chain(async () => {
       let data = await fetch(`${this.base_url}${table}`, {
@@ -144,27 +164,25 @@ class Babeljax {
     return this;
   }
 
-  where(filters) {
-    this.chain(async (data) => {
+  where(filters, data = undefined) {
+    if (data == undefined) data = this.data;
       const keys = Object.keys(filters);
       keys.forEach((filter, i) => {
         const type = this.isRegExp(filters[filter]);
         switch (type) {
           case "String":
-            this.data = data.filter((d) => d[filter] == filters[filter]);
+            data = data.filter((d) => d[filter] == filters[filter]);
             break;
           case "Number":
-            this.data = data.filter((d) => d[filter] == filters[filter]);
+            data = data.filter((d) => d[filter] == filters[filter]);
             break;
           case "RegExp":
-            this.data = data.filter((d) => filters[filter].test(d[filter]));
+            data = data.filter((d) => filters[filter].test(d[filter]));
             break;
           default:
             this.data = data;
         }
       });
-      return this.data;
-    });
 
     return this;
   }
@@ -172,7 +190,7 @@ class Babeljax {
   join(...tables) {
     this.chain(async (data) => {
       await tables.asyncForEach(async (c) => {
-        console.log(c); //{col: table, "col": param}
+        console.log(c);
         await data.asyncForEach(async (d, i) => {
           if (d[Object.keys(c)[0]]) {
             const connection = await new Babeljax()

@@ -1,6 +1,10 @@
 import React, { Component, useEffect, useState } from "react";
-import Gateway from "../../components/Gateway";
 import LiarLiarContext from "./utils/LiarLiarContext";
+import LiarLiarStage from "./utils/LiarLiarStage";
+import Gateway from "../../components/Gateway";
+import Waiting from "./Phases/Waiting";
+import CreatePortal from "../../components/CreatePortal";
+
 import {
   BrowserRouter as Router,
   Route,
@@ -18,7 +22,10 @@ function LiarLiar() {
     question: "",
     answers: [],
     round: 1,
+    setLiarLiarState: () => {}
   });
+
+  liarLiarState.setLiarLiarState = setLiarLiarState;
 
   // Hook function for refreshing / performing an action on value changes. Also called once when component mounts.
   useEffect(() => {
@@ -66,14 +73,8 @@ function LiarLiar() {
               rule="You'll be given a piece of trivia with a missing word. Fill in the blank with the most convincing thing you can think of. The more people that guess your answer, the more points you get!"
             />
           </Route>
-
+            <LiarLiarStage />
           <Route>
-            <Gateway
-              color="yellow-500"
-              tagline="The game where knowing the right answer is only half the challenge."
-              title="Liar Liar"
-              font="Sniglet"
-            />
           </Route>
         </Switch>
       </LiarLiarContext.Provider>

@@ -11,7 +11,7 @@ function App() {
     <Router>
       <div>
         {/* Wrapper for background and centering things on the page. */}
-        <Wrapper classes="min-h-screen h-full bg-gradient-to-tl from-babelBlue-1000 via-babelBlue-900 to-babelCyan-700">
+        <Wrapper classes="min-h-screen h-full">
           {/* Switch statement for the router. */}
           <Switch>
             {/* Render main page. */}
