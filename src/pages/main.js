@@ -1,6 +1,5 @@
 import React from "react";
 import Navbar from "../components/Nav";
-import { FlamingClown } from "../components/Logos";
 import { OblongButton } from "../components/ui";
 
 function Main() {
