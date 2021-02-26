@@ -11,7 +11,7 @@ import {
   Switch,
   useRouteMatch,
 } from "react-router-dom";
-import HowToPlay from "../../components/Gateway/HowToPlay";
+import HowToPlay from "./HowToPlay";
 
 function LiarLiar() {
   const [liarLiarState, setLiarLiarState] = useState({
@@ -22,7 +22,7 @@ function LiarLiar() {
     question: "",
     answers: [],
     round: 1,
-    setLiarLiarState: () => {}
+    setLiarLiarState: () => {},
   });
 
   liarLiarState.setLiarLiarState = setLiarLiarState;
@@ -65,17 +65,16 @@ function LiarLiar() {
         <Switch>
           {/* Render the How To Play component */}
           <Route path={`${path}/howtoplay`}>
-            <HowToPlay
-              title="Liar Liar"
-              color="yellow-500"
-              description="There are three phases: Question, Answer, and Waiting"
-              type="Question Phase:"
-              rule="You'll be given a piece of trivia with a missing word. Fill in the blank with the most convincing thing you can think of. The more people that guess your answer, the more points you get!"
-            />
+            <>
+              <HowToPlay
+                title="Liar Liar"
+                color="yellow-500"
+                description="There are three phases: Question, Answer, and Waiting"
+              />
+            </>
           </Route>
-            <LiarLiarStage />
-          <Route>
-          </Route>
+          <LiarLiarStage />
+          <Route></Route>
         </Switch>
       </LiarLiarContext.Provider>
     </>

@@ -1,5 +1,6 @@
 import React from "react";
 import CreatePortal from "../CreatePortal";
+
 const Gateway = (props) => {
   return (
     <div className="flex flex-col w-full items-center min-h-screen">
