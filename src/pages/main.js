@@ -36,7 +36,6 @@ function Main() {
             </div>
             <div className={`text-white font-poppins space-y-16 ${page == 0 ? '' : 'animate__animated animate__fadeOutUp'}`}>
               <div className="space-y-4 w-10/12">
-                <img src="./images/doodle-5.png" className="absolute z-50 h-48 top-24 right-36" />
                 <img src="./images/doodle-7.png" className="absolute z-50 h-24 bottom-24 right-24 transform -rotate-45" />
                 <img src="./images/Color=White-Matte.png" className="absolute z-50 h-24 bottom-24 left-36 transform -rotate-45" />
                 <div className="space-x-6 justify-center font-black uppercase text-8xl animate__animated animate__fadeInUp">

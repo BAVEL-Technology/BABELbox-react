@@ -225,7 +225,6 @@ footer img.emoji,
     transform: translate(1px, -2px) rotate(-1deg);
   }
 }
-<<<<<<< HEAD
 
 input:focus-within~label,
   input:not(:placeholder-shown)~label {
@@ -250,5 +249,3 @@ input:focus-within~label,
     visibility: visible;
     transform: scaleX(1);
   }
-=======
->>>>>>> ffe6faa39270bd7b4bc9fd7ddd8f763735de3060
