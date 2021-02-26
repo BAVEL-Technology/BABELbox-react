@@ -64,7 +64,8 @@ module.exports = {
           'animate__faster',
           'animate_slow',
           'animate_slower',
-          'animate__zoomIn'
+          'animate__zoomIn',
+          'animate__fadeOutUp'
         ],
         variants: ['responsive', 'hover', 'reduced-motion'],
       }),

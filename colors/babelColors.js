@@ -1,6 +1,7 @@
 module.exports = {
   babelPink: {
-    '500': '#FF5B79'
+    '600': '#FFB4B4',
+    '500': 'rgb(98, 99, 210)'
   },
   babelBlue: {
     '1000':'hsl(205, 100%, 21%)',

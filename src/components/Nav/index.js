@@ -3,10 +3,10 @@ import { Clown } from "../Logos";
 const Navbar = (props) => {
 
   return (
-    <div className="w-full px-12 pt-6 flex justify-between items-center">
+    <div className="w-full px-12 pt-6 flex justify-between items-center sticky top-0">
     <div className={`flex items-center space-x-4`}>
-      <Clown size="30" />
-      <p className={`font-poppins uppercase text-white text-md font-bold`}>
+      <img src="./images/babelboxlogo.png" className="h-12" />
+      <p className={`font-poppins uppercase text-white text-lg font-bold`}>
       {props.brandName || 'BABELBOX'}
       </p>
     </div>
