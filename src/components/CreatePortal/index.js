@@ -26,8 +26,8 @@ const CreatePortal = (props) => {
     setLiarLiarState({
       portalID: portal.code,
       portalPhase: portal.params.phase,
-      users: BB().where({ type: "player" }, portal.params.players),
-      spectators: BB().where({ type: "spectator" }, portal.params.players),
+      users: portal.params.players,
+      spectators: [],
       question: "",
       answers: [],
       round: portal.params.round,

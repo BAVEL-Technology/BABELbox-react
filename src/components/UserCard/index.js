@@ -2,7 +2,7 @@ const UserCard = (props) => {
   return (
     <div className="card my-6 flex items-center justify-between bg-green-400 w-full text-gray-700 p-4 text-xl lg:text-4xl md:text-3xl text-center rounded-xl tracking-widest shadow-lg hover:shadow-xl transform hover:-translate-y-2" style={{fontFamily: "'Sniglet', cursive"}}>
       <div onClick="showAvatars(71)" className="emoji cursor-pointer rounded-full hover:bg-blue-300 p-2">props.avatar</div>
-        <input onkeyup="changeUserName(71)" type="text" id="user-name-change" value={props.name} className="appearance-none text-center bg-green-400 focus:outline-none">
+        <input onkeyup="changeUserName(71)" type="text" id="user-name-change" value={props.name} className="appearance-none text-center bg-green-400 focus:outline-none" />
       <div className="flex flex-col text-sm justify-between">
         <div onclick="makeLeader(71, 71)" className="make-leader w-8 h-8 rounded-full hover:bg-blue-300 flex items-center justify-center pl-1 cursor-pointer">
           <span className="fa-stack fa-1x user-leader">

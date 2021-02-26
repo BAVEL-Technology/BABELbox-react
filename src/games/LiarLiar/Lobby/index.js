@@ -3,7 +3,7 @@ import PlayButton from "../PlayButton";
 import GameTitle from "../GameTitle";
 import BBLogo from "../../../components/BBLogo";
 
-function Lobby () {
+function Lobby (props) {
 
   return (
     <div>
@@ -16,6 +16,7 @@ function Lobby () {
         name="Liar Liar"
       />
       <PlayButton />
+      {props.children}
     </div>
   );
 }
