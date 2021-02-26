@@ -164,27 +164,25 @@ class Babeljax {
     return this;
   }
 
-  where(filters) {
-    this.chain(async (data) => {
+  where(filters, data = undefined) {
+    if (data == undefined) data = this.data;
       const keys = Object.keys(filters);
       keys.forEach((filter, i) => {
         const type = this.isRegExp(filters[filter]);
         switch (type) {
           case "String":
-            this.data = data.filter((d) => d[filter] == filters[filter]);
+            data = data.filter((d) => d[filter] == filters[filter]);
             break;
           case "Number":
-            this.data = data.filter((d) => d[filter] == filters[filter]);
+            data = data.filter((d) => d[filter] == filters[filter]);
             break;
           case "RegExp":
-            this.data = data.filter((d) => filters[filter].test(d[filter]));
+            data = data.filter((d) => filters[filter].test(d[filter]));
             break;
           default:
             this.data = data;
         }
       });
-      return this.data;
-    });
 
     return this;
   }

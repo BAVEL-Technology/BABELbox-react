@@ -46,12 +46,25 @@
   .font-sniglet {
     font-family: 'Sniglet', cursive;
   }
+
+  /*Homepage Styles*/
+  .babelBg {
+    background: linear-gradient(136.16deg, rgba(46, 9, 22, 0.97) 12.91%, rgba(32, 10, 43, 0.69) 87.68%);
+  }
+
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .font-roboto {
+    font-family: 'Roboto', sans-serif;
+  }
 }
 
 /* brand */
 .brand {
-    font-family: 'Bungee Outline', cursive;
-    font-size: 12vh;
+  font-family: "Bungee Outline", cursive;
+  font-size: 16vh;
 }
 
 .brand-small {
