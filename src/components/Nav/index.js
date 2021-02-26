@@ -10,7 +10,7 @@ const Navbar = (props) => {
       {props.brandName || 'BABELBOX'}
       </p>
     </div>
-    <ul className={`flex items-center cursor-pointer space-x-12 text-${props.color} font-roboto font-medium text-sm`}>
+    <ul className={`flex items-center font-semibold cursor-pointer space-x-12 text-${props.color} font-roboto font-medium text-sm`}>
       <li>Help</li>
       <li>About</li>
       <li>Games</li>
