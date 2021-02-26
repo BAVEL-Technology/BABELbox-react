@@ -48,21 +48,21 @@ const CreatePortal = (props) => {
         ({setLiarLiarState}) => {
           return(
             <>
-              <div className={`bg-${props.color} w-full flex flex-col text-gray-100 p-8 rounded-xl tracking-widest my-8 cursor-pointer`} style={{ fontFamily: props.font }}>
+              <div className={`bg-${props.color} w-2/3 flex flex-col text-gray-100 p-8 rounded-xl tracking-widest my-8 cursor-pointer`} style={{ fontFamily: props.font }}>
                 <div
                   id="user-area"
                   className="w-full flex justify-center mt-8"
                   style={{ fontFamily: props.font }}
                 >
-                  <div className="w-full mx-6 relative">
+                  <div className="w-full mx-6 h-12 relative">
                     <input
                       onChange={handleChange}
                       type="text"
                       name="user-name"
                       placeholder=" "
-                      className="block appearance-none focus:outline-none border-b-4 border-gray-100 w-full bg-transparent text-xl text-gray-100"
+                      className="block appearance-none focus:outline-none border-b-4 border-gray-100 -mt-8 w-full bg-transparent text-xl text-gray-700 rounded-lg px-4 py-3"
                     />
-                    <label htmlFor="user-name" className="duration-300 absolute left-0 top-0 mt-8 w-full-top-10 -z-1 label lg:text-3xl md:text-3xl text-xl">
+                    <label htmlFor="user-name" className="duration-300 absolute left-0 top-4 mt-6 w-full-top-10 z-1 label lg:text-3xl md:text-3xl text-xl">
                       User name
                     </label>
                   </div>
