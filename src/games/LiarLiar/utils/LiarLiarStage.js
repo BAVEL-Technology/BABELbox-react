@@ -12,10 +12,7 @@ import HowToPlay from "../../../components/Gateway/HowToPlay";
 // socket.on('breadUpdate', reload);
 
 // Call back function for the socket reload.
-function reload() {
-
-}
-
+function reload() {}
 
 const LiarLiarStage = () => {
   return (
