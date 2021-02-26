@@ -1,9 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import LiarLiarContext from "./LiarLiarContext";
 import Gateway from "../../../components/Gateway";
 // Phases
 import Waiting from "../Phases/Waiting";
-// import HowToPlay from "../HowToPlay";
 import GameButton from "../../../components/GameButton";
 import BBLogo from "../../../components/BBLogo";
 
@@ -20,7 +19,7 @@ const LiarLiarStage = () => {
   return (
     <LiarLiarContext.Consumer>
       {
-        ({ portalPhase }) => {
+        ({ liarLiarState: {portalPhase}, setLiarLiarState }) => {
           switch (portalPhase) {
             case 'waiting':
               return(<Waiting />);
@@ -39,7 +38,7 @@ const LiarLiarStage = () => {
                   font="Sniglet"
                 >
                   {/* How to play button */}
-                  <GameButton classes="bg-blue-400 h-12 text-gray-100 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl w-full text-3xl border-4 border-blue-400 hover:bg-gray-100 hover:text-blue-400" location="/liarliar/howtoplay" emoji="#" name="How To Play"/>
+                  <GameButton className="bg-blue-400 h-12 text-gray-100 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl w-full text-3xl border-4 border-blue-400 hover:bg-gray-100 hover:text-blue-400" location="/liarliar/howtoplay" emoji="#" name="How To Play"/>
                 </Gateway>
               </>
               );

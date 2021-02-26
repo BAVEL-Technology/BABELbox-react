@@ -4,10 +4,10 @@ import UserCard from "../../../components/UserCard";
 import PortalCodeCard from "../../../components/LobbyCards/PortalCodeCard";
 
 const Waiting = () => {
-
   return (
     <LiarLiarContext.Consumer>
       {
+        
         ({ portalID, users }) => {
           return (
             <Lobby>
@@ -15,8 +15,8 @@ const Waiting = () => {
                 portalCode={portalID}
               />
               {
-                users.map((user) => {
-                  return <UserCard />;
+                users && users.map((user, index) => {
+                  return <UserCard user={{...user}} key={index + 1} />; 
                 })
               }
             </Lobby>

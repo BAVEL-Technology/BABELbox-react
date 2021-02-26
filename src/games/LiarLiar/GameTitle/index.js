@@ -6,7 +6,7 @@ class index extends Component {
     return (
       <div>
         <div>
-          <button className={this.props.classes}>
+          <button className={this.props.className}>
             <div className={`emoji`}>
               <img draggable="false" class="emoji" src={this.props.src} />
             </div>

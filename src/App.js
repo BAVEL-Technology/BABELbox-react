@@ -20,7 +20,7 @@ function App() {
 
             </Route>
             {/* Render Liar Liar */}
-            <Route path="/liarliar">
+            <Route path={['/liarliar/:portalID','/liarliar']}>
               <LiarLiar />
             </Route>
             {/* Render About Us page on route. */}
