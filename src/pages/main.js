@@ -1,8 +1,17 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from "../components/Nav";
 import { Clown } from "../components/Logos";
 import { OblongButton } from "../components/ui";
 import Steps from "../components/HeroComponents/Steps";
+import BBLogo from "../components/BBLogo";
+import GameButton from "../components/GameButton";
+import PortalCodeCard from "../components/LobbyCards/PortalCodeCard";
+import ToAboutUsButton from '../components/AboutUs/ToAboutUsButton';
+import LeftSide from "../components/HeroComponents/LeftSide.js";
+import RightSide from "../components/HeroComponents/RightSide.js";
+import Box from "../components/Box";
+import Footer from "../components/Footer";
 
 function main() {
   const [page, setPage] = useState(0);
