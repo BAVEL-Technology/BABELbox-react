@@ -4,18 +4,17 @@
 @tailwind utilities;
 
 /* fonts */
-@import url("https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Sniglet&display=swap");
-
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital@0;1&family=IBM+Plex+Sans+Condensed:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=IBM+Plex+Serif:ital@0;1&display=swap');
-@font-face {
-    font-family: Baloons;
-    src: url("./fonts/BalonkuRegular-la1w.svg") format("svg");
+@font-face{
+  font-family: Bungee Outline;
+  src: url('./fonts/BungeeOutline-Regular.ttf');
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@font-face{
+  font-family: Sniglet;
+  src: url('./fonts/Sniglet-Regular.ttf');
+}
+
+
 @layer utilities {
   .animation-delay-75 {
     animation-delay: 75ms;
@@ -226,6 +225,7 @@ footer img.emoji,
     transform: translate(1px, -2px) rotate(-1deg);
   }
 }
+<<<<<<< HEAD
 
 input:focus-within~label,
   input:not(:placeholder-shown)~label {
@@ -250,3 +250,5 @@ input:focus-within~label,
     visibility: visible;
     transform: scaleX(1);
   }
+=======
+>>>>>>> ffe6faa39270bd7b4bc9fd7ddd8f763735de3060
