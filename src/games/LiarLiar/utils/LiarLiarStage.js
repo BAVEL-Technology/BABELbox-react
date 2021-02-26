@@ -5,6 +5,7 @@ import Gateway from "../../../components/Gateway";
 import Waiting from "../Phases/Waiting";
 // import HowToPlay from "../HowToPlay";
 import GameButton from "../../../components/GameButton";
+import BBLogo from "../../../components/BBLogo";
 
 
 // Listen for socket and make changes to the state.
@@ -30,6 +31,7 @@ const LiarLiarStage = () => {
             default:
               return (
               <>
+                <BBLogo className="py-4 mx-8" small={true}/>
                 <Gateway
                   color="yellow-500"
                   tagline="The game where knowing the right answer is only half the challenge."
