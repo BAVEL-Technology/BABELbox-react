@@ -7,7 +7,8 @@ const LiarLiarContext = React.createContext({
   spectators: [],
   question: "",
   answers: [],
-  round: 1
+  round: 1,
+  setLiarLiarState: () => {}
 });
 
 export default LiarLiarContext;

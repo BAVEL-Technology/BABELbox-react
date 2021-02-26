@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import DevCard from "../components/AboutUs/DevCard";
-
+import BBLogo from "../components/BBLogo";
 class AboutUs extends Component {
   render() {
     return (
       <>
         {/* TODO: Insert a BB logo to go home. */}
-        <a href="/">(TEMP)Home</a>
+        <div className="flex justify-between">
+          <BBLogo small={true}/>
+        </div>
+        {/* <a href="/">(TEMP)Home</a> */}
         <h1 className="text-6xl m-12">The BABEL Team</h1>
         <div className="grid xl:grid-cols-4 md:grid-cols-2">
           <DevCard name="Steve Tong" gitHubUsername="steversonTong"/>
