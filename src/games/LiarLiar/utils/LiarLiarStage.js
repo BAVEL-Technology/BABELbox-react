@@ -1,14 +1,14 @@
 import React from "react";
-import CreatePortal from "../../../components/CreatePortal";
 import LiarLiarContext from "./LiarLiarContext";
 import Gateway from "../../../components/Gateway";
 // Phases
 import Waiting from "../Phases/Waiting";
 
+
 // Listen for socket and make changes to the state.
-const socket = io();
-socket.io.connect('https://babelboxdb.herokuapp.com');
-socket.on('breadUpdate', reload);
+// const socket = io();
+// socket.io.connect('https://babelboxdb.herokuapp.com');
+// socket.on('breadUpdate', reload);
 
 // Call back function for the socket reload.
 function reload() {
