@@ -4,7 +4,7 @@ import { Clown } from "../components/Logos";
 import { OblongButton } from "../components/ui";
 import Steps from "../components/HeroComponents/Steps";
 
-function Main() {
+function main() {
   const [page, setPage] = useState(0);
   const [scrollTop, setScrollTop] = useState(0);
 
@@ -38,10 +38,10 @@ function Main() {
               <div className="space-y-4 w-10/12">
                 <img src="./images/doodle-7.png" className="absolute z-50 h-24 bottom-24 right-24 transform -rotate-45" />
                 <img src="./images/Color=White-Matte.png" className="absolute z-50 h-24 bottom-24 left-36 transform -rotate-45" />
-                <div className="space-x-6 justify-center font-black uppercase text-8xl animate__animated animate__fadeInUp">
-                  BABELBOX
+                <div style={{fontSize: '10rem'}} className="space-x-6 justify-center font-black uppercase text-8xl animate__animated animate__fadeInUp">
+                  BABEL<br />BOX
                 </div>
-                <p className="text-lg font-medium animate__animated animate__fadeInUp animation-delay-500">
+                <p className="text-lg font-semibold animate__animated animate__fadeInUp animation-delay-500">
                   Open our box for an awesome collection of real time games for you to enjoy with the crew weather you are together or apart. Gut-busting good times.
                 </p>
               </div>
@@ -94,4 +94,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default main;
