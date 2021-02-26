@@ -225,30 +225,3 @@ footer img.emoji,
     transform: translate(1px, -2px) rotate(-1deg);
   }
 }
-<<<<<<< HEAD
-
-input:focus-within~label,
-  input:not(:placeholder-shown)~label {
-    transform: scale(.75) translateY(-1.5rem);
-  }
-  label {
-    transform-origin: 0%;
-  }
-  .create-new-user::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #000;
-    visibility: hidden;
-    transform: scaleX(0);
-    transition: all 0.3s ease-in-out 0s;
-  }
-  .create-new-user:hover::before {
-    visibility: visible;
-    transform: scaleX(1);
-  }
-=======
->>>>>>> ffe6faa39270bd7b4bc9fd7ddd8f763735de3060

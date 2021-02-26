@@ -3,6 +3,7 @@ import LiarLiarContext from "./LiarLiarContext";
 import Gateway from "../../../components/Gateway";
 // Phases
 import Waiting from "../Phases/Waiting";
+import HowToPlay from "../../../components/Gateway/HowToPlay";
 
 
 // Listen for socket and make changes to the state.
@@ -29,12 +30,17 @@ const LiarLiarStage = () => {
             case 'answer':
               return(<p>answer</p>);
             default:
-              return (<Gateway
-                color="yellow-500"
-                tagline="The game where knowing the right answer is only half the challenge."
-                title="Liar Liar"
-                font="Sniglet"
-              />);
+              return (
+              <>
+                <Gateway
+                  color="yellow-500"
+                  tagline="The game where knowing the right answer is only half the challenge."
+                  title="Liar Liar"
+                  font="Sniglet"
+                />
+                
+              </>
+              );
           };
         }
       }
