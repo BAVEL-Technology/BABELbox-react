@@ -1,6 +1,6 @@
 const Steps = (props) => {
   return (
-    <div className="w-full flex items-center justify-between">
+    <div className={`w-full flex items-center justify-between ${props.className}`}>
       {(props.step % 2) == 0 &&
         <div className="flex-shrink-0 flex justify-center">
           <img src={props.img} className={props.imgSize || 'h-96'}/>

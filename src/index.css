@@ -249,3 +249,8 @@ input:focus-within~label,
     visibility: visible;
     transform: scaleX(1);
   }
+
+  .navbar {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
