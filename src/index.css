@@ -4,24 +4,224 @@
 @tailwind utilities;
 
 /* fonts */
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sniglet&display=swap');
+@font-face{
+  font-family: Bungee Outline;
+  src: url('./fonts/BungeeOutline-Regular.ttf');
+}
+
+@font-face{
+  font-family: Sniglet;
+  src: url('./fonts/Sniglet-Regular.ttf');
+}
+
+
+@layer utilities {
+  .animation-delay-75 {
+    animation-delay: 75ms;
+  }
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  .animation-delay-750 {
+    animation-delay: 750ms;
+  }
+  .animation-delay-1000 {
+    animation-delay: 1s;
+  }
+  .font-plex-mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .font-plex-sans {
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+  .font-plex-serif {
+    font-family: 'IBM Plex Serif', serif;
+  }
+  .font-plex-condensed {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+  }
+  .font-ballons {
+    font-family: 'Baloons'
+  }
+  .font-sniglet {
+    font-family: 'Sniglet', cursive;
+  }
+
+  /*Homepage Styles*/
+  .babelBg {
+    background: linear-gradient(136.16deg, rgba(46, 9, 22, 0.97) 12.91%, rgba(32, 10, 43, 0.69) 87.68%);
+  }
+
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .font-roboto {
+    font-family: 'Roboto', sans-serif;
+  }
+}
 
 /* brand */
 .brand {
-    font-family: 'Bungee Outline', cursive;
-    font-size: 16vh;
+  font-family: "Bungee Outline", cursive;
+  font-size: 16vh;
 }
 
 .brand-small {
-    font-family: 'Bungee Outline', cursive;
-    font-size: 4vh;
+  font-family: "Bungee Outline", cursive;
+  font-size: 4vh;
 }
 
 .game-button-p {
-    font-family: 'Sniglet', cursive;
+  font-family: "Sniglet", cursive;
 }
 
 .sniglet {
-    font-family: 'Sniglet', cursive;
+  font-family: "Sniglet", cursive;
+}
+
+.loader1 {
+  display: inline-block;
+  font-size: 0px;
+  padding: 0px;
+}
+.loader1 span {
+  vertical-align: middle;
+  border-radius: 100%;
+
+  display: inline-block;
+  margin: 3px 2px;
+  -webkit-animation: loader1 0.8s linear infinite alternate;
+  animation: loader1 0.8s linear infinite alternate;
+}
+.loader1 span:nth-child(1) {
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+  background: rgba(245, 103, 115, 0.6);
+}
+.loader1 span:nth-child(2) {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+  background: rgba(245, 103, 115, 0.8);
+}
+.loader1 span:nth-child(3) {
+  -webkit-animation-delay: -0.26666s;
+  animation-delay: -0.26666s;
+  background: rgba(245, 103, 115, 1);
+}
+.loader1 span:nth-child(4) {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+  background: rgba(245, 103, 115, 0.8);
+}
+.loader1 span:nth-child(5) {
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+  background: rgba(245, 103, 115, 0.4);
+}
+
+@keyframes loader1 {
+  from {
+    transform: scale(0, 0);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
+@-webkit-keyframes loader1 {
+  from {
+    -webkit-transform: scale(0, 0);
+  }
+  to {
+    -webkit-transform: scale(1, 1);
+  }
+}
+
+footer img.emoji,
+.center img.emoji,
+#about img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 0.05em 0 0.1em;
+  vertical-align: -0.1em;
+  display: inline-block;
+}
+
+.card img.emoji {
+  height: 2em;
+  width: 2em;
+}
+
+.timer {
+  position: relative;
+}
+
+.timer-svg {
+  transform: scaleX(-1);
+}
+
+.timer-circle {
+  fill: none;
+  stroke: none;
+}
+
+.timer-path-remaining {
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  fill-rule: nonzero;
+  stroke: currentColor;
+}
+
+.timer-label {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-path-elapsed {
+  stroke: grey;
+}
+
+.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
 }

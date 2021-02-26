@@ -1,11 +1,10 @@
 import "./App.css";
 import Wrapper from "./components/Wrapper";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Main from "./pages/main";
+import Main from "./pages/Main";
 import AboutUs from "./pages/AboutUs";
 import PageNotFound from "./pages/PageNotFound";
 import LiarLiar from "./games/LiarLiar";
-import Footer from "./components/Footer";
 import War from "./games/War";
 
 function App() {
@@ -13,13 +12,13 @@ function App() {
     <Router>
       <div>
         {/* Wrapper for background and centering things on the page. */}
-        <Wrapper classes="h-full min-h-screen w-screen bg-blue-200 flex flex-col items-center">
+        <Wrapper classes="min-h-screen h-full">
           {/* Switch statement for the router. */}
           <Switch>
             {/* Render main page. */}
             <Route exact path="/">
               <Main />
-              <Footer/>
+              
             </Route>
             {/* Render Liar Liar */}
             <Route path="/liarliar">

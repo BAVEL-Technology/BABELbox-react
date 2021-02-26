@@ -25,8 +25,9 @@ Array.prototype.compare = function compare(param, dir) {
 
 class Babeljax {
   constructor() {
-    this.base_url = "https://babelbox.herokuapp.com/api/";
-    this.data, (this.queue = Promise.resolve());
+    this.base_url = "https://babelboxdb.herokuapp.com/api/";
+    this.data;
+    this.queue = Promise.resolve();
   }
 
   then(callback) {
@@ -45,14 +46,14 @@ class Babeljax {
 
   browse(table, limit, skip, sort, direction) {
     this.chain(async () => {
-      let params = {};
+      const params = {};
       if (limit) params.limit = limit;
       if (skip) params.skip = skip;
       if (sort) params.sort = sort;
       if (direction) params.direction = direction;
       let query;
       if (params) {
-        let array = Object.keys(params);
+        const array = Object.keys(params);
         query = array.map((p) => `${p}=${params[p]}`).join("");
       }
       let data = await fetch(`${this.base_url}${table}?${query}`);
@@ -75,8 +76,8 @@ class Babeljax {
 
   read(table, filter) {
     this.chain(async () => {
-      let params = Object.keys(filter);
-      let query = params.map((p) => `${p}=${filter[p]}`).join("");
+      const params = Object.keys(filter);
+      const query = params.map((p) => `${p}=${filter[p]}`).join("");
       let data = await fetch(`${this.base_url}${table}?${query}`);
       data = await data.json();
       this.data = data;
@@ -96,6 +97,26 @@ class Babeljax {
         body: JSON.stringify({
           filters,
           updates,
+        }),
+      });
+      data = await data.json();
+      this.data = data;
+      return this.data;
+    });
+    return this;
+  }
+
+  push(table, filters, push) {
+    this.chain(async () => {
+      let data = await fetch(`${this.base_url}${table}`, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          filters,
+          push,
         }),
       });
       data = await data.json();
@@ -135,7 +156,7 @@ class Babeljax {
 
   sort(param, caseInsensitive) {
     this.chain(async (data) => {
-      let direction = param[0] == "-" ? "DESC" : "ASC";
+      const direction = param[0] == "-" ? "DESC" : "ASC";
       param = param.substring(1);
       this.data = data.compare(param, direction);
       return this.data;
@@ -143,27 +164,25 @@ class Babeljax {
     return this;
   }
 
-  where(filters) {
-    this.chain(async (data) => {
-      let keys = Object.keys(filters);
+  where(filters, data = undefined) {
+    if (data == undefined) data = this.data;
+      const keys = Object.keys(filters);
       keys.forEach((filter, i) => {
-        let type = this.isRegExp(filters[filter]);
+        const type = this.isRegExp(filters[filter]);
         switch (type) {
           case "String":
-            this.data = data.filter((d) => d[filter] == filters[filter]);
+            data = data.filter((d) => d[filter] == filters[filter]);
             break;
           case "Number":
-            this.data = data.filter((d) => d[filter] == filters[filter]);
+            data = data.filter((d) => d[filter] == filters[filter]);
             break;
           case "RegExp":
-            this.data = data.filter((d) => filters[filter].test(d[filter]));
+            data = data.filter((d) => filters[filter].test(d[filter]));
             break;
           default:
             this.data = data;
         }
       });
-      return this.data;
-    });
 
     return this;
   }
@@ -171,10 +190,10 @@ class Babeljax {
   join(...tables) {
     this.chain(async (data) => {
       await tables.asyncForEach(async (c) => {
-        console.log(c); //{col: table, "col": param}
+        console.log(c);
         await data.asyncForEach(async (d, i) => {
           if (d[Object.keys(c)[0]]) {
-            let connection = await new Babeljax()
+            const connection = await new Babeljax()
               .browse(c[Object.keys(c)[0]])
               .where({ [c.col]: d[Object.keys(c)[0]] });
             console.log(connection);
