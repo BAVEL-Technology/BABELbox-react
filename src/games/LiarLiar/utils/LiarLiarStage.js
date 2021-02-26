@@ -3,7 +3,8 @@ import LiarLiarContext from "./LiarLiarContext";
 import Gateway from "../../../components/Gateway";
 // Phases
 import Waiting from "../Phases/Waiting";
-import HowToPlay from "../../../components/Gateway/HowToPlay";
+// import HowToPlay from "../HowToPlay";
+import GameButton from "../../../components/GameButton";
 
 
 // Listen for socket and make changes to the state.
@@ -34,8 +35,10 @@ const LiarLiarStage = () => {
                   tagline="The game where knowing the right answer is only half the challenge."
                   title="Liar Liar"
                   font="Sniglet"
-                />
-                
+                >
+                  {/* How to play button */}
+                  <GameButton classes="bg-blue-400 h-12 text-gray-100 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl w-full text-3xl border-4 border-blue-400 hover:bg-gray-100 hover:text-blue-400" location="/liarliar/howtoplay" emoji="#" name="How To Play"/>
+                </Gateway>
               </>
               );
           };
