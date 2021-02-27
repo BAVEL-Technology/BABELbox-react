@@ -7,22 +7,19 @@ import Waiting from "../Phases/Waiting";
 import GameButton from "../../../components/GameButton";
 import Questions from "../Phases/Questions";
 
-// Listen for socket and make changes to the state.
-// const socket = io();
-// socket.io.connect('https://babelboxdb.herokuapp.com');
-// socket.on('breadUpdate', reload);
-
-// Call back function for the socket reload.
-function reload() {}
-
 const LiarLiarStage = () => {
   return (
     <LiarLiarContext.Consumer>
       {
-        ({ liarLiarState: {portalPhase}, setLiarLiarState }) => {
-          switch (portalPhase) {
+        ({ liarLiarState, setLiarLiarState }) => {
+          console.log(liarLiarState.phase);
+          switch (liarLiarState.phase) {
             case 'waiting':
-              return(<Waiting />);
+              return(
+                <div className="flex flex-col mx-auto items-start justify-center max-w-2xl min-h-screen px-8 md:px-0 lg:px-0">
+                  <Waiting />
+                </div>
+              );
             case 'question':
               return(<Questions />);
             case 'answer':
