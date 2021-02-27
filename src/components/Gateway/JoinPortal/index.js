@@ -1,53 +1,9 @@
-import React, {useState} from "react";
-import "./style.css";
-import BB from "../../utils/babelBread";
-import LiarLiarContext from "../../games/LiarLiar/utils/LiarLiarContext";
-import uuid from "../../utils/uuid";
+import React from 'react';
 
-const CreatePortal = (props) => {
-  const getAvatar = () => {
-    const avatars = ["🐵", "🦊", "🐨", "🐲", "🥸", "🤓", "🤖", "👺", "🤡"];
-    return avatars[Math.floor(Math.random() * avatars.length)];
-  };
-  const [userName, setUserName] = useState(0);
-  const createPortal = async (setLiarLiarState) => {
-    const portal = await BB().add("portals", {
-      params: {
-        game: "LiarLiar",
-        phase: "waiting",
-        round: "1",
-        players: [
-          {
-            id: uuid(),
-            name: userName,
-            leader: true,
-            avatar: getAvatar(),
-            points: 0,
-          },
-        ],
-      },
-    });
-    
-    setLiarLiarState({
-      portalID: portal.code,
-      portalPhase: portal.params.phase,
-      users: portal.params.players,
-      spectators: [],
-      question: "",
-      answers: [],
-      round: portal.params.round,
-    });
-  };
-
-  const handleChange = (event) => {
-    setUserName(event.target.value);
-  };
-
+const JoinPortal = (props) => {
   return (
-    <LiarLiarContext.Consumer>
-      {({setLiarLiarState}) => {
-        return (
-          <>
+    <div>
+      <>
             <div
               className={`bg-${props.color} w-2/3 flex flex-col text-gray-100 p-8 rounded-xl tracking-widest my-8 cursor-pointer`}
               style={{ fontFamily: props.font }}
@@ -59,7 +15,14 @@ const CreatePortal = (props) => {
               >
                 <div className="w-full mx-6 h-12 relative">
                   <input
-                    onChange={handleChange}
+                    onChange={()=>{}}
+                    type="text"
+                    name="portal-id"
+                    placeholder=" "
+                    className="block appearance-none focus:outline-none border-b-4 border-gray-100 -mt-8 w-full bg-transparent text-xl text-gray-700 rounded-lg px-4 py-3"
+                  />
+                  <input
+                    onChange={()=>{}}
                     type="text"
                     name="user-name"
                     placeholder=" "
@@ -83,10 +46,8 @@ const CreatePortal = (props) => {
               Create Portal
             </button>
           </>
-        );
-      }}
-    </LiarLiarContext.Consumer>
+    </div>
   );
 };
 
-export default CreatePortal;
+export default JoinPortal;

@@ -8,7 +8,7 @@ const Waiting = () => {
     <LiarLiarContext.Consumer>
       {
         
-        ({ portalID, users }) => {
+        ({ liarLiarState: {portalID, users} }) => {
           return (
             <Lobby>
               <PortalCodeCard

@@ -1,5 +1,6 @@
 import React from "react";
-import CreatePortal from "../CreatePortal";
+import CreatePortal from "./CreatePortal";
+import JoinPortal from "./JoinPortal";
 
 const Gateway = (props) => {
   return (
@@ -19,7 +20,11 @@ const Gateway = (props) => {
           {props.tagline}
         </p>
       </div>
+      {/* Join Portal */}
+      <JoinPortal/>
+      {/* Create Portal */}
       <CreatePortal color="babelYellow-700" font=" 'Sniglet', cursive" />
+
       <div className="p-8">
         {props.children}
       </div>
