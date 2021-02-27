@@ -1,14 +1,13 @@
 import React from 'react';
 
 const LiarLiarContext = React.createContext({
-  portalID: "",
-  portalPhase: "",
-  users: [],
-  spectators: [],
-  question: "",
-  answers: [],
-  round: 1,
-  setLiarLiarState: () => {}
+  _id: "",
+  code: "",
+  game: "",
+  phase: "",
+  players: [],
+  rounds:[],
+  // setLiarLiarState: () => {}
 });
 
 export default LiarLiarContext;
