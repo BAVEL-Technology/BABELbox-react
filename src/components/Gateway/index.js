@@ -1,8 +1,10 @@
 import React from "react";
-import CreatePortal from "../CreatePortal";
+import CreatePortal from "./CreatePortal";
+import JoinPortal from "./JoinPortal";
+
 const Gateway = (props) => {
   return (
-    <div className="flex flex-col w-full items-center min-h-screen">
+    <div className="flex flex-col w-full items-center justify-items-center">
       <div className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4">
         <p
           className={`text-${props.color} lg:text-7xl md:text-7xl text-5xl text-center font-semibold mb-4`}
@@ -18,6 +20,12 @@ const Gateway = (props) => {
           {props.tagline}
         </p>
       </div>
+      <div className="p-2">
+        {props.children}
+      </div>
+      {/* Join Portal */}
+      <JoinPortal color="babelYellow-700" font="'Sniglet', cursive"/>
+      {/* Create Portal */}
       <CreatePortal color="babelYellow-700" font=" 'Sniglet', cursive" />
     </div>
   );
