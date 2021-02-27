@@ -25,17 +25,20 @@ function LiarLiar() {
 
 // Call back function for the socket reload.
 const reload = async () => {
+  console.log(liarLiarState);
+  const portal = await bb().read('portals', { code: liarLiarState.code });
   if (liarLiarState.code) {
-    const portal = await bb().browse('portals', { code: liarLiarState.code });
-    console.log(portal);
+    console.log(portal[0]);
     setLiarLiarState({
-      _id: portal._id,
-      code: portal.code,
-      game: portal.params.game,
-      phase: portal.params.phase,
-      players: portal.params.players,
-      rounds: portal.params.rounds
+      _id: portal[0]._id,
+      code: portal[0].code,
+      game: portal[0].params.game,
+      phase: portal[0].params.phase,
+      players: portal[0].params.players,
+      rounds: portal[0].params.rounds
     });
+
+    console.log(liarLiarState);
   }
 };
 
