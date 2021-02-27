@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
 import LiarLiarContext from "./LiarLiarContext";
+import BBLogo from "../../../components/BBLogo";
 import Gateway from "../../../components/Gateway";
 // Phases
 import Waiting from "../Phases/Waiting";
 import GameButton from "../../../components/GameButton";
-import BBLogo from "../../../components/BBLogo";
 
 
 // Listen for socket and make changes to the state.
@@ -29,6 +29,7 @@ const LiarLiarStage = () => {
               return(<p>answer</p>);
             default:
               return (
+                // Show the gateway for connecting to portals
               <>
                 <BBLogo className="py-4 mx-8" small={true}/>
                 <Gateway
