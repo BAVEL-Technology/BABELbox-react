@@ -10,7 +10,6 @@ import {
 } from "react-router-dom";
 import HowToPlay from "./HowToPlay";
 import bb from "../../utils/babelBread";
-import Questions from "./Phases/Questions";
 
 function LiarLiar() {
   const [liarLiarState, setLiarLiarState] = useState({
