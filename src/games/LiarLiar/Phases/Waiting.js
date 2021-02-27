@@ -11,15 +11,18 @@ const Waiting = () => {
   const context = useContext(LiarLiarContext);
   const startRound = async () => {
     console.log('hello');
-    const question = await bb().browse('questions').random().question; //Faster Random
+    const question = await bb().browse('questions').random(); //Faster Random
     console.log(question);
-    const newRound = await bb().add("rounds", {
-      round: context.liarLiarState.round,
-      questionStartTime: Date.now(),
-      answerStartTime: Date.now() + 30000,
-      portalId: context.liarLiarState.portalID,
-      question
+    const newRound = await bb().push('portals', { code: context.liarLiarState.code }, {
+      "params.rounds": {
+        round: context.liarLiarState.rounds.length++,
+        question: question,
+        answers: [],
+        questionStartTime: Date.now(),
+        answerStartTime: Date.now() + 30000
+      }
     });
+    console.log(newRound);
   };
 
   return (
@@ -33,9 +36,9 @@ const Waiting = () => {
                 name="Liar Liar"
               />
               <PlayButton onClick={startRound} />
-              <PortalCodeCard portalCode={liarLiarState.portalID} />
-              {liarLiarState.users &&
-                liarLiarState.users.map((user, index) => {
+              <PortalCodeCard portalCode={liarLiarState.code} />
+              {liarLiarState.players &&
+                liarLiarState.players.map((user, index) => {
                   return <UserCard user={{ ...user }} key={index + 1} />;
                 })}
             </>
