@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import DevCard from "../components/AboutUs/DevCard";
 import BBLogo from "../components/BBLogo";
+import Navbar from "../components/Nav";
+
 class AboutUs extends Component {
   render() {
     return (
       <>
         {/* TODO: Insert a BB logo to go home. */}
+        <Navbar />
         <div className="flex justify-between">
-          <BBLogo small={true}/>
+          <BBLogo small={true} className="py-6 px-5" />
         </div>
         {/* <a href="/">(TEMP)Home</a> */}
         <h1 className="text-6xl m-12">The BABEL Team</h1>

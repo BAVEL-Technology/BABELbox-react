@@ -20,7 +20,9 @@ const Navbar = (props) => {
       <ul
         className={`flex items-center font-semibold cursor-pointer space-x-12 text-${props.color} font-roboto font-medium text-sm`}
       >
-        <li className={styles.hoverTransform}>Help</li>
+        <li className={styles.hoverTransform}>
+          <a href="/help">Help</a>
+        </li>
         <li className={styles.hoverTransform}>
           <a href="/about-us">About</a>
         </li>
