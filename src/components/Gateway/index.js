@@ -20,14 +20,13 @@ const Gateway = (props) => {
           {props.tagline}
         </p>
       </div>
-      {/* Join Portal */}
-      <JoinPortal/>
-      {/* Create Portal */}
-      <CreatePortal color="babelYellow-700" font=" 'Sniglet', cursive" />
-
-      <div className="p-8">
+      <div className="p-2">
         {props.children}
       </div>
+      {/* Join Portal */}
+      <JoinPortal color="babelYellow-700" font="'Sniglet', cursive"/>
+      {/* Create Portal */}
+      <CreatePortal color="babelYellow-700" font=" 'Sniglet', cursive" />
     </div>
   );
 };

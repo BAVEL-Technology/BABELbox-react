@@ -41,7 +41,7 @@ function LiarLiar() {
     // TODO: Get API data here and set new state when received.
     const bbBackend = await bb().read('portals', {code: params.portalID});
     console.log(bbBackend);
-    // setLiarLiarState(bbBackend);
+    setLiarLiarState(bbBackend);
   }, []);
 
   return (
