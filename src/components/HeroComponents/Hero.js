@@ -4,7 +4,7 @@ import Blob from "../Blob";
 
 const Hero = () => {
   return (
-    <div className="w-full h-screen grid grid-cols-12 gap-12 bg-babelPink-600 px-24 items-center">
+    <div className="w-full h-screen grid grid-cols-12 gap-12 bg-pink-200 px-24 items-center">
       <div className="col-span-5">
         <img src="./images/doodle-5.png" className="absolute z-30 h-48 top-12 left-24 transform -rotate-45" />
         <img src="./images/Color=White-Matte.png" className="absolute z-30 h-24 bottom-80 left-12 transform -rotate-45" />

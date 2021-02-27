@@ -19,7 +19,7 @@ function main() {
   const [isVisible, setVisible] = useState(true);
 
   return (
-        <div className="bg-babelPink-600">
+        <div className="bg-pink-200">
         <Navbar color="babelPink-500"/>
         <div className="fixed h-full right-4">
           <ul className="flex h-full flex-col items-center justify-center space-y-4 pr-3">
@@ -32,7 +32,7 @@ function main() {
         <Hero />
         <About />
         <Games />
-        <div className="w-full h-full flex flex-col bg-babelPink-600">
+        <div className="w-full h-full flex flex-col bg-pink-200">
           <div className="px-24">
             <Steps
               className={`${isVisible ? 'is-visible' : ''}`}

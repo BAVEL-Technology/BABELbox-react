@@ -1,6 +1,6 @@
 const Games = () => {
   return (
-    <div className="w-full h-screen flex flex-col bg-babelPink-600">
+    <div className="w-full h-screen flex flex-col bg-pink-200">
       <div className="flex flex-col h-full items-center justify-start">
         <div className="flex w-full items-center justify-between flex-grow px-24 ">
           <p className="text-center text-white font-black text-5xl font-poppins">
