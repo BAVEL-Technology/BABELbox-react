@@ -22,7 +22,7 @@ function App() {
             </Route>
             {/* Render Liar Liar */}
             <Route
-              path={["liarliar/howtoplay", "/liarliar/:portalID", "/liarliar"]}
+              path={["liarliar/howtoplay", "/liarliar/:code", "/liarliar"]}
             >
               <LiarLiar />
             </Route>
