@@ -44,7 +44,19 @@ const reload = async () => {
 
 // Listen for socket and make changes to the state.
 const socket = openSocket('https://babelboxdb.herokuapp.com');
-socket.on('breadUpdate', reload);
+socket.on('breadUpdate', (data) => {
+  console.log('bread updated');
+});
+socket.on('connect', function() {
+   if (liarLiarState._id) {
+     console.log('joining room ' + liarLiarState._id);
+     socket.emit('room', liarLiarState._id);
+   }
+});
+
+socket.on('message', function(data) {
+   console.log('Incoming message:', data);
+});
 
   // This gets the current path on the browser. Used in nested routing.
   const path = useRouteMatch().path;
