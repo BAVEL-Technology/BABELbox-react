@@ -14,6 +14,13 @@
   src: url('./fonts/Sniglet-Regular.ttf');
 }
 
+.ul {
+  box-shadow: rgb(98, 99, 210) 0px -0.15em 0px 0px inset;
+}
+
+.ul-bg {
+  box-shadow: rgb(89, 81, 157) 0px -0.15em 0px 0px inset;
+}
 
 @layer utilities {
   .animation-delay-75 {
