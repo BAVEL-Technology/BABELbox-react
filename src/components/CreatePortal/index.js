@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./style.css";
 import BB from "../../utils/babelBread";
 import LiarLiarContext from "../../games/LiarLiar/utils/LiarLiarContext";
@@ -6,7 +6,8 @@ import uuid from "../../utils/uuid";
 import getAvatar from "../../utils/avatar";
 
 const CreatePortal = (props) => {
-  
+  const context = useContext(LiarLiarContext);
+
   const [userName, setUserName] = useState(0);
   const createPortal = async (setLiarLiarState) => {
     const portal = await BB().add("portals", {
@@ -35,6 +36,8 @@ const CreatePortal = (props) => {
         players: portal.params.players,
         rounds:portal.params.rounds
       });
+
+      console.log(context.liarLiarState);
   };
 
   const handleChange = (event) => {
