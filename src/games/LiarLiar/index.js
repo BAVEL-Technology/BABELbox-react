@@ -22,22 +22,41 @@ function LiarLiar() {
     players: [],
     rounds:[]
   });
-  
+
 // Call back function for the socket reload.
 const reload = async () => {
-  if(!liarLiarState.code) return;
-  
-  const fetchPortal = await bb().browse('portals', { code: liarLiarState.code });
-  setLiarLiarState(liarLiarState,{
-    code: fetchPortal.code,
-    phase: fetchPortal.phase,
-    players: fetchPortal.params.players
-  });
+  console.log(liarLiarState);
+  const portal = await bb().read('portals', { code: liarLiarState.code });
+  if (liarLiarState.code) {
+    console.log(portal[0]);
+    setLiarLiarState({
+      _id: portal[0]._id,
+      code: portal[0].code,
+      game: portal[0].params.game,
+      phase: portal[0].params.phase,
+      players: portal[0].params.players,
+      rounds: portal[0].params.rounds
+    });
+
+    console.log(liarLiarState);
+  }
 };
 
 // Listen for socket and make changes to the state.
 const socket = openSocket('https://babelboxdb.herokuapp.com');
-socket.on('breadUpdate', reload);
+socket.on('breadUpdate', (data) => {
+  console.log('bread updated');
+});
+socket.on('connect', function() {
+   if (liarLiarState._id) {
+     console.log('joining room ' + liarLiarState._id);
+     socket.emit('room', liarLiarState._id);
+   }
+});
+
+socket.on('message', function(data) {
+   console.log('Incoming message:', data);
+});
 
   // This gets the current path on the browser. Used in nested routing.
   const path = useRouteMatch().path;
@@ -61,7 +80,7 @@ socket.on('breadUpdate', reload);
     console.log(`Before SetState: "${liarLiarState.portalPhase}"`);
     console.log(`What we are setting the state to: "${JSON.stringify(portalState)}"`);
     setLiarLiarState(portalState);
-    console.log(`After SetState: "${JSON.stringify(liarLiarState)}"`); 
+    console.log(`After SetState: "${JSON.stringify(liarLiarState)}"`);
   }, []);
 
   return (
