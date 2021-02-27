@@ -1,11 +1,12 @@
 import "./App.css";
 import Wrapper from "./components/Wrapper";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Main from "./pages/main";
+import Main from "./pages/Main";
 import AboutUs from "./pages/AboutUs";
 import PageNotFound from "./pages/PageNotFound";
 import LiarLiar from "./games/LiarLiar";
 import NavBar from "./components/Navbar";
+import Help from "./pages/Help";
 
 function App() {
   return (
@@ -21,12 +22,18 @@ function App() {
               <Main />
             </Route>
             {/* Render Liar Liar */}
-            <Route path={['liarliar/howtoplay','/liarliar/:portalID','/liarliar']}>
+            <Route
+              path={["liarliar/howtoplay", "/liarliar/:portalID", "/liarliar"]}
+            >
               <LiarLiar />
             </Route>
             {/* Render About Us page on route. */}
             <Route exact path="/about-us">
               <AboutUs />
+            </Route>
+            {/* Render Help page on route */}
+            <Route exact path="/help">
+              <Help />
             </Route>
             {/* Render this if no other page was found. */}
             <Route>
