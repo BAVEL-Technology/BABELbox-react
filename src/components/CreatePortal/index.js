@@ -4,6 +4,8 @@ import BB from "../../utils/babelBread";
 import LiarLiarContext from "../../games/LiarLiar/utils/LiarLiarContext";
 import uuid from "../../utils/uuid";
 import getAvatar from "../../utils/avatar";
+import { Redirect } from "react-router-dom";
+import { render } from "@testing-library/react";
 
 const CreatePortal = (props) => {
   const context = useContext(LiarLiarContext);
@@ -27,6 +29,8 @@ const CreatePortal = (props) => {
       },
     });
 
+    console.log(`portal | ${portal}`);
+
     context.setLiarLiarState(
       {
         _id: portal._id,
@@ -37,8 +41,13 @@ const CreatePortal = (props) => {
         rounds:portal.params.rounds
       });
 
-      console.log(context.liarLiarState);
+      
+      redirect(portal.code);
   };
+
+  const redirect = (code) => {
+    windows.location = code;
+  }
 
   const handleChange = (event) => {
     setUserName(event.target.value);
@@ -74,7 +83,7 @@ const CreatePortal = (props) => {
       </div>
       <button
         id="create-user-button"
-        onClick={() => createPortal()}
+        onClick={() => {createPortal();}}
         className="place-self-center my-4 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl flex items-center justify-center w-full lg:w-2/3 md:w-2/3 lg:text-3xl md:text-3xl text-xl border-4 border-blue-400 hover:bg-gray-100 hover:text-blue-400"
         style={{ fontFamily: props.font }}
       >

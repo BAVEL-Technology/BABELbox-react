@@ -13,24 +13,12 @@ const LiarLiarStage = () => {
       {
         ({ liarLiarState, setLiarLiarState }) => 
         {
-          console.log("State Reference: LiarLiarStage.");
           try
           {
-            switch (liarLiarState.phase) 
+            if(!liarLiarState.code)
             {
-              case 'waiting':
-                return(
-                  <div className="flex flex-col mx-auto items-start justify-center max-w-2xl min-h-screen px-8 md:px-0 lg:px-0">
-                    <Waiting />
-                  </div>
-                );
-              case 'question':
-                return(<Questions />);
-              case 'answer':
-                return(<p>answer</p>);
-              default:
-                return (
-                  // Show the gateway for connecting to portals
+              return (
+                // Show the gateway for connecting to portals
                 <>
                   <BBLogo className="py-4 mx-8" small={true} />
                   <Gateway
@@ -49,6 +37,25 @@ const LiarLiarStage = () => {
                   </Gateway>
                 </>
               );
+            }
+            else
+            {
+              switch (liarLiarState.phase) 
+              {
+                case 'waiting':
+                  return(
+                    <div className="flex flex-col mx-auto items-start justify-center max-w-2xl min-h-screen px-8 md:px-0 lg:px-0">
+                      <Waiting />
+                    </div>
+                  );
+                case 'question':
+                  return(<Questions />);
+                case 'answer':
+                  return(<p>answer</p>);
+                default:
+                  // TODO: Make Loading Page.
+                  return(<p>LOADING!</p>);
+              }
             }
           } catch (e) {
             console.log("State undefined. " + e);
