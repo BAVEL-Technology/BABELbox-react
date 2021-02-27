@@ -28,7 +28,7 @@ const Answer = (props) => {
 
       <button
         disabled={answerLock == true}
-        //   onclick="selectAnswer({{@root.currentUser.id}}, {{@root.round.id}})"
+        //   onClick="selectAnswer({{@root.currentUser.id}}, {{@root.round.id}})"
         className="answer place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-6 rounded-xl flex
               items-center justify-center w-full lg:text-3xl md:text-2xl text-xl disabled:opacity-50"
       >
