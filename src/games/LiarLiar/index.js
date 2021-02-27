@@ -6,10 +6,11 @@ import {
   Route,
   Switch,
   useRouteMatch,
-  useParams
+  useParams,
 } from "react-router-dom";
 import HowToPlay from "./HowToPlay";
 import bb from "../../utils/babelBread";
+import Questions from "./Phases/Questions";
 
 function LiarLiar() {
   const [liarLiarState, setLiarLiarState] = useState({
@@ -37,8 +38,8 @@ function LiarLiar() {
   // Hook function for refreshing / performing an action on value changes. Also called once when component mounts.
   useEffect(async () => {
     // Return if portalID is undefined.
-    if(!params.portalID) return;
-    
+    if (!params.portalID) return;
+
     // TODO: Get API data here and set new state when received.
     const portalState = await bb().read('portals', {code: params.portalID});
     console.log(portalState);
