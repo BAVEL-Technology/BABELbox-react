@@ -8,8 +8,8 @@ const Footer = () => {
         <br/>
         <p className="text-blue-500 font-semibold ">For more information about our code, check out our <a href="https://github.com/https-github-com-steversonTong/BabelBox" target="_blank"><strong className="cursor-pointer hover:text-blue-600">GitHub</strong></a>.</p>
         <br/>
-        <p class="text-blue-500 font-semibold">
-          Liberal use of <a href="https://twemoji.twitter.com/" target="_blank" class="underline hover:text-blue-600">twemojis</a>
+        <p className="text-blue-500 font-semibold">
+          Liberal use of <a href="https://twemoji.twitter.com/" target="_blank" className="underline hover:text-blue-600">twemojis</a>
           &nbsp;in this app. We <img draggable="false" className="emoji" alt="💜" src="https://twemoji.maxcdn.com/v/13.0.1/72x72/1f49c.png"/> them.
         </p>
       </div>

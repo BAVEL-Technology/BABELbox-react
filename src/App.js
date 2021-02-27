@@ -1,7 +1,7 @@
 import "./App.css";
 import Wrapper from "./components/Wrapper";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Main from "./pages/Main";
+import Main from "./pages/main";
 import AboutUs from "./pages/AboutUs";
 import PageNotFound from "./pages/PageNotFound";
 import LiarLiar from "./games/LiarLiar";
@@ -11,16 +11,15 @@ function App() {
     <Router>
       <div>
         {/* Wrapper for background and centering things on the page. */}
-        <Wrapper classes="min-h-screen h-full">
+        <Wrapper classes="min-h-screen h-full bg-blue-200">
           {/* Switch statement for the router. */}
           <Switch>
             {/* Render main page. */}
             <Route exact path="/">
               <Main />
-              
             </Route>
             {/* Render Liar Liar */}
-            <Route path="/liarliar">
+            <Route path={['liarliar/howtoplay','/liarliar/:portalID','/liarliar']}>
               <LiarLiar />
             </Route>
             {/* Render About Us page on route. */}

@@ -1,17 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
 
 const PortalCodeCard = (props) => {
-  // ref for copying to clipboard
-  const portalRef = useRef(null);
-
-  //   function for copying to clipboard
-  const copyToClipboard = () => {
-    const el = this.textArea;
-    el.select();
-    document.execCommand("copy");
-  };
+  const [copied, setCopied] = useState(false);
 
   return (
     <div
@@ -28,13 +21,15 @@ const PortalCodeCard = (props) => {
         >
           {props.portalCode}
         </p>
+
         <div className="text-sm self-start col-span-1">
-          <div
-            className="w-8 h-8 rounded-full text-gray-100 flex items-center justify-center pl-1 cursor-pointer"
-            onClick={copyToClipboard}
-            value={props.portalCode}
-          >
-            <FontAwesomeIcon className="w-24 h-24" icon={faCopy} />
+          <div className="w-8 h-8 rounded-full text-gray-100 flex items-center justify-center pl-1 cursor-pointer">
+            <CopyToClipboard
+              text={props.portalCode}
+              onCopy={() => setCopied(true)}
+            >
+              <FontAwesomeIcon className="w-24 h-24" icon={faCopy} />
+            </CopyToClipboard>
           </div>
         </div>
       </div>

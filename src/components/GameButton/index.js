@@ -1,7 +1,7 @@
 const GameButton = (props) => {
     return (
         <div className="game-button">
-            <button className={props.classes} onClick={()=>{window.location=props.location;}}>
+            <button className={props.className} onClick={()=>{window.location=props.location;}}>
                 <div className={`emoji`}>
                     <img draggable="false" className="emoji" src={props.src} />
                 </div>

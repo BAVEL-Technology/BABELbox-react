@@ -14,6 +14,13 @@
   src: url('./fonts/Sniglet-Regular.ttf');
 }
 
+.ul {
+  box-shadow: rgb(98, 99, 210) 0px -0.15em 0px 0px inset;
+}
+
+.ul-bg {
+  box-shadow: rgb(89, 81, 157) 0px -0.15em 0px 0px inset;
+}
 
 @layer utilities {
   .animation-delay-75 {
@@ -224,4 +231,33 @@ footer img.emoji,
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
   }
+}
+
+input:focus-within~label,
+  input:not(:placeholder-shown)~label {
+    transform: scale(.75) translateY(-1.5rem);
+  }
+  label {
+    transform-origin: 0%;
+  }
+  .create-new-user::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+  }
+  .create-new-user:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+  }
+
+  .navbar {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
