@@ -31,7 +31,7 @@ const JoinPortal = (props) => {
         </div>
         <div className="w-full mx-6 h-12 relative">
           <input
-            onChange={handleChange}
+            onChange={() => {}}
             type="text"
             name="user-name"
             placeholder=" "
@@ -46,7 +46,7 @@ const JoinPortal = (props) => {
         </div>
         <button
           id="join-portal-button"
-          onclick={`joinPortal(${game.url})`}
+          onclick={`joinPortal(${props.url})`}
           className="place-self-center
   my-4 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl rounded-br-xl rounded-tr
   rounded-bl flex items-center justify-center lg:w-2/3 md:w-2/3 lg:text-3xl md:text-3xl text-xl border-4 border-blue-400

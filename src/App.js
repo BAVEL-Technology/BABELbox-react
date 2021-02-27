@@ -5,6 +5,7 @@ import Main from "./pages/main";
 import AboutUs from "./pages/AboutUs";
 import PageNotFound from "./pages/PageNotFound";
 import LiarLiar from "./games/LiarLiar";
+import Questions from "./games/LiarLiar/Phases/Questions";
 
 function App() {
   return (
@@ -13,14 +14,14 @@ function App() {
         {/* Wrapper for background and centering things on the page. */}
         <Wrapper classes="min-h-screen h-full bg-blue-200">
           {/* Switch statement for the router. */}
+          <Questions />
           <Switch>
             {/* Render main page. */}
             <Route exact path="/">
               <Main />
-
             </Route>
             {/* Render Liar Liar */}
-            <Route path={['/liarliar/:portalID','/liarliar']}>
+            <Route path={["/liarliar/:portalID", "/liarliar"]}>
               <LiarLiar />
             </Route>
             {/* Render About Us page on route. */}
