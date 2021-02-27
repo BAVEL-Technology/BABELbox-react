@@ -11,6 +11,7 @@ import {
 import HowToPlay from "./HowToPlay";
 import bb from "../../utils/babelBread";
 import Questions from "./Phases/Questions";
+import openSocket from 'socket.io-client';
 
 function LiarLiar() {
   const [liarLiarState, setLiarLiarState] = useState({
@@ -22,6 +23,23 @@ function LiarLiar() {
     answers: [],
     round: 1,
   });
+  
+// Call back function for the socket reload.
+const reload = async () => {
+  const fetchPortal = await bb().browse('portals', { code: portalID });
+  setLiarLiarState({
+    portalID: fetchPortal.code,
+    portalPhase: fetchPortal.phase,
+    users: fetchPortal.params.players,
+    spectators: [],
+    answers: [],
+    round: fetchPortal.round
+  });
+};
+
+// Listen for socket and make changes to the state.
+const socket = openSocket('https://babelboxdb.herokuapp.com');
+socket.on('breadUpdate', reload);
 
   // This gets the current path on the browser. Used in nested routing.
   const path = useRouteMatch().path;
@@ -51,12 +69,12 @@ function LiarLiar() {
       {/* Liar Liar state provider context to pass state to any Liar Liar child component. */}
       <LiarLiarContext.Provider value={{liarLiarState, setLiarLiarState}} >
         {
-          params.portalID === "howtoplay" 
+          params.portalID === "howtoplay"
           ? <HowToPlay
           title="Liar Liar"
           color="yellow-500"
           description="There are three phases: Question, Answer, and Waiting"
-        /> 
+        />
         : <LiarLiarStage/>
         }
       </LiarLiarContext.Provider>
