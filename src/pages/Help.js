@@ -34,9 +34,6 @@ const Help = () => {
   return (
     <div className="flex flex-col items-center">
       <Navbar />
-      <div className="flex justify-between">
-        <BBLogo small={true} className="py-6 px-5" />
-      </div>
       <h1 className="text-4xl font-semibold m-6">
         Need help? Send an issue report
       </h1>

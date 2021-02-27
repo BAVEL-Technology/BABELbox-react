@@ -1,5 +1,6 @@
 import { Clown } from "../Logos";
 import "./index.css";
+import BBLogo from "../BBLogo";
 
 const styles = {
   hoverTransform:
@@ -11,11 +12,12 @@ const Navbar = (props) => {
     <div className="navbar w-full px-12 z-50 pt-6 flex justify-between items-center absolute sticky top-0">
       <div className={`flex items-center space-x-4`}>
         <img src="./images/whitebox.png" className="h-12" />
-        <p
+        {/* <p
           className={`font-poppins uppercase text-babelPink-500 text-lg font-bold`}
         >
           {props.brandName || "BABELBOX"}
-        </p>
+        </p> */}
+        <BBLogo small={true} className={`pb-3 ${styles.hoverTransform}`} />
       </div>
       <ul
         className={`flex items-center font-semibold cursor-pointer space-x-12 text-${props.color} font-roboto font-medium text-sm`}
