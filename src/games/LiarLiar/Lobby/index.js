@@ -13,12 +13,13 @@ function Lobby(props) {
       questionStartTime: Date.now(),
       answerStartTime: Date.now() + 30000,
       portalId: liarLiarState.portalId,
+      question: await bb().browse('questions').random()[0]
     });
     console.log(newRound);
-    setLiarLiarState(...liarLiarState,
-      { portalPhase: 'question' },
-      { round: liarLiarState.round++ },
-    );
+    setLiarLiarState(...liarLiarState, {
+        portalPhase: 'question',
+        round: liarLiarState.round++
+      });
   };
 
   return (

@@ -18,18 +18,6 @@ const Questions = (props) => {
     });
   };
 
-  // function next() {
-  //     setTimeout(() => {
-  //       window.location.href = `/{{game.url}}/{{portal.code}}/answer`
-  //     }, 1000)
-  //   }
-  //   {{> liarliar/timer-script timeLimit=(countDown round.question_start_time 20) totalTime=20 strokeWidth='10px' }}
-  //   document.querySelector('#user-answer').addEventListener('keypress', function (e) {
-  //     if (e.key === 'Enter') {
-  //       submitAnswer({{ currentUser.id }}, {{ round.id }}, {{ portal.id }})
-  //     }
-  //   });
-
   return (
     <div className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4">
       <div className="w-full flex justify-center pb-6">
