@@ -3,10 +3,10 @@ import { Clown } from "../Logos";
 const Navbar = (props) => {
 
   return (
-    <div className="navbar w-full px-12 pt-6 flex justify-between items-center sticky top-0">
+    <div className="navbar w-full px-12 z-50 pt-6 flex justify-between items-center absolute sticky top-0">
     <div className={`flex items-center space-x-4`}>
-      <img src="./images/babelboxlogo.png" className="h-12" />
-      <p className={`font-poppins uppercase text-white text-lg font-bold`}>
+      <img src="./images/whitebox.png" className="h-12" />
+      <p className={`font-poppins uppercase text-babelPink-500 text-lg font-bold`}>
       {props.brandName || 'BABELBOX'}
       </p>
     </div>
@@ -15,7 +15,7 @@ const Navbar = (props) => {
       <li>About</li>
       <li>Games</li>
       <li>Login</li>
-      <li style={{padding: "8.48611px 16.9722px"}} className={`p-2 border border-${props.color} rounded-3xl flex items-center justify-center`}>
+      <li style={{padding: "8.48611px 16.9722px"}} className={`p-2 border-2 border-${props.color} rounded-3xl flex items-center justify-center`}>
         Sign Up
       </li>
     </ul>
