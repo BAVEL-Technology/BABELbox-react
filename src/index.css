@@ -258,7 +258,6 @@ input:focus-within~label,
   }
 
   .navbar {
-  backdrop-filter: blur(8px);
-  background-color: rgba(203, 203, 203, 0.31);
+  backdrop-filter: blur(8px) grayscale(0.5);
   -webkit-backdrop-filter: blur(8px);
 }
