@@ -108,7 +108,7 @@ class Babeljax {
 
   push(table, filters, push) {
     this.chain(async () => {
-      let data = await fetch(`${this.base_url}${table}`, {
+      let data = await fetch(`${this.base_url}push/${table}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",

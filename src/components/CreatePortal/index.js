@@ -13,7 +13,6 @@ const CreatePortal = (props) => {
       params: {
         game: "LiarLiar",
         phase: "waiting",
-        round: "1",
         players: [
           {
             id: uuid(),
@@ -23,18 +22,19 @@ const CreatePortal = (props) => {
             points: 0,
           },
         ],
+        rounds: []
       },
     });
 
-    setLiarLiarState({
-      portalID: portal.code,
-      portalPhase: portal.params.phase,
-      users: portal.params.players,
-      spectators: [],
-      question: "",
-      answers: [],
-      round: portal.params.round,
-    });
+    setLiarLiarState(
+      {
+        _id: portal._id,
+        code: portal.code,
+        game: portal.params.game,
+        phase: portal.params.phase,
+        players: portal.params.players,
+        rounds:portal.params.rounds
+      });
   };
 
   const handleChange = (event) => {

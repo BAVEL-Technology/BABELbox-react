@@ -17,10 +17,9 @@ function App() {
             {/* Render main page. */}
             <Route exact path="/">
               <Main />
-
             </Route>
             {/* Render Liar Liar */}
-            <Route path={['/liarliar/:portalID','/liarliar']}>
+            <Route path={['liarliar/howtoplay','/liarliar/:portalID','/liarliar']}>
               <LiarLiar />
             </Route>
             {/* Render About Us page on route. */}

@@ -1,25 +1,26 @@
 import React from "react";
 import "./style.css";
-import BB from "../../../utils/babelBread";
+import bb from "../../../utils/babelBread";
 import getAvatar from "../../../utils/avatar";
 import uuid from "../../../utils/uuid";
 
 const JoinPortal = (props) => {
 
+  // TODO: Make sure to check to make sure both inputs are valid.
   const join = async (portalID, userName) => {
-      await BB().push("portals", {
-        
-      },
-      {
-        push: {
-          id: uuid(),
-          name: "push",
-          leader: false,
-          avatar: getAvatar(),
-          points: 0,
+      const updates = await bb().push('portals', { code: portalID }, 
+        {'params.players': 
+          {
+            id: uuid(),
+            name: userName,
+            leader: false,
+            avatar: getAvatar(),
+            points: 0,
+          }
         }
-      }
-    );
+      );
+
+      console.log(updates);
   
       // setLiarLiarState({
       //   portalID: portal.code,
@@ -49,8 +50,8 @@ const JoinPortal = (props) => {
               type="text"
               name="portal-name"
               placeholder="Portal Name"
-              className="block appearance-none focus:outline-none border-b-4 border-gray-100 mb-8 w-full bg-transparent text-xl text-gray-700 rounded-lg px-4 py-3
-            "/>
+              className="block appearance-none focus:outline-none border-b-4 border-gray-100 mb-8 w-full bg-transparent text-xl text-gray-700 rounded-lg px-4 py-3"
+              />
           </div>
         
           <div className="w-full md:mx-4">
@@ -72,7 +73,7 @@ const JoinPortal = (props) => {
 
         <button
           id="join-portal-button"
-          onClick={join}
+          onClick={() => {join("aegis-craic", "ChristianButFromCode");}}
           className="place-self-center my-4 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl flex items-center justify lg:w-2/3 md:w-2/3 lg:text-3xl md:text-3xl text-xl border-4 border-blue-400 hover:bg-gray-100 hover:text-blue-400">
           Join Portal
         </button>
