@@ -9,20 +9,38 @@ import Context from "../../utils/LiarLiarContext";
 const Questions = (props) => {
   const { questionLock, setQuestionLock } = useState(false);
   const { userInput, setUserInput } = useState("");
+  const currentUser = localStorage.getItem("liarLiarPlayer");
+  const context = useContext(LiarLiarContext);
+  const statement = `params.rounds.${context.liarLiarState.rounds.length}`;
+  const currentUserIndex = context.liarLiarState.players.indexOf(
+    context.liarLiarState.players.filter(
+      (player) => (player.id = currentUser)
+    )[0]
+  );
+  bb().push(
+    "portals",
+    { code: context.liarLiarState.code },
+    { [statement]: { user: currentUser, answer: userInput } }
+  );
+  setQuestionLock = context.liarLiarState.rounds[
+    context.liarLiarState.rounds.length
+  ].answers.filter((ans) => id == currentUser)
+    ? true
+    : false;
   const onInputChange = (input) => {
     setUserInput(input);
   };
+
   const submitAnswer = async () => {
-    console.log("answer lock");
-    if (questionLock === true) {
-      ("Answer Locked in!");
-    } else {
-      console.log(userInput);
-    }
+    bb().push(
+      "portals",
+      { code: context.liarLiarState.code },
+      { [statement]: { user: currentUser, answer: userInput } }
+    );
   };
 
   //TODO check rounds for context
-  const context = useContext(Context);
+  // const context = useContext(Context);
   // const rounds = context.liarLiarState.rounds;
   const rounds = [
     {

@@ -14,7 +14,6 @@ function App() {
         {/* Wrapper for background and centering things on the page. */}
         <Wrapper classes="min-h-screen h-full bg-blue-200">
           {/* Switch statement for the router. */}
-          <Question />
           <Switch>
             {/* Render main page. */}
             <Route exact path="/">
