@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./style.css";
 import BB from "../../../utils/babelBread";
 import LiarLiarContext from "../../../games/LiarLiar/utils/LiarLiarContext";
@@ -11,20 +11,21 @@ const CreatePortal = (props) => {
   };
   const [userName, setUserName] = useState(0);
   const createPortal = async (setLiarLiarState) => {
+    const player = {
+      id: uuid(),
+      name: userName,
+      leader: true,
+      avatar: getAvatar(),
+      points: 0,
+      answerLock: false,
+    };
+    localStorage.setItem("liarLiarPlayer", player.id);
     const portal = await BB().add("portals", {
       params: {
         game: "LiarLiar",
         phase: "waiting",
-        players: [
-          {
-            id: uuid(),
-            name: userName,
-            leader: true,
-            avatar: getAvatar(),
-            points: 0,
-          },
-        ],
-        rounds: []
+        players: [],
+        rounds: [],
       },
     });
 
@@ -34,7 +35,7 @@ const CreatePortal = (props) => {
       game: portal.params.game,
       phase: portal.params.phase,
       players: portal.params.players,
-      rounds: portal.params.rounds
+      rounds: portal.params.rounds,
     });
 
     console.log(`Portal: ${JSON.stringify(portal)}`);
@@ -46,10 +47,17 @@ const CreatePortal = (props) => {
 
   return (
     <LiarLiarContext.Consumer>
-      {({setLiarLiarState}) => {
+      {({ setLiarLiarState }) => {
         return (
-          <div className={`bg-${props.color} text-gray-100 p-8 rounded-xl tracking-widest my-8 cursor-pointer py-8 w-2/3 flex flex-col`} style={{ fontFamily: props.font }}>
-            <div id="user-area" className="w-full flex justify-center mt-8" style={{ fontFamily: props.font }}>
+          <div
+            className={`bg-${props.color} text-gray-100 p-8 rounded-xl tracking-widest my-8 cursor-pointer py-8 w-2/3 flex flex-col`}
+            style={{ fontFamily: props.font }}
+          >
+            <div
+              id="user-area"
+              className="w-full flex justify-center mt-8"
+              style={{ fontFamily: props.font }}
+            >
               <div className="w-full">
                 <label
                   htmlFor="user-name"
@@ -67,7 +75,12 @@ const CreatePortal = (props) => {
               </div>
             </div>
 
-            <button id="create-user-button" onClick={() => createPortal(setLiarLiarState)} className="place-self-center my-4 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl flex items-center justify lg:w-2/3 md:w-2/3 lg:text-3xl md:text-3xl text-xl border-4 border-blue-400 hover:bg-gray-100 hover:text-blue-400" style={{ fontFamily: props.font }}>
+            <button
+              id="create-user-button"
+              onClick={() => createPortal(setLiarLiarState)}
+              className="place-self-center my-4 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl flex items-center justify lg:w-2/3 md:w-2/3 lg:text-3xl md:text-3xl text-xl border-4 border-blue-400 hover:bg-gray-100 hover:text-blue-400"
+              style={{ fontFamily: props.font }}
+            >
               Create Portal
             </button>
           </div>
