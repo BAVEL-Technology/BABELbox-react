@@ -10,16 +10,16 @@ import {
 } from "react-router-dom";
 import HowToPlay from "./HowToPlay";
 import bb from "../../utils/babelBread";
+import Questions from "./Phases/Questions";
 
 function LiarLiar() {
   const [liarLiarState, setLiarLiarState] = useState({
-    portalID: "",
-    portalPhase: "",
-    users: [],
-    spectators: [],
-    question: "",
-    answers: [],
-    round: 1,
+    _id: "",
+    code: "",
+    game: "",
+    phase: "",
+    players: [],
+    rounds:[]
   });
 
   // This gets the current path on the browser. Used in nested routing.
@@ -41,8 +41,10 @@ function LiarLiar() {
 
     // TODO: Get API data here and set new state when received.
     const portalState = await bb().read('portals', {code: params.portalID});
-    console.log(portalState);
+    console.log(`Before SetState: "${liarLiarState.portalPhase}"`);
+    console.log(`What we are setting the state to: "${JSON.stringify(portalState)}"`);
     setLiarLiarState(portalState);
+    console.log(`After SetState: "${JSON.stringify(liarLiarState)}"`); 
   }, []);
 
   return (
