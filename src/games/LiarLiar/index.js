@@ -15,13 +15,12 @@ import openSocket from 'socket.io-client';
 
 function LiarLiar() {
   const [liarLiarState, setLiarLiarState] = useState({
-    portalID: "",
-    portalPhase: "",
-    users: [],
-    spectators: [],
-    question: "",
-    answers: [],
-    round: 1,
+    _id: "",
+    code: "",
+    game: "",
+    phase: "",
+    players: [],
+    rounds:[]
   });
   
 // Call back function for the socket reload.
@@ -60,8 +59,10 @@ socket.on('breadUpdate', reload);
 
     // TODO: Get API data here and set new state when received.
     const portalState = await bb().read('portals', {code: params.portalID});
-    console.log(portalState);
+    console.log(`Before SetState: "${liarLiarState.portalPhase}"`);
+    console.log(`What we are setting the state to: "${JSON.stringify(portalState)}"`);
     setLiarLiarState(portalState);
+    console.log(`After SetState: "${JSON.stringify(liarLiarState)}"`); 
   }, []);
 
   return (

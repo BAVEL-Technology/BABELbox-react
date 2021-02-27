@@ -11,8 +11,9 @@ const LiarLiarStage = () => {
   return (
     <LiarLiarContext.Consumer>
       {
-        ({ liarLiarState: {portalPhase}, setLiarLiarState }) => {
-          switch (portalPhase) {
+        ({ liarLiarState, setLiarLiarState }) => {
+          console.log(liarLiarState.portalPhase);
+          switch (liarLiarState.portalPhase) {
             case 'waiting':
               return(
                 <div className="flex flex-col mx-auto items-start justify-center max-w-2xl min-h-screen px-8 md:px-0 lg:px-0">
