@@ -2,6 +2,7 @@ import Lobby from "../Lobby";
 import LiarLiarContext from "../utils/LiarLiarContext";
 import UserCard from "../../../components/UserCard";
 import PortalCodeCard from "../../../components/LobbyCards/PortalCodeCard";
+import PlayButton from "../PlayButton";
 
 const Waiting = () => {
   return (
