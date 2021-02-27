@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 
-class PlayButton extends Component {
-  render() {
+ const PlayButton = (props) => {
     return (
-      <div className="w-full flex item-center justify-center">
+      <div className="w-full flex item-center justify-center" onClick={props.onClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -24,7 +23,6 @@ class PlayButton extends Component {
         </svg>
       </div>
     );
-  }
-}
+};
 
 export default PlayButton;
