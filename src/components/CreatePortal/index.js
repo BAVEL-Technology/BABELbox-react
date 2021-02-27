@@ -71,7 +71,7 @@ const CreatePortal = (props) => {
               <button
                 id="create-user-button"
                 onClick={ () => createPortal(setLiarLiarState) }
-                className="place-self-center my-4 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl flex items-center justify-center w-full lg:w-2/3 md:w-2/3 lg:text-3xl md:text-3xl text-xl border-4 border-blue-400 hover:bg-gray-100 hover:text-blue-400" style={{ fontFamily: props.font }}>
+                className="place-self-center my-4 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl flex items-center justify-center w-1/3 lg:text-3xl md:text-3xl text-xl border-4 border-blue-400 hover:bg-gray-100 hover:text-blue-400" style={{ fontFamily: props.font }}>
                 Create Portal
               </button>
             </>
