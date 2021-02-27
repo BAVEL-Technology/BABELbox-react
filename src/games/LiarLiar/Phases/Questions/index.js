@@ -9,14 +9,6 @@ const Questions = (props) => {
   const { questionLock, setQuestionLock } = useState(false);
 
   //TODO check rounds for context
-  const startRound = async (setLiarLiarState) => {
-    const newRound = await bb().add("rounds", {
-      round: round,
-      questionStartTime: Date.now(),
-      answerStartTime: Date.now() + 30000,
-      portalId: portalId,
-    });
-  };
 
   // function next() {
   //     setTimeout(() => {
@@ -54,7 +46,7 @@ const Questions = (props) => {
 
       <button
         id="submit-answer-button"
-        onClick={startRound}
+        // onClick={startRound}
         className="place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl
         rounded-br-xl rounded-tr rounded-bl flex items-center justify-center w-full
         lg:text-3xl md:text-2xl text-xl disabled:opacity-50"
