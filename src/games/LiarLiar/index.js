@@ -22,18 +22,21 @@ function LiarLiar() {
     players: [],
     rounds:[]
   });
-  
+
 // Call back function for the socket reload.
 const reload = async () => {
-  const fetchPortal = await bb().browse('portals', { code: portalID });
-  setLiarLiarState({
-    portalID: fetchPortal.code,
-    portalPhase: fetchPortal.phase,
-    users: fetchPortal.params.players,
-    spectators: [],
-    answers: [],
-    round: fetchPortal.round
-  });
+  if (liarLiarState.code) {
+    const portal = await bb().browse('portals', { code: liarLiarState.code });
+    console.log(portal);
+    setLiarLiarState({
+      _id: portal._id,
+      code: portal.code,
+      game: portal.params.game,
+      phase: portal.params.phase,
+      players: portal.params.players,
+      rounds: portal.params.rounds
+    });
+  }
 };
 
 // Listen for socket and make changes to the state.
@@ -62,7 +65,7 @@ socket.on('breadUpdate', reload);
     console.log(`Before SetState: "${liarLiarState.portalPhase}"`);
     console.log(`What we are setting the state to: "${JSON.stringify(portalState)}"`);
     setLiarLiarState(portalState);
-    console.log(`After SetState: "${JSON.stringify(liarLiarState)}"`); 
+    console.log(`After SetState: "${JSON.stringify(liarLiarState)}"`);
   }, []);
 
   return (
