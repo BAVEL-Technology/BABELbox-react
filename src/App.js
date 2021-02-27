@@ -5,6 +5,7 @@ import Main from "./pages/Main";
 import AboutUs from "./pages/AboutUs";
 import PageNotFound from "./pages/PageNotFound";
 import LiarLiar from "./games/LiarLiar";
+import Chat from "./components/Chat";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
             {/* Render About Us page on route. */}
             <Route exact path="/about-us">
               <AboutUs />
+            </Route>
+            <Route exact path="/chat">
+              <Chat />
             </Route>
             {/* Render this if no other page was found. */}
             <Route>
