@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import LiarLiarContext from "./LiarLiarContext";
+import BBLogo from "../../../components/BBLogo";
 import Gateway from "../../../components/Gateway";
 // Phases
 import Waiting from "../Phases/Waiting";
 import GameButton from "../../../components/GameButton";
-import BBLogo from "../../../components/BBLogo";
+import Questions from "../Phases/Questions";
 
 // Listen for socket and make changes to the state.
 // const socket = io();
@@ -17,16 +18,18 @@ function reload() {}
 const LiarLiarStage = () => {
   return (
     <LiarLiarContext.Consumer>
-      {({ liarLiarState: { portalPhase }, setLiarLiarState }) => {
-        switch (portalPhase) {
-          case "waiting":
-            return <Waiting />;
-          case "question":
-            return <p>question</p>;
-          case "answer":
-            return <p>answer</p>;
-          default:
-            return (
+      {
+        ({ liarLiarState: {portalPhase}, setLiarLiarState }) => {
+          switch (portalPhase) {
+            case 'waiting':
+              return(<Waiting />);
+            case 'question':
+              return(<Questions />);
+            case 'answer':
+              return(<p>answer</p>);
+            default:
+              return (
+                // Show the gateway for connecting to portals
               <>
                 <BBLogo className="py-4 mx-8" small={true} />
                 <Gateway

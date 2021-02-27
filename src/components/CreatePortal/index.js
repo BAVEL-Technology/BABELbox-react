@@ -3,12 +3,10 @@ import "./style.css";
 import BB from "../../utils/babelBread";
 import LiarLiarContext from "../../games/LiarLiar/utils/LiarLiarContext";
 import uuid from "../../utils/uuid";
+import getAvatar from "../../utils/avatar";
 
 const CreatePortal = (props) => {
-  const getAvatar = () => {
-    const avatars = ["🐵", "🦊", "🐨", "🐲", "🥸", "🤓", "🤖", "👺", "🤡"];
-    return avatars[Math.floor(Math.random() * avatars.length)];
-  };
+  
   const [userName, setUserName] = useState(0);
   const createPortal = async (setLiarLiarState) => {
     const portal = await BB().add("portals", {
