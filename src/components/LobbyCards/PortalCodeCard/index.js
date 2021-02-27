@@ -23,9 +23,7 @@ const PortalCodeCard = (props) => {
         </p>
 
         <div className="text-sm self-start col-span-1">
-          <div
-            className="w-8 h-8 rounded-full text-gray-100 flex items-center justify-center pl-1 cursor-pointer"
-          >
+          <div className="w-8 h-8 rounded-full text-gray-100 flex items-center justify-center pl-1 cursor-pointer">
             <CopyToClipboard
               text={props.portalCode}
               onCopy={() => setCopied(true)}

@@ -4,25 +4,19 @@ import UserCard from "../../../components/UserCard";
 import PortalCodeCard from "../../../components/LobbyCards/PortalCodeCard";
 
 const Waiting = () => {
-
   return (
     <LiarLiarContext.Consumer>
-      {
-        ({ portalID, users }) => {
-          return (
-            <Lobby>
-              <PortalCodeCard
-                portalCode={portalID}
-              />
-              {
-                users.map((user) => {
-                  return <UserCard />;
-                })
-              }
-            </Lobby>
-          );
-        }
-      }
+      {({ liarLiarState: { portalID, users } }) => {
+        return (
+          <Lobby>
+            <PortalCodeCard portalCode={portalID} />
+            {users &&
+              users.map((user, index) => {
+                return <UserCard user={{ ...user }} key={index + 1} />;
+              })}
+          </Lobby>
+        );
+      }}
     </LiarLiarContext.Consumer>
   );
 };
