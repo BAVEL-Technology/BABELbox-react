@@ -42,11 +42,11 @@ const CreatePortal = (props) => {
 
     console.log(`Portal: ${JSON.stringify(portal)}`);
 
-    redirect(portal.code);
+    redirect(portal.code, portal.params.game);
   };
 
-  const redirect = (code) => {
-    window.history.replaceState(null, "Babelbox", `${window.location.href}/${code}`);
+  const redirect = (code, game) => {
+    window.history.replaceState(null, "Babelbox", `${game}/${code}`);
   };
 
   const handleChange = (event) => {
