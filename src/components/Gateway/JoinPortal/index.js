@@ -6,21 +6,26 @@ import uuid from "../../../utils/uuid";
 
 const JoinPortal = (props) => {
   // TODO: Make sure to check to make sure both inputs are valid.
-  const join = async (portalID, userName) => {
+  const join = async (code, username) => {
+    const player = {
+      id: uuid(),
+      name: username,
+      leader: false,
+      avatar: getAvatar(),
+      points: 0,
+      answerLock: false,
+    };
     const updates = await bb().push(
       "portals",
-      { code: portalID },
+      { code },
       {
-        "params.players": {
-          id: uuid(),
-          name: userName,
-          leader: false,
-          avatar: getAvatar(),
-          points: 0,
-          answerLock: false,
-        },
+        "params.players": player,
       }
     );
+
+    redirect(updates.code);
+
+    localStorage.setItem('liarLiarPlayer', player.id);
 
     console.log(updates);
 
@@ -33,6 +38,10 @@ const JoinPortal = (props) => {
     //   answers: [],
     //   round: portal.params.round,
     // });
+  };
+
+  const redirect = (code) => {
+    window.history.replaceState(null, "Babelbox", `${window.location.href}/${code}`);
   };
 
   return (
