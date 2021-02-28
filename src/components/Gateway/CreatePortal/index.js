@@ -24,7 +24,7 @@ const CreatePortal = (props) => {
       params: {
         game: "LiarLiar",
         phase: "waiting",
-        players: [],
+        players: [player],
         rounds: [],
       },
     });
@@ -38,7 +38,15 @@ const CreatePortal = (props) => {
       rounds: portal.params.rounds,
     });
 
+    localStorage.setItem('liarLiarPlayer', player.id);
+
     console.log(`Portal: ${JSON.stringify(portal)}`);
+
+    redirect(portal.code);
+  };
+
+  const redirect = (code) => {
+    window.history.replaceState(null, "Babelbox", `${window.location.href}/${code}`);
   };
 
   const handleChange = (event) => {

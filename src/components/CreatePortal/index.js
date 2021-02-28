@@ -29,7 +29,7 @@ const CreatePortal = (props) => {
       },
     });
 
-    console.log(`portal | ${portal}`);
+    console.log('hello world');
 
     context.setLiarLiarState(
       {
@@ -41,7 +41,7 @@ const CreatePortal = (props) => {
         rounds:portal.params.rounds
       });
 
-      
+
       redirect(portal.code);
   };
 
