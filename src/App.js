@@ -1,5 +1,6 @@
 import "./App.css";
 import Wrapper from "./components/Wrapper";
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Main from "./pages/Main";
 import AboutUs from "./pages/AboutUs";
@@ -8,6 +9,12 @@ import LiarLiar from "./games/LiarLiar";
 import Chat from "./components/Chat";
 
 function App() {
+  const [messages, setMessages] = useState([]);
+  const receivedMessage = (message) => {
+    console.log(messages);
+    setMessages([...messages, message]);
+  };
+
   return (
     <Router>
       <div>
@@ -28,7 +35,7 @@ function App() {
               <AboutUs />
             </Route>
             <Route exact path="/chat">
-              <Chat />
+              <Chat message={receivedMessage} messages={messages} />
             </Route>
             {/* Render this if no other page was found. */}
             <Route>

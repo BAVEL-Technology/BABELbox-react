@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { PromiseProvider } from "mongoose";
+import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from 'react-dom';
 import io from "socket.io-client";
 import './Chat.css';
@@ -7,48 +8,50 @@ const username = prompt('What is your name');
 
 // add  "proxy": "http://localhost:3001", to package.json
 
-const socket = io("http://localhost:5000", {
-    transports: ["websocket", "polling"]
-});
 
-const Chat = ({}) => {
+const Chat = (props) => {
+    const socketRef = useRef();
+
     const [users, setUsers] = useState([]);
     const [message, setMessage] = useState("");
-    const [messages, setMessages] = useState([]);
-
+    // const [socket, setSocket] = useState(() => {
+    //     return io("http://localhost:5000");
+    // });
+    
+    useEffect(() => {
+        socketRef.current = io("http://localhost:5000");
         //captures event from server
-        useEffect(() => {
-            socket.on("connect", () => {
-                socket.emit("new-user", username);
-                });
-
-            //adds each new user to the existing users array
-            socket.on("connected", user => {
-                setUsers(users => [...users, user]);
+        socketRef.current.on("connect", () => {
+            socketRef.current.emit("new-user", username);
             });
-
-            //set users array 
-            socket.on("users", users => {
-                setUsers(users);
-              });
-
-            socket.on('chat message', (msg) => {
-                console.log(msg);
-                setMessages([...messages, msg]);
+    
+        //adds each new user to the existing users array
+        socketRef.current.on("connected", user => {
+            console.log(users);
+            setUsers(users => [...users, user]);
+        });
+        socketRef.current.on('chat message', (msg) => {
+            props.message(msg);
+        });
+    
+        socketRef.current.on('disconnect', id => {
+            socketRef.current.emit("user-left");
+            setUsers(users => {
+                return users.filter(user => user.id !== id);
             });
+        });
 
-            socket.on('disconnected', id => {
-                setUsers(users => {
-                    return users.filter(user => user.id !== id);
-                });
-            });
+        return () => {
+            socketRef.current.disconnect();
+        };
+        }, [props.messages]);
 
-        }, [messages]);
-        
         const handleSend = () => {
-            socket.emit('chat message', message);
-            console.log("new msg");
-            setMessage("");
+            if(message){
+                socketRef.current.emit('chat message', message);
+                console.log("new msg");
+                setMessage("");
+            }
         };
 
         return (
@@ -57,9 +60,9 @@ const Chat = ({}) => {
                     <h1>Hello {username}</h1>
                 </div>
                 <ul>
-                    {messages.map(({user, text}, index) => (<li key={index}>{user.name}: {text}</li>))}
+                    {props.messages.map(({user, text}, index) => (<li key={index}>{user?.name}: {text}</li>))}
                 </ul>
-                <input value={message} type="text" onSubmit={handleSend} onChange={(event) => setMessage(event.target.value)} />
+                <input value={message} placeholder="type..." onKeyPress={event => event.key === 'Enter' ? handleSend(event) : null} type="text" onSubmit={handleSend} onChange={(event) => setMessage(event.target.value)} />
                 <button onClick={handleSend}>Send</button>
 
                 {/* <div>
