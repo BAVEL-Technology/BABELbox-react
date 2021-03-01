@@ -46,6 +46,10 @@ const JoinPortal = (props) => {
     window.history.replaceState(null, "Babelbox", `${game}/${code}`);
   };
 
+  // handleUserName(event) {
+  //   this.setState({value: event.target.value});
+  // };
+
   return (
     <>
       <div
@@ -79,7 +83,7 @@ const JoinPortal = (props) => {
               Username
             </label>
             <input
-              onChange={(name) => {setNameState(name.target.value);}}
+              onChange={this.handleChange}
               type="text"
               name="user-name"
               placeholder="Username"

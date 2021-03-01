@@ -9,8 +9,6 @@ import HowToPlay from "./HowToPlay";
 import bb from "../../utils/babelBread";
 import openSocket from 'socket.io-client';
 
-// TODO: Have browser caching for uuid.
-
 function LiarLiar() {
   const [liarLiarState, setLiarLiarState] = useState({
     _id: "",
@@ -71,7 +69,7 @@ socket.on('message', function(data) {
 
     const portalState = await bb().read('portals', {code: params.code});
 
-    if(portalState != undefined && portalState.length  > 0) 
+    if(portalState != undefined && portalState.length  > 0)
     {
       const newState = {
         _id: portalState[0]._id,
@@ -82,10 +80,10 @@ socket.on('message', function(data) {
         rounds: portalState[0].params.rounds
       };
       setLiarLiarState(newState);
-    }    
+    }
     else
     {
-      console.warn("Portal was returned as undefined or empty."); 
+      console.warn("Portal was returned as undefined or empty.");
       return;
     }
   }, []);

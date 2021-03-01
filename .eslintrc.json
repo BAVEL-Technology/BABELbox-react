@@ -13,9 +13,9 @@
     "rules": {
       "camelcase": "warn",
       "no-var": "error",
-      "prefer-const": "error",
+      "prefer-const": "warn",
       "quotes": ["warn", "single"],
-      "semi": ["error", "always"],
+      "semi": ["warn", "always"],
       "yoda": "error"
     }
   }

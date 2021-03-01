@@ -207,6 +207,15 @@ class Babeljax {
 
     return this;
   }
+
+  first() {
+    this.chain(async (data) => {
+      if (data.length > 0) return data[0]
+      else return data
+    });
+
+    return this;
+  }
 }
 
 const bb = () => {
