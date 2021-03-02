@@ -4,29 +4,34 @@ import ReactDOM from 'react-dom';
 import io from "socket.io-client";
 import './Chat.css';
 
-const username = prompt('What is your name');
+const username = prompt("What is your name");
 
 // add  "proxy": "http://localhost:3001", to package.json
 
 
 const Chat = (props) => {
     const socketRef = useRef();
-
+    
     const [users, setUsers] = useState([]);
     const [message, setMessage] = useState("");
     // const [socket, setSocket] = useState(() => {
-    //     return io("http://localhost:5000");
-    // });
-    
-    useEffect(() => {
+        //     return io("http://localhost:5000");
+        // });
+        
+        useEffect(() => {
         socketRef.current = io("http://localhost:5000");
         //captures event from server
         socketRef.current.on("connect", () => {
+            console.log(username);
+            socketRef.current.emit('room', "603d63927c61750021fe872a");
             socketRef.current.emit("new-user", username);
-            });
+        });
     
+            socketRef.current.on("message", data => {
+                console.log(data);
+            });
         //adds each new user to the existing users array
-        socketRef.current.on("connected", user => {
+        socketRef.current.on("start", user => {
             console.log(users);
             setUsers(users => [...users, user]);
         });
