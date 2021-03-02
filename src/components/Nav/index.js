@@ -1,9 +1,12 @@
 import { Clown } from "../Logos";
 import "./index.css";
+import BBLogo from "../BBLogo";
 
 const styles = {
   hoverTransform:
     "transition duration-500 ease-in-out transform hover:scale-110 hover:-translate-y-1",
+  navButton:
+    "px-3 py-2 rounded-3xl bg-gray-100 text-indigo-800 focus:outline-white",
 };
 
 const Navbar = (props) => {
@@ -11,21 +14,24 @@ const Navbar = (props) => {
     <div className="navbar w-full px-12 z-50 pt-6 flex justify-between items-center absolute sticky top-0">
       <div className={`flex items-center space-x-4`}>
         <img src="./images/whitebox.png" className="h-12" />
-        <p
+        {/* <p
           className={`font-poppins uppercase text-babelPink-500 text-lg font-bold`}
         >
           {props.brandName || "BABELBOX"}
-        </p>
+        </p> */}
+        <BBLogo small={true} className={`pb-3 ${styles.hoverTransform}`} />
       </div>
       <ul
-        className={`flex items-center font-semibold cursor-pointer space-x-12 text-${props.color} font-roboto font-medium text-sm`}
+        className={`flex items-center font-semibold cursor-pointer space-x-7 text-${props.color} font-roboto font-medium text-sm`}
       >
-        <li className={styles.hoverTransform}>Help</li>
-        <li className={styles.hoverTransform}>
+        <li className={`${styles.navButton} ${styles.hoverTransform}`}>
+          <a href="/help">Help</a>
+        </li>
+        <li className={`${styles.navButton} ${styles.hoverTransform}`}>
           <a href="/about-us">About</a>
         </li>
         <li
-          className={`dropdown inline-block relative transition duration-500 ease-in-out transform hover:scale-110 hover:-translate-y-1 ${styles.hoverTransform}`}
+          className={`dropdown inline-block relative transition duration-500 ease-in-out transform hover:scale-110 hover:-translate-y-1 ${styles.navButton} ${styles.hoverTransform}`}
         >
           Games
           <li className="dropdown-menu absolute hidden text-base pt-5">
@@ -38,10 +44,12 @@ const Navbar = (props) => {
             </a>
           </li>
         </li>
-        <li className={`${styles.hoverTransform}`}>Login</li>
+        <li className={`${styles.navButton} ${styles.hoverTransform}`}>
+          Login
+        </li>
         <li
           style={{ padding: "8.48611px 16.9722px" }}
-          className={`p-2 border-2 border-${props.color} rounded-3xl flex items-center justify-center`}
+          className={`p-2 border-2 border-${props.color} rounded-3xl flex items-center justify-center hover:bg-white ${styles.hoverTransform}`}
         >
           Sign Up
         </li>
