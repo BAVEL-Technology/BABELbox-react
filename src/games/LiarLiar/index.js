@@ -54,7 +54,7 @@ socket.on('connect', function() {
   }
 });
 
-socket.on('message', function(data) {
+socket.on('room updated', function(data) {
     console.log('Incoming message:', data);
 });
 

@@ -57,6 +57,7 @@ export default function App() {
             <p>This is the main page</p>
           </Route>
           <Jeopardy>
+            <ChatApp />
             <AuthButton />
             <Route exact path="/liarliar">
               <Login />
