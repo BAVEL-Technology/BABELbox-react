@@ -19,7 +19,7 @@ const Chat = (props) => {
         // });
         
         useEffect(() => {
-        socketRef.current = io("http://localhost:5000");
+        socketRef.current = io("https://babelboxdb.herokuapp.com/");
         //captures event from server
         socketRef.current.on("connect", () => {
             console.log(username);
