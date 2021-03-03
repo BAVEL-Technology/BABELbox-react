@@ -2,7 +2,7 @@
 import { mount, route } from 'navi'
 
 /* Pull in HomePage Component */
-import main from "pages/main"
+import Main from "pages/Main"
 
 /* Pull in Each Game's Routes */
 import { LiarLiarRoutes } from "../games/LiarLiar/routes"
@@ -16,7 +16,7 @@ export const routes = mount({
         {/* ADD SCRIPTS HERE FOR ANALYTICS */}
       </script>
     </>,
-    view: <main/>,
+    view: <Main/>,
   }),
   /* Spread Each Game's Routes Across Mount Matcher */
   ...LiarLiarRoutes

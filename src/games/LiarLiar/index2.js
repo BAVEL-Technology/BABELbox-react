@@ -2,6 +2,7 @@
 import { useCurrentRoute } from 'react-navi';
 import { GameProvider } from "./BabelBuilder/GameContext";
 import { GameStage } from "./BabelBuilder/GameStage";
+import Wrapper from "components/Wrapper";
 /*
 * Import your major components that coorespond to different phases
 * LiarLiar would have 3 - Waiting, Question, Answer

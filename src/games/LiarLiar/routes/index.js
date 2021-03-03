@@ -18,18 +18,21 @@ export const LiarLiarRoutes = {
           {/* ADD SCRIPTS HERE FOR ANALYTICS */}
         </script>
       </>,
-      view: <Gateway
-      game={'liarliar'}
-      request={request}
-      context={context}
-      playerStructure={playerStructure}
-      portalStructure={portalStructure} />
+      view: 
+      <div className="min-h-screen h-full bg-gradient-to-tl from-babelBlue-1000 via-babelBlue-900 to-babelCyan-700">
+        <Gateway
+        game={'liarliar'}
+        request={request}
+        context={context}
+        playerStructure={playerStructure}
+        portalStructure={portalStructure} />
+      </div>
     })
   }),
   '/liarliar/how-to-play': route({
     title: 'LiarLiar',
     head: <>
-      <meta name="description" content="Babelbox description" />
+    <meta name="description" content="Babelbox description" />
       <script>
         {/* ADD SCRIPTS HERE FOR ANALYTICS */}
       </script>
@@ -58,7 +61,10 @@ export const LiarLiarRoutes = {
     game: 'liarliar',
     onPortalNotFound: '/liarliar',
     onWrongUser: `/liarliar/${request.params.code}/join`,
-    onSuccess: <LiarLiar />
+    onSuccess:
+    <div className="min-h-screen h-full bg-gradient-to-tl from-babelBlue-1000 via-babelBlue-900 to-babelCyan-700">
+      <LiarLiar />
+    </div>
   }),
   lazy(() => {
       return import('../../../routes/portalRoutes')
