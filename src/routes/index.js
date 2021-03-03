@@ -16,7 +16,7 @@ export const routes = mount({
         {/* ADD SCRIPTS HERE FOR ANALYTICS */}
       </script>
     </>,
-    view: <Main/>,
+    view: <Main />,
   }),
   /* Spread Each Game's Routes Across Mount Matcher */
   ...LiarLiarRoutes
