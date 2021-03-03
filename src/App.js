@@ -30,7 +30,7 @@ function App() {
             </Route>
             {/* Render Liar Liar */}
             <Route
-              path={["liarliar/howtoplay", "/liarliar/:code", "/liarliar"]}
+              exact path={["liarliar/howtoplay", "/liarliar/:code", "/liarliar"]}
             >
               <LiarLiar />
             </Route>
