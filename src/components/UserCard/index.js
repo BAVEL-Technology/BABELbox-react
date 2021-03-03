@@ -2,13 +2,11 @@ import { contextType } from "react-copy-to-clipboard";
 import Modal from "../Modal";
 import LiarLiarContext from "../../games/LiarLiar/utils/LiarLiarContext";
 import LiarLiarStage from "../../games/LiarLiar/utils/LiarLiarStage";
-import bb from "../../../src/utils/babelBread"
+import bb from "../../../src/utils/babelBread";
 
 const UserCard = (props) => {
-
   const context = useContext(LiarLiarContext);
   const stage = useContext(LiarLiarStage);
-
 
   // console.log(props);
   const changeEmoji = () => {
@@ -25,13 +23,19 @@ const UserCard = (props) => {
   };
   const changeLeader = (userID) => {
     // TODO: After MVP
-    const newLeader = await bb().update('portals', {round: stage.LiarLiarStage.player.leader}, {
-      "params.rounds": 
-        {
-          leader: true
-        }
-      });
+    // const newLeader = await bb().update('portals', {portals: context.LiarLiarState.players.leader}, {
+
+    // });
+    const playerArray = context.LiarLiarState.players;
+    for (const i = 0; i < playerArray.length; i++) {
+      if (leader === true) {
+        playerArray[i].leader = false;
+      } else if (playerArray[i].id === userID) {
+        playerArray[i] = true;
+      }
+    }
   };
+
   const trashUser = (userID) => {
     // TODO: After MVP
   };
