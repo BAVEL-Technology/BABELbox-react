@@ -2,7 +2,6 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { Router, Link, View, NotFoundBoundary, useLoadingRoute } from 'react-navi';
 import { routes } from "./routes";
 import { authService } from "./utils/authService"
-import Layout from "./Layout"
 import './App.css';
 
 function App() {
@@ -17,11 +16,9 @@ function App() {
 
   return (
     <Router routes={routes} context={authService, users}>
-      <Layout>
-        <Suspense fallback={null}>
-          <View />
-        </Suspense>
-      </Layout>
+      <Suspense fallback={null}>
+        <View />
+      </Suspense>
     </Router>
   );
 }

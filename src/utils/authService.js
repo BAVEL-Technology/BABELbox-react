@@ -1,4 +1,4 @@
-import { create, read, update, add, remove, clear, drop } from "./localdb";
+import { create, read, update, add, remove, clear, drop } from "./localDB";
 import babelBread from "./babelBread";
 
 // A simple "authentication" service that just saves the
@@ -28,8 +28,8 @@ export const authService = {
     const portal = await babelBread().read('portals', { code }).first()
     console.log(portal)
     if (portal.length < 1) return 401
+    console.log(this.users)
     const user = this.users.filter((user) => user.game == game)
-    console.log(user)
     if (!user) return 402
     const gameUser = portal.params.players.filter((player) => {
       console.log(player.id)
@@ -59,8 +59,13 @@ export const authService = {
     return () => { this.callback = undefined }
   }
 }
+
+
+
+
 try {
   authService.users = read('gamePlayers')
+  console.log(authService.users)
 } catch (e) {
   console.log(e)
 }

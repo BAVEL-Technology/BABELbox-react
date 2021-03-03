@@ -11,7 +11,7 @@ const LiarLiarStage = () => {
   return (
     <LiarLiarContext.Consumer>
       {
-        ({ liarLiarState, setLiarLiarState }) => 
+        ({ liarLiarState, setLiarLiarState }) =>
         {
           try
           {
@@ -40,7 +40,7 @@ const LiarLiarStage = () => {
             }
             else
             {
-              switch (liarLiarState.phase) 
+              switch (liarLiarState.phase)
               {
                 case 'waiting':
                   return(

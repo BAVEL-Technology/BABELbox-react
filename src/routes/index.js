@@ -1,6 +1,6 @@
 import React from "react"
 import { mount, route } from 'navi'
-import Home from "../Home"
+import main from "../pages/main"
 import { LiarLiarRoutes } from "./LiarLiar/routes"
 
 export const routes = mount({
@@ -13,7 +13,7 @@ export const routes = mount({
           {/* ADD SCRIPTS HERE FOR ANALYTICS */}
         </script>
       </>,
-      view: <Home />,
+      view: <p>This is the main page</p>,
     }),
     ...LiarLiarRoutes
   })

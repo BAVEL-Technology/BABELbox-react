@@ -144,7 +144,7 @@ const removeItem = (table, record) => {
  * Or if the table does not exist create the table and insert entry(s)
  * Return the new entry(s)
  */
-const create = (table, entry) => {
+export const create = (table, entry) => {
   if (!entry.length) {
     if (!entry.uuid) entry.uuid = newuuid();
     let id = pushEntry(table, entry);
@@ -156,16 +156,25 @@ const create = (table, entry) => {
       ids.push(pushEntry(table, record));
     });
     let params = ids.map((i) => {
-      uuid: i.uuid;
+      return i.uuid;
     });
     return read(table, params);
   }
 };
+const clean = (array) => {
+  if (typeof array === 'object') {
+    return array.filter((el) => {
+      return typeof el != "object" || (Array.isArray(el) && el.length > 0) || Object.keys(el).length > 0;
+    });
+  } else {
+    return array;
+  }
+}
 /*
  * Return an entry from a table, or an array of entries
  * If there are no results, return an empty array
  */
-const read = (table, params) => {
+export const read = (table, params) => {
   if (!localStorage.getItem(table)) return false;
   if (params) {
     let result = JSON.parse(localStorage.getItem(table));
@@ -173,16 +182,16 @@ const read = (table, params) => {
       let value = params[key];
       result = result.filter((record) => record[key] == value);
     });
-    return result;
+    return clean(result);
   } else {
-    return JSON.parse(localStorage.getItem(table));
+    return clean(JSON.parse(localStorage.getItem(table)));
   }
 };
 /*
  * Update one or more entries in a table with the given key value pairs
  * Return the updated record(s)
  */
-const update = (table, changes, params) => {
+export const update = (table, changes, params) => {
   if (!localStorage.getItem(table)) return false;
   let records;
   if (params) records = read(table, params);
@@ -203,7 +212,7 @@ const update = (table, changes, params) => {
  * Remove record(s) with the given parameters from the given table
  * Return true
  */
-const remove = (table, params) => {
+export const remove = (table, params) => {
   let records = read(table, params);
   records.forEach((record) => removeItem(table, record));
   return true;
@@ -212,7 +221,7 @@ const remove = (table, params) => {
  * Drop a given table from the localDB
  * Return true
  */
-const drop = (table) => {
+export const drop = (table) => {
   localStorage.removeItem(table);
   return true;
 };
@@ -220,40 +229,10 @@ const drop = (table) => {
  * Clear the entire localDB
  * Return true
  */
-const clear = () => {
+export const clear = () => {
   localStorage.clear();
   return true;
 };
-/*
- * Open IndexedDB table
- */
-const open = (name, version) => {
-  let openRequest = indexedDB.open(name, version);
-  openRequest.onupgradeneeded = () => {
-    // the existing database version is less than 2 (or it doesn't exist)
-    let db = openRequest.result;
-    switch (
-      event.oldVersion // existing db version
-    ) {
-      case 0:
-      // version 0 means that the client had no database
-      // perform initialization
-      case 1:
-      // client had version 1
-      // update
-    }
-  };
-  openRequest.onerror = () => {
-    console.error("Error", openRequest.error);
-  };
-  openRequest.onsuccess = () => {
-    let db = openRequest.result;
-    db.onversionchange = function () {
-      db.close();
-      alert("Database is outdated, please reload the page.");
-    };
-  };
-};
-const delete = (name) => {
+const destroy = (name) => {
   let deleteRequest = indexedDB.deleteDatabase(name);
 };

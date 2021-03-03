@@ -3,6 +3,8 @@ import "./style.css";
 import BB from "../../../utils/babelBread";
 import LiarLiarContext from "../../../games/LiarLiar/utils/LiarLiarContext";
 import uuid from "../../../utils/uuid";
+import { useNavigation } from 'react-navi'
+import { authService } from "../../../utils/authService"
 
 const CreatePortal = (props) => {
   const getAvatar = () => {
@@ -10,6 +12,8 @@ const CreatePortal = (props) => {
     return avatars[Math.floor(Math.random() * avatars.length)];
   };
   const [userName, setUserName] = useState(0);
+  let navigation = useNavigation()
+
   const createPortal = async (setLiarLiarState) => {
     const player = {
       id: uuid(),
@@ -38,15 +42,10 @@ const CreatePortal = (props) => {
       rounds: portal.params.rounds,
     });
 
-    localStorage.setItem('liarLiarPlayer', player.id);
+    authService.login('liarliar', portal.code, player.id)
 
     console.log(`Portal: ${JSON.stringify(portal)}`);
-
-    redirect(portal.code);
-  };
-
-  const redirect = (code) => {
-    window.history.replaceState(null, "Babelbox", `${window.location.href}/${code}`);
+    navigation.navigate('/liarliar/'+encodeURIComponent(request.params.code))
   };
 
   const handleChange = (event) => {
