@@ -31,6 +31,8 @@ const PortalCodeCard = (props) => {
               <FontAwesomeIcon className="w-24 h-24" icon={faCopy} />
             </CopyToClipboard>
           </div>
+          {/* if copied is true, display a small div that alerts the user */}
+          {copied ? <span className="clipConfirm absolute -mt-7 ml-5 py-2 px-3 w-auto tracking-wide bg-gray-100 text-pink-700 rounded-full shadow-lg font-semibold z-10 animate-bounce text-xl">Copied!</span> : null}
         </div>
       </div>
       <div
