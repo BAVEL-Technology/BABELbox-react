@@ -1,21 +1,30 @@
+/* Pull in Navi and Babel Bread dependencies */
 import { map, mount, route, redirect } from 'navi'
-import React from 'react'
-import { authService } from "../utils/authService"
+import babelBread from "utils/babelBread"
 
 export default mount({
   '': map(async (request, context) => {
-    // Render a link to the login screen if the user isn't currently
-    // logged in.
-    const auth = await authService.authenticate({ game: context.game, code: request.params.code })
-    console.log(auth)
-    if (auth == 401) {
-      return redirect(context.onPortalNotFound)
-    } else if (auth > 401) {
-      return redirect(context.onWrongUser)
-    }
-    // Return a page with the resulting data.
+    /* Authenticate the current user for this game and code */
+    const authResponse = await context.authenticate({
+      game: context.game, code: request.params.code
+    })
+    console.log(authResponse)
+    /*
+    * If we get a 401 (the portal wasn't found) redirect the user to the
+    * onPortalNotFound route, or if the portal exists, but the user isn't
+    * inside the Local DB redirect to the onWrongUser route.
+    */
+    if (authResponse == 401) return redirect(context.onPortalNotFound)
+    else if (authResponse > 401) return redirect(context.onWrongUser)
+
+    /* If all is good and we got the 200 response return the onSuccess Component */
     return route({
       title: 'Spot',
+      getData: async () => {
+        return await babelBread()
+        .read('portals', { code: request.params.code })
+        .first()
+      },
       view: context.onSuccess,
     })
   })

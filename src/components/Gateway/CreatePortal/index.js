@@ -4,7 +4,7 @@ import BB from "../../../utils/babelBread";
 import LiarLiarContext from "../../../games/LiarLiar/utils/LiarLiarContext";
 import uuid from "../../../utils/uuid";
 import { useNavigation } from 'react-navi'
-import { authService } from "../../../utils/authService"
+import { auth } from "../../../utils/auth"
 
 const CreatePortal = (props) => {
   const getAvatar = () => {
@@ -42,10 +42,10 @@ const CreatePortal = (props) => {
       rounds: portal.params.rounds,
     });
 
-    authService.login('liarliar', portal.code, player.id)
+    auth.login('liarliar', portal.code, player.id)
 
     console.log(`Portal: ${JSON.stringify(portal)}`);
-    navigation.navigate('/liarliar/'+encodeURIComponent(request.params.code))
+    navigation.navigate('/liarliar/'+encodeURIComponent(props.request.params.code))
   };
 
   const handleChange = (event) => {
