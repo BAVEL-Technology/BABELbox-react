@@ -4,22 +4,26 @@ import UserCard from "../../../../components/UserCard";
 import PortalCodeCard from "../../../../components/LobbyCards/PortalCodeCard";
 import { useContext, useState } from "react";
 import bb from "../../../../utils/babelBread";
-import { useGame } from "../../BabelBuilder/GameContext";
+import Context from "../../utils/LiarLiarContext";
 
 const Questions = (props) => {
-  const gameState = useGame();
   const { questionLock, setQuestionLock } = useState(false);
   const { userInput, setUserInput } = useState("");
   const currentUser = localStorage.getItem("liarLiarPlayer");
   const context = useContext(LiarLiarContext);
-  const statement = `params.rounds.${gameState.rounds.length}`;
-  const currentUserIndex = gameState.players.indexOf(
-    gameState.players.filter(
+  const statement = `params.rounds.${context.liarLiarState.rounds.length}`;
+  const currentUserIndex = context.liarLiarState.players.indexOf(
+    context.liarLiarState.players.filter(
       (player) => (player.id = currentUser)
     )[0]
   );
-  setQuestionLock = gameState.rounds[
-    gameState.rounds.length
+  bb().push(
+    "portals",
+    { code: context.liarLiarState.code },
+    { [statement]: { user: currentUser, answer: userInput } }
+  );
+  setQuestionLock = context.liarLiarState.rounds[
+    context.liarLiarState.rounds.length
   ].answers.filter((ans) => id == currentUser)
     ? true
     : false;
@@ -30,7 +34,7 @@ const Questions = (props) => {
   const submitAnswer = async () => {
     bb().push(
       "portals",
-      { code: gameState.code },
+      { code: context.liarLiarState.code },
       { [statement]: { user: currentUser, answer: userInput } }
     );
   };

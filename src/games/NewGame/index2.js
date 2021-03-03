@@ -2,9 +2,6 @@
 import { useCurrentRoute } from 'react-navi';
 import { GameProvider } from "./BabelBuilder/GameContext";
 import { GameStage } from "./BabelBuilder/GameStage";
-import Waiting from "./Phases/Waiting";
-import Questions from "./Phases/Questions";
-import Answer from "./Phases/Answer";
 /*
 * Import your major components that coorespond to different phases
 * LiarLiar would have 3 - Waiting, Question, Answer
@@ -21,9 +18,9 @@ export default function LiarLiar({ request, context }) {
   const portal = useCurrentRoute().data
 
   const sets = {
-    waiting: <Waiting />,
-    question: <Questions />,
-    answer: <Answer />
+    waiting: <p>Waiting</p>,
+    question: <p>Question</p>,
+    answer: <p>Answer</p>
   };
 
   const state = {

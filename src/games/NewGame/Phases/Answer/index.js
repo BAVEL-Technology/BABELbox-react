@@ -58,7 +58,7 @@ const Answer = (props) => {
 
       <button
         disabled={answerLock}
-        onClick={true}
+        onClick={}
         className="answer place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-xl flex
               items-center justify-center w-full lg:text-3xl md:text-2xl text-xl disabled:opacity-50"
       >
