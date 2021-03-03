@@ -22,7 +22,7 @@ export const auth = {
       console.log(players)
       this.users = read('gamePlayers')
       console.log(this.users)
-      return true
+      return user
     } catch (err) {
       console.log(err)
     }
@@ -63,7 +63,7 @@ export const auth = {
       if (gameUser.length < 1) return 403
 
       /* If there are no errors return 200 */
-      return 200
+      return gameUser[0].user
     } catch (err) {
       console.log(err)
     }

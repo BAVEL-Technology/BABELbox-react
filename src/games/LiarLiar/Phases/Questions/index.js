@@ -8,9 +8,8 @@ import { useGame } from "../../BabelBuilder/GameContext";
 
 const Questions = (props) => {
   const gameState = useGame();
-  const { questionLock, setQuestionLock } = useState(false);
-  const { userInput, setUserInput } = useState("");
-  const currentUser = localStorage.getItem("liarLiarPlayer");
+  const [ questionLock, setQuestionLock ] = useState(false);
+  const [ userInput, setUserInput ] = useState("");
   const context = useContext(LiarLiarContext);
   const statement = `params.rounds.${gameState.rounds.length}`;
   const currentUserIndex = gameState.players.indexOf(
