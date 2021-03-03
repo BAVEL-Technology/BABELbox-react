@@ -64,10 +64,12 @@ socket.on('message', function(data) {
   // Will be undefined if there is no params on the url.
   const params = useParams();
 
+  console.log(`URL Params: `, params);
+
   // Hook function for refreshing / performing an action on value changes. Also called once when component mounts.
   useEffect(async () => {
     // Return if portalID is undefined.
-    if (!params.code) return;
+    if (!params.code || params.code === 'howtoplay') return;
 
     const portalState = await bb().read('portals', {code: params.code});
 
@@ -95,7 +97,7 @@ socket.on('message', function(data) {
       {/* Liar Liar state provider context to pass state to any Liar Liar child component. */}
       <LiarLiarContext.Provider value={{liarLiarState, setLiarLiarState}} >
         {
-          params.portalID === "howtoplay"
+          params.code === "howtoplay"
           ? <HowToPlay
           title="Liar Liar"
           color="yellow-500"
