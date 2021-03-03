@@ -1,4 +1,3 @@
-import { PromiseProvider } from "mongoose";
 import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from 'react-dom';
 import io from "socket.io-client";
