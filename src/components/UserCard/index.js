@@ -24,6 +24,7 @@ const UserCard = (props) => {
   };
   const changeLeader = (userID) => {
     // TODO: After MVP
+    //needs improvement
     console.log(context);
     const playerArray = context.liarLiarState.players;
     for (let i = 0; i < playerArray.length; i++) {
@@ -71,6 +72,7 @@ const UserCard = (props) => {
           }}
           className="make-leader w-8 h-8 rounded-full hover:bg-blue-300 flex items-center justify-center pl-1 cursor-pointer"
         >
+          {/* needs improvement */}
           <svg
             className={`h-4 w-4 ${
               props.user.leader ? "text-yellow-500" : "text-purple-500"
