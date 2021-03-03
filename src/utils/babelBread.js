@@ -26,7 +26,7 @@ Array.prototype.compare = function compare(param, dir) {
 class Babeljax {
   constructor() {
     this.base_url = "https://babelboxdb.herokuapp.com/api/";
-    this.data;
+    this.data = [];
     this.queue = Promise.resolve();
   }
 
@@ -203,6 +203,15 @@ class Babeljax {
       });
       console.log(data);
       return data;
+    });
+
+    return this;
+  }
+
+  first() {
+    this.chain(async (data) => {
+      if (data.length > 0) return data[0]
+      else return data
     });
 
     return this;

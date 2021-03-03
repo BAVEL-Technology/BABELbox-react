@@ -12,10 +12,10 @@
     "plugins": ["prettier"],
     "rules": {
       "camelcase": "warn",
-      "no-var": "error",
-      "prefer-const": "error",
+      "no-var": "warn",
+      "prefer-const": "warn",
       "quotes": ["warn", "single"],
-      "semi": ["error", "always"],
+      "semi": ["warn", "always"],
       "yoda": "error"
     }
   }

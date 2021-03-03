@@ -11,7 +11,7 @@ import openSocket from 'socket.io-client';
 
 // TODO: Have browser caching for uuid.
 
-function LiarLiar() {
+function LiarLiar({ request, context}) {
   const [liarLiarState, setLiarLiarState] = useState({
     _id: "",
     code: "",
@@ -62,18 +62,14 @@ socket.on('message', function(data) {
 
   // Use this for reconnecting to the portal.
   // Will be undefined if there is no params on the url.
-  const params = useParams();
-
-  console.log(`URL Params: `, params);
-
   // Hook function for refreshing / performing an action on value changes. Also called once when component mounts.
   useEffect(async () => {
     // Return if portalID is undefined.
-    if (!params.code || params.code === 'howtoplay') return;
+    if (!request.params.code) return;
 
-    const portalState = await bb().read('portals', {code: params.code});
+    const portalState = await bb().read('portals', {code: request.params.code});
 
-    if(portalState != undefined && portalState.length  > 0) 
+    if(portalState != undefined && portalState.length  > 0)
     {
       const newState = {
         _id: portalState[0]._id,
@@ -84,10 +80,10 @@ socket.on('message', function(data) {
         rounds: portalState[0].params.rounds
       };
       setLiarLiarState(newState);
-    }    
+    }
     else
     {
-      console.warn("Portal was returned as undefined or empty."); 
+      console.warn("Portal was returned as undefined or empty.");
       return;
     }
   }, []);
@@ -96,15 +92,7 @@ socket.on('message', function(data) {
     <>
       {/* Liar Liar state provider context to pass state to any Liar Liar child component. */}
       <LiarLiarContext.Provider value={{liarLiarState, setLiarLiarState}} >
-        {
-          params.code === "howtoplay"
-          ? <HowToPlay
-          title="Liar Liar"
-          color="yellow-500"
-          description="There are three phases: Question, Answer, and Waiting"
-        />
-        : <LiarLiarStage/>
-        }
+        <LiarLiarStage/>
       </LiarLiarContext.Provider>
     </>
   );
