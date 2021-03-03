@@ -17,7 +17,7 @@ export const LiarLiarRoutes = {
       view: <LiarLiar request={request} context={context}/>
     })
   }),
-  '/liarliar/how/to/play': route({
+  '/liarliar/how-to-play': route({
     title: 'LiarLiar',
     head: <>
       <meta name="description" content="Babelbox description" />
