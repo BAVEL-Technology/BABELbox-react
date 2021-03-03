@@ -31,7 +31,7 @@ const UserCard = (props) => {
       if (playerArray[i].leader === true) {
         playerArray[i].leader = false;
       } else if (playerArray[i].id === userID) {
-        playerArray[i] = true;
+        playerArray[i].leader = true;
       }
     }
     console.log(playerArray);
@@ -68,7 +68,7 @@ const UserCard = (props) => {
       <div className="flex flex-col text-sm justify-between">
         <div
           onClick={() => {
-            changeLeader("uuid");
+            changeLeader(props.user.id);
           }}
           className="make-leader w-8 h-8 rounded-full hover:bg-blue-300 flex items-center justify-center pl-1 cursor-pointer"
         >
