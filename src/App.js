@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Router routes={routes} context={authService, users}>
-      <Suspense fallback={null}>
+      <Suspense fallback={<p>Suspense fallback.</p>}>
         <View />
       </Suspense>
     </Router>
