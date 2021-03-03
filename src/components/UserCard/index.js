@@ -1,6 +1,15 @@
+import { contextType } from "react-copy-to-clipboard";
 import Modal from "../Modal";
+import LiarLiarContext from "../../games/LiarLiar/utils/LiarLiarContext";
+import LiarLiarStage from "../../games/LiarLiar/utils/LiarLiarStage";
+import bb from "../../../src/utils/babelBread"
 
 const UserCard = (props) => {
+
+  const context = useContext(LiarLiarContext);
+  const stage = useContext(LiarLiarStage);
+
+
   // console.log(props);
   const changeEmoji = () => {
     // TODO: After MVP
@@ -16,6 +25,12 @@ const UserCard = (props) => {
   };
   const changeLeader = (userID) => {
     // TODO: After MVP
+    const newLeader = await bb().update('portals', {round: stage.LiarLiarStage.player.leader}, {
+      "params.rounds": 
+        {
+          leader: true
+        }
+      });
   };
   const trashUser = (userID) => {
     // TODO: After MVP
