@@ -1,22 +1,26 @@
-import React, { Suspense, useEffect, useState } from 'react';
-import { Router, Link, View, NotFoundBoundary, useLoadingRoute } from 'react-navi';
+/* Pull in React and Navi dependencies */
+import { Suspense, useEffect, useState } from 'react';
+import {
+  Router,
+  View,
+  NotFoundBoundary,
+  useLoadingRoute } from 'react-navi';
+
+/* Pull in our routes, our auth middleware, and our App Component */
 import { routes } from "./routes";
-import { authService } from "./utils/authService"
+import { auth } from "./utils/auth"
 import './App.css';
 
 function App() {
-  // Use state to store the current user
+  /* Set App State, users, to current users stored in localdb cookies 🍪 */
   let [users, setUsers] =
-  useState(() => authService.getUsers())
-
-  // Subscribe that state to the value emitted by the auth service
-  useEffect(() => authService.subscribe(setUsers), [])
+  useState(() => auth.getUsers())
 
   let loadingRoute = useLoadingRoute()
 
   return (
-    <Router routes={routes} context={authService, users}>
-      <Suspense fallback={<p>Suspense fallback.</p>}>
+    <Router routes={routes} context={users, auth}>
+      <Suspense fallback={null}>
         <View />
       </Suspense>
     </Router>

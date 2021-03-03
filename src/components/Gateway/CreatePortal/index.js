@@ -4,7 +4,7 @@ import BB from "../../../utils/babelBread";
 import LiarLiarContext from "../../../games/LiarLiar/utils/LiarLiarContext";
 import uuid from "../../../utils/uuid";
 import { useNavigation } from 'react-navi'
-import { authService } from "../../../utils/authService"
+import { auth } from "../../../utils/auth"
 
 const CreatePortal = (props) => {
   // Use the Liar Liar state context.
@@ -50,17 +50,10 @@ const CreatePortal = (props) => {
       rounds: portal.params.rounds,
     });
 
-    // 
-    authService.login('liarliar', portal.code, player.id);
-    
-    // Navigate to the portal page and make sure it is formatted as a correct URL.
-    navigation.navigate('/liarliar/' + encodeURIComponent(portal.code));
-  };
+    auth.login('liarliar', portal.code, player.id)
 
-  // Gets a random avatar to assign to the player.
-  const getAvatar = () => {
-    const avatars = ["🐵", "🦊", "🐨", "🐲", "🥸", "🤓", "🤖", "👺", "🤡"];
-    return avatars[Math.floor(Math.random() * avatars.length)];
+    console.log(`Portal: ${JSON.stringify(portal)}`);
+    navigation.navigate('/liarliar/'+encodeURIComponent(props.request.params.code))
   };
 
   // Updates the local state for the username when the input is changed.
