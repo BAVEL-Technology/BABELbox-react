@@ -54,7 +54,9 @@ const LiarLiarStage = () => {
                   return(<p>answer</p>);
                 default:
                   // TODO: Make Loading Page.
-                  return(<p>LOADING!</p>);
+                  return(
+                  <p className="h-screen w-screen text-center text-6xl">LOADING!</p>
+                  );
               }
             }
           } catch (e) {

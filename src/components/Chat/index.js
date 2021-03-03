@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import io from "socket.io-client";
 import './Chat.css';
 
-const username = prompt("What is your name");
+const username = "";
 
 // add  "proxy": "http://localhost:3001", to package.json
 
