@@ -17,13 +17,6 @@ const Questions = (props) => {
   const statement = `params.rounds.${gameState.rounds.length - 1}`;
   console.log(gameState);
   const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser)
-<<<<<<< HEAD
-  
-=======
-  setQuestionLock(gameState.rounds[gameState.rounds.length - 1]?.answers?.filter((ans) => id == currentUser))
-    ? true
-    : false;
->>>>>>> 5038b9b6b42ab83492b8a2971676ef353c1b328f
   const onInputChange = (input) => {
     setUserInput(input);
   };
@@ -47,7 +40,7 @@ const Questions = (props) => {
         className=" text-center w-full flex items-center justify-center py-8 lg:text-4xl md:text-3xl text-xl"
         style={{ fontFamily: props.font }}
       >
-        <p>{gameState.rounds[rounds.length - 1].question.question}</p>
+        <p>{gameState?.rounds[gameState.rounds.length - 1]?.question?.question}</p>
       </div>
 
       <input
