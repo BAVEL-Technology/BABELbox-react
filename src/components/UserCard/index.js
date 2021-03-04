@@ -45,6 +45,7 @@ const UserCard = (props) => {
     <div
       className="card my-6 flex items-center justify-between bg-green-400 w-full text-gray-700 p-4 text-xl lg:text-4xl md:text-3xl text-center rounded-xl tracking-widest shadow-lg hover:shadow-xl transform hover:-translate-y-2"
       style={{ fontFamily: "'Sniglet', cursive" }}
+      key={props.key}
     >
       <div
         onClick={() => {

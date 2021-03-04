@@ -22,18 +22,19 @@ export function useGameUpdate() {
 * Define your default and initial state here
 */
 export function GameProvider({ children, state, portal, currentUser }) {
-  const organizeState = (state, data) => {
+  const organizeState = (data) => {
     let res = {}
     Object.keys(state).forEach((key) => {
+        console.log(`Game Provider | `);
         if (key == "_id") res._id = data._id
         else if (key == "code") res.code = data.code
-        else res[key] = state[key] ||data.params[key]
+        else res[key] = data.params[key] || state[key]
       })
 
       return res
     }
 
-  const initialState = organizeState(state, portal)
+  const initialState = organizeState(portal)
   initialState.currentUser = currentUser
   const [gameState, setGameState] = useState(initialState);
 
@@ -45,9 +46,9 @@ export function GameProvider({ children, state, portal, currentUser }) {
 
   const socket = babelBellow()
   .join(portal._id, (res) => {
-    console.log(res)
+    console.log(`Socket | ${res}`);
     const data = res[0]
-    const updatedState = organizeState(state, data)
+    const updatedState = organizeState(data)
     updateGame(updatedState)
   })
 
