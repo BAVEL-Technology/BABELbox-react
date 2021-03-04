@@ -22,25 +22,25 @@ export function useGameUpdate() {
 * Define your default and initial state here
 */
 export function GameProvider({ children, state, portal, currentUser }) {
-  const organizeState = (state, data) => {
+  const organizeState = (data) => {
     let res = {}
     Object.keys(state).forEach((key) => {
-      console.log(key)
-      console.log(data.params[key])
+      
         if (key == "_id") res._id = data._id
         else if (key == "code") res.code = data.code
-        else res[key] = state[key] || data.params[key]
-        console.log(res)
-      })
+        else res[key] = data.params[key] || state[key]
 
-      return res
+        console.log(`Organize State Key: ${key}`)
+        console.log(`Organize State Value: `, data.params[key]);
+      });
+      console.log(`Build Organize State: `, res);
+
+      return res;
     }
 
-  const initialState = organizeState(state, portal)
-  initialState.currentUser = currentUser
+  const initialState = organizeState(portal)
+  initialState.currentUser = currentUser;
   const [gameState, setGameState] = useState(initialState);
-
-  console.log(currentUser)
 
   function updateGame(updates) {
     setGameState({...gameState, ...updates});
@@ -48,13 +48,13 @@ export function GameProvider({ children, state, portal, currentUser }) {
 
   const socket = babelBellow()
   .join(portal._id, (res) => {
-    console.log(res)
+    console.log(`Socket State Update: ${res}`)
     const data = res[0]
-    const updatedState = organizeState(state, data)
+    const updatedState = organizeState(data)
     updateGame(updatedState)
   })
 
-  console.log(gameState)
+  console.log(`React Game State: `, gameState);
 
   return (
     <GameContext.Provider value={gameState}>
