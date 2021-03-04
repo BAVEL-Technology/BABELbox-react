@@ -58,6 +58,7 @@ const Questions = (props) => {
 
       <button
         id="submit-answer-button"
+        disabled={questionLock}
         onClick={submitAnswer}
         className="place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl
         rounded-br-xl rounded-tr rounded-bl flex items-center justify-center w-full

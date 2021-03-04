@@ -31,14 +31,17 @@ export function GameProvider({ children, state, portal, currentUser }) {
         else res[key] = data.params[key] || state[key]
       })
 
-      return res
+        console.log(`Organize State Key: ${key}`)
+        console.log(`Organize State Value: `, data.params[key]);
+      });
+      console.log(`Build Organize State: `, res);
+
+      return res;
     }
 
   const initialState = organizeState(portal)
-  initialState.currentUser = currentUser
+  initialState.currentUser = currentUser;
   const [gameState, setGameState] = useState(initialState);
-
-  console.log(currentUser)
 
   function updateGame(updates) {
     setGameState({...gameState, ...updates});
@@ -52,7 +55,7 @@ export function GameProvider({ children, state, portal, currentUser }) {
     updateGame(updatedState)
   })
 
-  console.log(gameState)
+  console.log(`React Game State: `, gameState);
 
   return (
     <GameContext.Provider value={gameState}>
