@@ -28,13 +28,7 @@ const Questions = (props) => {
       { [statement] : { user: gameState.currentUser, answer: userInput } }
     );
 
-<<<<<<< HEAD
     setQuestionLock(gameState.rounds[ gameState.rounds.length - 1 ]?.answers?.filter((ans) => ans.id == gameState.currentUser));
-=======
-    console.log(response);
-    console.log(gameState.rounds[ gameState.rounds.length - 1 ]?.answers?.filter((ans) => ans.id == currentUser));
-    // setQuestionLock();
->>>>>>> c72aacd6839defe1f1f794fa5aa652fa6eb9ca0d
   };
 
   return (
