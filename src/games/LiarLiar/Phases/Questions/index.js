@@ -22,13 +22,19 @@ const Questions = (props) => {
   };
 
   const submitAnswer = async () => {
-    bb().push(
+    const response = await bb().push(
       "portals",
       { code: gameState.code },
       { [statement] : { user: gameState.currentUser, answer: userInput } }
     );
 
+<<<<<<< HEAD
     setQuestionLock(gameState.rounds[ gameState.rounds.length - 1 ]?.answers?.filter((ans) => ans.id == gameState.currentUser));
+=======
+    console.log(response);
+    console.log(gameState.rounds[ gameState.rounds.length - 1 ]?.answers?.filter((ans) => ans.id == currentUser));
+    // setQuestionLock();
+>>>>>>> c72aacd6839defe1f1f794fa5aa652fa6eb9ca0d
   };
 
   return (
@@ -56,6 +62,7 @@ const Questions = (props) => {
 
       <button
         id="submit-answer-button"
+        disabled={questionLock}
         onClick={submitAnswer}
         className="place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl
         rounded-br-xl rounded-tr rounded-bl flex items-center justify-center w-full

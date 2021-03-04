@@ -25,10 +25,11 @@ export function GameProvider({ children, state, portal, currentUser }) {
   const organizeState = (data) => {
     let res = {}
     Object.keys(state).forEach((key) => {
-      
+        console.log(`Game Provider | ${data.params[key]}`);
         if (key == "_id") res._id = data._id
         else if (key == "code") res.code = data.code
         else res[key] = data.params[key] || state[key]
+      })
 
         console.log(`Organize State Key: ${key}`)
         console.log(`Organize State Value: `, data.params[key]);
@@ -48,7 +49,7 @@ export function GameProvider({ children, state, portal, currentUser }) {
 
   const socket = babelBellow()
   .join(portal._id, (res) => {
-    console.log(`Socket State Update: ${res}`)
+    console.log(`Socket | ${res}`);
     const data = res[0]
     const updatedState = organizeState(data)
     updateGame(updatedState)
