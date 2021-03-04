@@ -14,7 +14,7 @@ const Questions = (props) => {
   const [ questionLock, setQuestionLock ] = useState(false);
   // State for user input (answer)
   const [ userInput, setUserInput ] = useState("");
-  const statement = `params.rounds.${gameState.rounds.length}`;
+  const statement = `params.rounds.${gameState.rounds.length - 1}`;
   console.log(gameState);
   const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser)
   
@@ -26,10 +26,10 @@ const Questions = (props) => {
     bb().push(
       "portals",
       { code: gameState.code },
-      { [statement]: { user: currentUser, answer: userInput } }
+      { [statement]: { user: gameState.currentUser, answer: userInput } }
     );
 
-    setQuestionLock(gameState.rounds[ gameState.rounds.length ]?.answers?.filter((ans) => ans.id == currentUser));
+    setQuestionLock(gameState.rounds[ gameState.rounds.length - 1 ]?.answers?.filter((ans) => ans.id == currentUser));
   };
 
   //TODO check rounds for context
@@ -60,7 +60,7 @@ const Questions = (props) => {
         className=" text-center w-full flex items-center justify-center py-8 lg:text-4xl md:text-3xl text-xl"
         style={{ fontFamily: props.font }}
       >
-        <p>{rounds[rounds.length - 1].question.question}</p>
+        <p>{gameState.rounds[rounds.length - 1].question.question}</p>
       </div>
 
       <input
