@@ -45,6 +45,7 @@ export function GameProvider({ children, state, portal, currentUser }) {
 
   const socket = babelBellow()
   .join(portal._id, (res) => {
+    console.log(res)
     const data = res[0]
     const updatedState = organizeState(state, data)
     updateGame(updatedState)
