@@ -30,9 +30,9 @@ export const portalStructure = {
 }
 
 export const sets = {
-  waiting: <Waiting />,
-  question: <Questions />,
-  answer: <Answer />
+  waiting: <Waiting key="Waiting"/>,
+  question: <Questions key="Questions"/>,
+  answer: <Answer key="Answer"/>
 };
 
 export const state = {

@@ -39,7 +39,7 @@ const Waiting = () => {
       <PortalCodeCard portalCode={gameState.code} />
       {gameState.players &&
         gameState.players.map((user, index) => {
-          return <UserCard user={{ ...user }} key={index + 1} />;
+          return <UserCard key={index} user={{ ...user }}  />;
         })}
     </>
   );

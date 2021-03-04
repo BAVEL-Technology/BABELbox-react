@@ -55,7 +55,7 @@ export const auth = {
       const gameUser = portal.params.players.filter((player) => {
         return player.id == user[0].user
       })
-      console.log(gameUser)
+      // console.log(gameUser)
       if (gameUser.length < 1) return 403
 
       /* If there are no errors return user id */

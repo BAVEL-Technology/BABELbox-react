@@ -32,7 +32,7 @@ export const LiarLiarRoutes = {
       </div>
     })
   }),
-  [`${game.route}/how-to-play`]: route({
+  [`/${game.route}/how-to-play`]: route({
     title: game.title,
     head: <>
     <meta name="description" content={game.description} />
@@ -44,7 +44,7 @@ export const LiarLiarRoutes = {
   }),
 
   /* 🤗 Join specific portal route */
-  [`${game.route}/:code/join`]: map(async (request, context) => {
+  [`/${game.route}/:code/join`]: map(async (request, context) => {
     return route({
       title: 'LiarLiar',
       head: <>
@@ -58,7 +58,7 @@ export const LiarLiarRoutes = {
   }),
 
   /* 🛡 Portal Route - Auth */
-  [`${game.route}/:code`]: withContext(
+  [`/${game.route}/:code`]: withContext(
   (request, parentContext) => ({
     ...parentContext,
     game: game.route,

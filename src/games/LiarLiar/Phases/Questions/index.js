@@ -15,7 +15,7 @@ const Questions = (props) => {
   // State for user input (answer)
   const [ userInput, setUserInput ] = useState("");
   const statement = `params.rounds.${gameState.rounds.length - 1}.answers`;
-  console.log(gameState);
+  // console.log(gameState);
   const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser)
   const onInputChange = (e) => {
     setUserInput(e.target.value);
