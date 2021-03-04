@@ -14,21 +14,21 @@ const Questions = (props) => {
   const [ questionLock, setQuestionLock ] = useState(false);
   // State for user input (answer)
   const [ userInput, setUserInput ] = useState("");
-  const statement = `params.rounds.${gameState.rounds.length - 1}`;
+  const statement = `params.rounds.${gameState.rounds.length - 1}.answers`;
   console.log(gameState);
   const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser)
-  const onInputChange = (input) => {
-    setUserInput(input);
+  const onInputChange = (e) => {
+    setUserInput(e.target.value);
   };
 
   const submitAnswer = async () => {
     bb().push(
       "portals",
       { code: gameState.code },
-      { [statement]: { user: gameState.currentUser, answer: userInput } }
+      { [statement] : { user: gameState.currentUser, answer: userInput } }
     );
 
-    setQuestionLock(gameState.rounds[ gameState.rounds.length - 1 ]?.answers?.filter((ans) => ans.id == currentUser));
+    setQuestionLock(gameState.rounds[ gameState.rounds.length - 1 ]?.answers?.filter((ans) => ans.id == gameState.currentUser));
   };
 
   return (
