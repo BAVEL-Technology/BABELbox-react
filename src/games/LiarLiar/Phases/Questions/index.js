@@ -2,21 +2,22 @@ import Lobby from "../../Lobby";
 import LiarLiarContext from "../../utils/LiarLiarContext";
 import UserCard from "../../../../components/UserCard";
 import PortalCodeCard from "../../../../components/LobbyCards/PortalCodeCard";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import bb from "../../../../utils/babelBread";
 import { useGame } from "../../BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "../../utils/currentUserIndex"
 
 const Questions = (props) => {
+  // Custom hook for getting game state.
   const gameState = useGame();
+  // Local lock for submitting a question. Sync this with db to keep value on refresh.
   const [ questionLock, setQuestionLock ] = useState(false);
+  // State for user input (answer)
   const [ userInput, setUserInput ] = useState("");
   const statement = `params.rounds.${gameState.rounds.length}`;
-  console.log(gameState)
+  console.log(gameState);
   const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser)
-  setQuestionLock(gameState.rounds[ gameState.rounds.length ].answers.filter((ans) => id == currentUser))
-    ? true
-    : false;
+  
   const onInputChange = (input) => {
     setUserInput(input);
   };
@@ -27,6 +28,8 @@ const Questions = (props) => {
       { code: gameState.code },
       { [statement]: { user: currentUser, answer: userInput } }
     );
+
+    setQuestionLock(gameState.rounds[ gameState.rounds.length ]?.answers?.filter((ans) => ans.id == currentUser));
   };
 
   //TODO check rounds for context
