@@ -17,7 +17,13 @@ const Questions = (props) => {
   const statement = `params.rounds.${gameState.rounds.length - 1}`;
   console.log(gameState);
   const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser)
+<<<<<<< HEAD
   
+=======
+  setQuestionLock(gameState.rounds[gameState.rounds.length - 1]?.answers?.filter((ans) => id == currentUser))
+    ? true
+    : false;
+>>>>>>> 5038b9b6b42ab83492b8a2971676ef353c1b328f
   const onInputChange = (input) => {
     setUserInput(input);
   };
@@ -31,25 +37,6 @@ const Questions = (props) => {
 
     setQuestionLock(gameState.rounds[ gameState.rounds.length - 1 ]?.answers?.filter((ans) => ans.id == currentUser));
   };
-
-  //TODO check rounds for context
-  // const context = useContext(Context);
-  // const rounds = context.liarLiarState.rounds;
-  const rounds = [
-    {
-      round: 0,
-      question: {
-        _id: "602f343d47920a0021c7cad8",
-        category: "ice cream",
-        question:
-          "Ben and Jerry only started making ice cream because it was too expensive to make <BLANK>.",
-        answer: "bagels",
-        alternateAnswers: "bagles",
-        suggestions:
-          "cars, books, cake, video games, meals, dresses, pies, comic books, cupcakes, shoes, shoes, hats, movies, salad dressing, candy bars, opera glasses, whiskey, purses",
-      },
-    },
-  ];
 
   return (
     <div className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4">
