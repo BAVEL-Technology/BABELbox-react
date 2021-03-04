@@ -3,7 +3,7 @@ import { map, mount, route, redirect } from 'navi'
 import babelBread from "utils/babelBread"
 
 export default mount({
-  '': map(async (request, context) => {
+  '/': map(async (request, context) => {
     /* Authenticate the current user for this game and code */
     const authResponse = await context.authenticate({
       game: context.game, code: request.params.code
