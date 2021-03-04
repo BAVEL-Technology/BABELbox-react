@@ -25,7 +25,7 @@ export function GameProvider({ children, state, portal, currentUser }) {
   const organizeState = (data) => {
     let res = {}
     Object.keys(state).forEach((key) => {
-        console.log(`Game Provider | `);
+        console.log(`Game Provider | ${data.params[key]}`);
         if (key == "_id") res._id = data._id
         else if (key == "code") res.code = data.code
         else res[key] = data.params[key] || state[key]
