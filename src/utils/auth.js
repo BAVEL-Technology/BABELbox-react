@@ -45,25 +45,21 @@ export const auth = {
       */
       const users = this.users.filter((user) => user.game == game)
       const user = users.filter((user) => {
-        console.log(user.code)
         return user.code == code
       })
-      console.log(this.users)
-      console.log(user)
       if (user.length < 1) return 402
       /*
       * Make sure that the Local DB user exists in the portal, if it doesn't
       * then return a 403 error
       */
       const gameUser = portal.params.players.filter((player) => {
-        console.log(player.id)
         return player.id == user[0].user
       })
       console.log(gameUser)
       if (gameUser.length < 1) return 403
 
-      /* If there are no errors return 200 */
-      return gameUser[0].user
+      /* If there are no errors return user id */
+      return gameUser[0].id
     } catch (err) {
       console.log(err)
     }

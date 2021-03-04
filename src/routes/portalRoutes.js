@@ -17,13 +17,18 @@ export default mount({
     if (authResponse == 401) return redirect(context.onPortalNotFound)
     else if (authResponse > 401) return redirect(context.onWrongUser)
 
-    /* If all is good and we got the 200 response return the onSuccess Component */
+    /*
+    * If all is good then we got back a user id and we should pass the portal
+    * and the currentUser id on to the component specified as onSuccess
+    */
     return route({
       title: 'Spot',
       getData: async () => {
-        return await babelBread()
+        const portal = await babelBread()
         .read('portals', { code: request.params.code })
         .first()
+        const currentUser = authResponse
+        return { portal, currentUser }
       },
       view: context.onSuccess,
     })

@@ -21,20 +21,23 @@ export function useGameUpdate() {
 * this gives all children access to gameState and updateGame - a function to setGameState
 * Define your default and initial state here
 */
-export function GameProvider({ children, state, portal }) {
+export function GameProvider({ children, state, portal, currentUser }) {
   const organizeState = (state, data) => {
     let res = {}
     Object.keys(state).forEach((key) => {
-      if (key == "_id") res._id = data._id
-      else if (key == "code") res.code = data.code
-      else res[key] = state[key] ||data.params[key]
-    })
+        if (key == "_id") res._id = data._id
+        else if (key == "code") res.code = data.code
+        else res[key] = state[key] ||data.params[key]
+      })
 
-    return res;
-  }
+      return res
+    }
 
   const initialState = organizeState(state, portal)
+  initialState.currentUser = currentUser
   const [gameState, setGameState] = useState(initialState);
+
+  console.log(currentUser)
 
   function updateGame(updates) {
     setGameState({...gameState, ...updates});
