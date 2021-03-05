@@ -1,19 +1,34 @@
-import React from "react"
+/* Pull in Navi dependencies */
 import { mount, route } from 'navi'
-import main from "../pages/main"
-import { LiarLiarRoutes } from "./LiarLiar/routes"
+
+/* Pull in HomePage Component */
+import Main from "pages/Main"
+import Chat from "components/Chat"
+
+/* Pull in Each Game's Routes */
+import { LiarLiarRoutes } from "../games/LiarLiar/routes"
 
 export const routes = mount({
-    '/': route({
-      title: 'BabelBox',
-      // getData: () => api.fetchProducts(),
-      head: <>
-        <meta name="description" content="Babelbox description" />
-        <script>
-          {/* ADD SCRIPTS HERE FOR ANALYTICS */}
-        </script>
-      </>,
-      view: <p>This is the main page</p>,
-    }),
-    ...LiarLiarRoutes
-  })
+  '/': route({
+    title: 'BabelBox',
+    head: <>
+      <meta name="description" content="Babelbox description" />
+      <script>
+        {/* ADD SCRIPTS HERE FOR ANALYTICS */}
+      </script>
+    </>,
+    view: <Main />,
+  }),
+  '/chat': route({
+    title: 'BabelChat',
+    head: <>
+      <meta name="Chat App" content="Babelbox Chat" />
+      <script>
+        {/* ADD SCRIPTS HERE FOR ANALYTICS */}
+      </script>
+    </>,
+    view: <Chat />,
+  }),
+  /* Spread Each Game's Routes Across Mount Matcher */
+  ...LiarLiarRoutes
+})
