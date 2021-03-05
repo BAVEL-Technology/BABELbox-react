@@ -2,6 +2,7 @@
 import { useCurrentRoute } from 'react-navi';
 import { GameProvider } from "./BabelBuilder/GameContext";
 import { GameStage } from "./BabelBuilder/GameStage";
+import Chat from "components/Chat";
 
 /* Import your sets and your state structure from the config file */
 import { state, sets } from "./game.config.js";
@@ -15,6 +16,7 @@ export default function LiarLiar({ request, context }) {
 
   return (
       <GameProvider state={state} portal={data.portal} currentUser={data.currentUser}>
+        <Chat />
         <GameStage sets={sets} />
       </GameProvider>
   );
