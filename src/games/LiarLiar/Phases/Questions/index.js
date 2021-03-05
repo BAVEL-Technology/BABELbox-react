@@ -11,12 +11,21 @@ const Questions = (props) => {
   // Custom hook for getting game state.
   const gameState = useGame();
   // Local lock for submitting a question. Sync this with db to keep value on refresh.
-  const [ questionLock, setQuestionLock ] = useState(false);
+  const lockQuestionInputs = () => {
+    if(!gameState.rounds[gameState.rounds.length - 1]?.answers) return false;
+    if(!gameState.rounds[gameState.rounds.length - 1]?.answers?.filter((ans)=> {ans.user === gameState.currentUser }).length > 0) return true;
+
+    return false;
+  }
+  const [ questionLock, setQuestionLock ] = useState(lockQuestionInputs());
   // State for user input (answer)
   const [ userInput, setUserInput ] = useState("");
   const statement = `params.rounds.${gameState.rounds.length - 1}.answers`;
   // console.log(gameState);
-  const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser)
+  const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser);
+
+  
+
   const onInputChange = (e) => {
     setUserInput(e.target.value);
   };
@@ -52,15 +61,16 @@ const Questions = (props) => {
         disabled={questionLock}
         style={{ fontFamily: props.font }}
         onChange={onInputChange}
+        value={userInput}
       />
 
       <button
         id="submit-answer-button"
         disabled={questionLock}
         onClick={submitAnswer}
-        className="place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl
+        className={`place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl
         rounded-br-xl rounded-tr rounded-bl flex items-center justify-center w-full
-        lg:text-3xl md:text-2xl text-xl disabled:opacity-50"
+        lg:text-3xl md:text-2xl text-xl ${questionLock && 'opacity-40'}`}
         style={{ fontFamily: props.font }}
       >
         Submit
