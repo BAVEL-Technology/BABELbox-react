@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from 'react-dom';
 import io from "socket.io-client";
 import { useGame } from "games/LiarLiar/BabelBuilder/GameContext";
+import { findCurrentUserIndex } from "games/LiarLiar/utils/currentUserIndex";
 import './Chat.css';
 
 // const username = prompt("What is your name");
@@ -11,8 +12,9 @@ import './Chat.css';
 
 const Chat = () => {
     const gameState = useGame();
-    const username = gameState.players[0].name;
-    const avatar = gameState.players[0].avatar;
+    const userIndex = findCurrentUserIndex(gameState.players, gameState.currentUser);
+    const username = gameState.players[userIndex].name;
+    const avatar = gameState.players[userIndex].avatar;
     const socketRef = useRef();
     const [chatOpen, setChatOpen] = useState(false);
     const [messages, setMessages] = useState([]);
