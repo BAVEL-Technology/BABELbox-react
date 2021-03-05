@@ -80,7 +80,7 @@ const Blob = () => {
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
   }, []); // Make sure the effect runs only once
-  console.log(d);
+  // console.log(d);
   return (
     <path id="blob" d={d} transform="translate(100 100)" />
   );

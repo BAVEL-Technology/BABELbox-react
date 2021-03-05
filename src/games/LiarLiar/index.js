@@ -1,17 +1,15 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import LiarLiarContext from "./utils/LiarLiarContext";
 import LiarLiarStage from "./utils/LiarLiarStage";
 import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
   useRouteMatch,
   useParams,
 } from "react-router-dom";
 import HowToPlay from "./HowToPlay";
 import bb from "../../utils/babelBread";
-import Questions from "./Phases/Questions";
 import openSocket from 'socket.io-client';
+
+// TODO: Have browser caching for uuid.
 
 function LiarLiar() {
   const [liarLiarState, setLiarLiarState] = useState({
@@ -25,10 +23,10 @@ function LiarLiar() {
 
 // Call back function for the socket reload.
 const reload = async () => {
-  console.log(liarLiarState);
+  // console.log(liarLiarState);
   const portal = await bb().read('portals', { code: liarLiarState.code });
   if (liarLiarState.code) {
-    console.log(portal[0]);
+    // console.log(portal[0]);
     setLiarLiarState({
       _id: portal[0]._id,
       code: portal[0].code,
@@ -37,8 +35,6 @@ const reload = async () => {
       players: portal[0].params.players,
       rounds: portal[0].params.rounds
     });
-
-    console.log(liarLiarState);
   }
 };
 
@@ -48,39 +44,50 @@ socket.on('breadUpdate', (data) => {
   console.log('bread updated');
 });
 socket.on('connect', function() {
-   if (liarLiarState._id) {
-     console.log('joining room ' + liarLiarState._id);
-     socket.emit('room', liarLiarState._id);
-   }
+  try{
+    if (liarLiarState._id) {
+      console.log('joining room ' + liarLiarState._id);
+      socket.emit('room', liarLiarState._id);
+    }
+  }
+  catch (e)
+  {
+    console.warn(e);
+  }
 });
 
 socket.on('message', function(data) {
-   console.log('Incoming message:', data);
+    console.log('Incoming message:', data);
 });
-
-  // This gets the current path on the browser. Used in nested routing.
-  const path = useRouteMatch().path;
-
-  const params = useParams();
-
-  // TODO: Have browser caching for uuid.
 
   // Use this for reconnecting to the portal.
   // Will be undefined if there is no params on the url.
-  console.log(`URL Path: ${path}`);
-  console.log(`URL Params: ${JSON.stringify(params)}`);
+  const params = useParams();
 
   // Hook function for refreshing / performing an action on value changes. Also called once when component mounts.
   useEffect(async () => {
     // Return if portalID is undefined.
-    if (!params.portalID) return;
+    if (!params.code) return;
 
-    // TODO: Get API data here and set new state when received.
-    const portalState = await bb().read('portals', {code: params.portalID});
-    console.log(`Before SetState: "${liarLiarState.portalPhase}"`);
-    console.log(`What we are setting the state to: "${JSON.stringify(portalState)}"`);
-    setLiarLiarState(portalState);
-    console.log(`After SetState: "${JSON.stringify(liarLiarState)}"`);
+    const portalState = await bb().read('portals', {code: params.code});
+
+    if(portalState != undefined && portalState.length  > 0) 
+    {
+      const newState = {
+        _id: portalState[0]._id,
+        code: portalState[0].code,
+        game: portalState[0].params.game,
+        phase: portalState[0].params.phase,
+        players: portalState[0].params.players,
+        rounds: portalState[0].params.rounds
+      };
+      setLiarLiarState(newState);
+    }    
+    else
+    {
+      console.warn("Portal was returned as undefined or empty."); 
+      return;
+    }
   }, []);
 
   return (

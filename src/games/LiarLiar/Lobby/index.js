@@ -28,7 +28,7 @@ function Lobby(props) {
         ({ liarLiarState, setLiarLiarState }) => {
           return <div>
             {/* Add small logo at the top of the page. */}
-            <BBLogo small={true} />
+            <BBLogo small={true} className="transition duration-500 ease-in-out transform hover:scale-110 hover:-translate-y-1" />
 
             <GameTitle
               className="font-bold w-full my-4 flex items-center justify-around text-yellow-600 p-4 lg:text-5xl md:text-5xl text-3xl text-center rounded-xl tracking-widest"
