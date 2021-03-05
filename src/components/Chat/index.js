@@ -10,73 +10,73 @@ import './Chat.css';
 
 
 const Chat = () => {
-  const [chatOpen, setChatopen] = useState(false);
-  const gameState = useGame();
-  console.log(gameState);
-  const username = gameState.players[0].name;
+    const gameState = useGame();
+    const username = gameState.players[0].name;
+    const avatar = gameState.players[0].avatar;
     const socketRef = useRef();
+    const [chatOpen, setChatOpen] = useState(false);
     const [messages, setMessages] = useState([]);
-  const receivedMessage = (message) => {
-    console.log(messages);
-    setMessages([...messages, message]);}
-
     const [users, setUsers] = useState([]);
     const [message, setMessage] = useState("");
-    // const [socket, setSocket] = useState(() => {
-        //     return io("http://localhost:5000");
-        // });
         
-        useEffect(() => {
-        socketRef.current = io("https://babelboxdb.herokuapp.com/");
-        //captures event from server
-        socketRef.current.on("connect", () => {
-            console.log(username);
-            socketRef.current.emit('room', "603d63927c61750021fe872a");
-            socketRef.current.emit("new-user", username);
-        });
-    
-            socketRef.current.on("message", data => {
-                console.log(data);
-            });
-        //adds each new user to the existing users array
-        socketRef.current.on("start", user => {
-            console.log(users);
-            setUsers(users => [...users, user]);
-        });
-        socketRef.current.on('chat message', (msg) => {
-          console.log(messages);
-          setMessages([...messages, msg]);
-        });
-    
-        socketRef.current.on('disconnect', id => {
-            socketRef.current.emit("user-left");
-            setUsers(users => {
-                return users.filter(user => user.id !== id);
-            });
-        });
+    useEffect(() => {
+    socketRef.current = io("https://babelboxdb.herokuapp.com/");
+    //captures event from server
+    socketRef.current.on("connect", () => {
+        console.log(username);
+        socketRef.current.emit('room', "603d63927c61750021fe872a");
+        socketRef.current.emit("new-user", username);
+    });
 
-        return () => {
-            socketRef.current.disconnect();
-        };
-        }, [messages]);
+        socketRef.current.on("message", data => {
+            console.log(data);
+        });
+    //adds each new user to the existing users array
+    socketRef.current.on("start", user => {
+        console.log(users);
+        setUsers(users => [...users, user]);
+    });
+    socketRef.current.on('chat message', (msg) => {
+      console.log(messages);
+      setMessages([...messages, msg]);
+    });
 
-        const handleSend = () => {
-            if(message){
-                socketRef.current.emit('chat message', message);
-                console.log("new msg");
-                setMessage("");
-            }
-        };
+    socketRef.current.on('disconnect', id => {
+        socketRef.current.emit("user-left");
+        setUsers(users => {
+            return users.filter(user => user.id !== id);
+        });
+    });
+
+    return () => {
+        socketRef.current.disconnect();
+    };
+    }, [messages]);
+
+    const handleSend = () => {
+        if(message){
+            socketRef.current.emit('chat message', message);
+            console.log("new msg");
+            setMessage("");
+        }
+    };
 
         return (
             <div className="z-50 fixed bottom-12 right-12">
                 <div className="flex justify-center items-center">
-                  <div className={`bg-white rounded-full h-24 w-24 flex items-center justify-center text-babelBlue-500 ${chatOpen ? 'hidden' : 'nothing'}`} onClick={() => {setChatopen(!chatOpen)}}>C</div>
-                    <div className={`w-80 h-96 bg-white rounded shadow-2xl ${chatOpen ? 'nothing' : 'hidden'}`}>
+                  <div className={`bg-white rounded-full h-24 w-24 flex items-center justify-center text-babelBlue-500 ${chatOpen ? 'hidden' : 'nothing'}`} onClick={() => {setChatOpen(!chatOpen)}}>C</div>
+                    <div className={`w-80 h-96 bg-white rounded-2xl overflow-hidden shadow-2xl ${chatOpen ? 'nothing' : 'hidden'}`}>
                         {/* Top Header */}
-                        <nav className="w-full h-10 bg-babelBlue-800 rounded-tr rounded-tl flex justify-between items-center">
-                            <div className="flex justify-center items-center"> <i className="mdi mdi-arrow-left font-normal text-gray-300 ml-1"></i> <img src="https://i.imgur.com/IAgGUYF.jpg" className="rounded-full ml-1" width="25" height="25" /> <span className="text-xs font-medium text-gray-300 ml-1">{username}</span></div>
-                            <div className="flex items-center"> <i className="mdi mdi-video text-gray-300 mr-4"></i> <i className="mdi mdi-phone text-gray-300 mr-2"></i> <i className="mdi mdi-dots-vertical text-gray-300 mr-2"></i> </div>
+                        <nav className="w-full h-10 bg-babelBlue-800 flex justify-between items-center">
+                            <div className="flex justify-center items-center ml-1">
+                              <div className="">{avatar}</div>
+                              <span className="text-xs font-medium text-gray-300 ml-1">
+                                {username}
+                              </span>
+                            </div>
+                              <svg className="text-babelRed-500 transform hover:scale-110 w-7 h-7 mr-2"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" onClick={() => {setChatOpen(!chatOpen)}}>
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
+                              </svg>
                         </nav>
                         {/* Messages Map */}
                         <div className="overflow-auto px-1 py-1" style={{height: '19rem'}} id="journal-scroll">
@@ -98,7 +98,7 @@ const Chat = () => {
                                 onChange={(event) => setMessage(event.target.value)} />
                             </div>
 
-                            <div className="w-7 h-7 pr-1 rounded-full text-center items-center flex justify-center"> 
+                            <div className="w-8 h-7 pr-1 rounded-full text-center items-center flex justify-center"> 
                               <button className="w-7 h-7 rounded-full text-center items-center flex justify-center focus:outline-none hover:bg-blue-300 hover:text-white" onClick={handleSend}> 
                               <svg
                                 className="svg-inline--fa text-gray-400 hover:text-babelBlue-800 fa-paper-plane fa-w-16 w-7 h-7 py-1 mr-1"
