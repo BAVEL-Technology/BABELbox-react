@@ -65,7 +65,8 @@ export function GameProvider({ children, state, portal, currentUser }) {
     let data;
     if(message === 'room updated')
     {
-      data = await bb().read('portals', {code: portal.code});
+      data = await fetch(`https://babelboxdb.herokuapp.com/api/portals?code=${portal.code}`);
+      data = await data.json();
 
       const updatedState = organizeState(data[0]);
       updateGame(updatedState);
