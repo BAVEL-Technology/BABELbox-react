@@ -1,5 +1,5 @@
 import LiarLiarContext from "../utils/LiarLiarContext";
-import UserCard from "../../../components/UserCard";
+import UserCard from "../Components/UserCard";
 import PortalCodeCard from "../../../components/LobbyCards/PortalCodeCard";
 import PlayButton from "../PlayButton";
 import GameTitle from "../GameTitle";

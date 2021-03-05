@@ -66,8 +66,10 @@ export const LiarLiarRoutes = {
     onPortalNotFound: `/${game.route}`,
     onWrongUser: `/${game.route}/${request.params.code}/join`,
     onSuccess:
-    <div className="min-h-screen h-full bg-gradient-to-tl from-babelBlue-1000 via-babelBlue-900 to-babelCyan-700">
-      <LiarLiar />
+    <div className="flex justify-center min-h-screen h-full bg-gradient-to-tl from-babelBlue-1000 via-babelBlue-900 to-babelCyan-700">
+      <div className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4">
+        <LiarLiar />
+      </div>
     </div>
   }),
   lazy(() => {
