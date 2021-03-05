@@ -66,6 +66,10 @@
   .font-roboto {
     font-family: 'Roboto', sans-serif;
   }
+
+  .font-sniglet {
+    font-family: 'Sniglet', cursive;
+  }
 }
 
 /* brand */

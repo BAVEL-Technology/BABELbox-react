@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Twemoji from 'react-twemoji';
 
 class index extends Component {
   render(props) {
@@ -6,9 +7,11 @@ class index extends Component {
     return (
           <button className={this.props.className}>
             <div className={`emoji`}>
-              🤥
+              <Twemoji options={{ className: 'twemoji' }}>
+                🤥
+              </Twemoji>
             </div>
-            <p className="font-extrabold game-button-p ml-5">
+            <p className="font-semibold game-button-p ml-5">
               {this.props.name}
             </p>
           </button>

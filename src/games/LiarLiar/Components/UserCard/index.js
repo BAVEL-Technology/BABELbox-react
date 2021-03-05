@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import bb from "utils/babelBread";
 import { findCurrentUserIndex } from "games/LiarLiar/utils/currentUserIndex"
 import { useGame } from "../../BabelBuilder/GameContext";
+import Twemoji from 'react-twemoji';
 
 const UserCard = (props) => {
   const gameState = useGame();
@@ -46,7 +47,9 @@ const UserCard = (props) => {
         }}
         className="emoji cursor-pointer rounded-full hover:bg-blue-300 p-2"
       >
-        {props.user.avatar}
+        <Twemoji>
+          {props.user.avatar}
+        </Twemoji>
       </div>
       <input
         readOnly={props.user.id === gameState.currentUser ? false : true}

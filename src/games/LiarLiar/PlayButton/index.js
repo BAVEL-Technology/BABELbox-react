@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
  const PlayButton = (props) => {
     return (
-      <div className="w-full flex item-center justify-center" onClick={props.onClick}>
+      <div className="cursor-pointer w-full flex item-center justify-center" onClick={props.onClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -12,7 +12,7 @@ import React, { Component } from "react";
             cx="12"
             cy="12"
             r="10"
-            className="text-green-600"
+            className="text-green-600 hover:text-green-500"
             fill="currentColor"
           />
           <path
