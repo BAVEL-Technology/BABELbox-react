@@ -2,61 +2,34 @@ import Lobby from "../../Lobby";
 import LiarLiarContext from "../../utils/LiarLiarContext";
 import UserCard from "../../../../components/UserCard";
 import PortalCodeCard from "../../../../components/LobbyCards/PortalCodeCard";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import bb from "../../../../utils/babelBread";
-import Context from "../../utils/LiarLiarContext";
+import { useGame } from "../../BabelBuilder/GameContext";
+import { findCurrentUserIndex } from "../../utils/currentUserIndex"
 
 const Questions = (props) => {
-  const { questionLock, setQuestionLock } = useState(false);
-  const { userInput, setUserInput } = useState("");
-  const currentUser = localStorage.getItem("liarLiarPlayer");
-  const context = useContext(LiarLiarContext);
-  const statement = `params.rounds.${context.liarLiarState.rounds.length}`;
-  const currentUserIndex = context.liarLiarState.players.indexOf(
-    context.liarLiarState.players.filter(
-      (player) => (player.id = currentUser)
-    )[0]
-  );
-  bb().push(
-    "portals",
-    { code: context.liarLiarState.code },
-    { [statement]: { user: currentUser, answer: userInput } }
-  );
-  setQuestionLock = context.liarLiarState.rounds[
-    context.liarLiarState.rounds.length
-  ].answers.filter((ans) => id == currentUser)
-    ? true
-    : false;
-  const onInputChange = (input) => {
-    setUserInput(input);
+  // Custom hook for getting game state.
+  const gameState = useGame();
+  // Local lock for submitting a question. Sync this with db to keep value on refresh.
+  const [ questionLock, setQuestionLock ] = useState(false);
+  // State for user input (answer)
+  const [ userInput, setUserInput ] = useState("");
+  const statement = `params.rounds.${gameState.rounds.length - 1}.answers`;
+  // console.log(gameState);
+  const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser)
+  const onInputChange = (e) => {
+    setUserInput(e.target.value);
   };
 
   const submitAnswer = async () => {
-    bb().push(
+    const response = await bb().push(
       "portals",
-      { code: context.liarLiarState.code },
-      { [statement]: { user: currentUser, answer: userInput } }
+      { code: gameState.code },
+      { [statement] : { user: gameState.currentUser, answer: userInput } }
     );
-  };
 
-  //TODO check rounds for context
-  // const context = useContext(Context);
-  // const rounds = context.liarLiarState.rounds;
-  const rounds = [
-    {
-      round: 0,
-      question: {
-        _id: "602f343d47920a0021c7cad8",
-        category: "ice cream",
-        question:
-          "Ben and Jerry only started making ice cream because it was too expensive to make <BLANK>.",
-        answer: "bagels",
-        alternateAnswers: "bagles",
-        suggestions:
-          "cars, books, cake, video games, meals, dresses, pies, comic books, cupcakes, shoes, shoes, hats, movies, salad dressing, candy bars, opera glasses, whiskey, purses",
-      },
-    },
-  ];
+    setQuestionLock(gameState.rounds[ gameState.rounds.length - 1 ]?.answers?.filter((ans) => ans.id == gameState.currentUser));
+  };
 
   return (
     <div className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4">
@@ -67,7 +40,7 @@ const Questions = (props) => {
         className=" text-center w-full flex items-center justify-center py-8 lg:text-4xl md:text-3xl text-xl"
         style={{ fontFamily: props.font }}
       >
-        <p>{rounds[rounds.length - 1].question.question}</p>
+        <p>{gameState?.rounds[gameState.rounds.length - 1]?.question?.question}</p>
       </div>
 
       <input
@@ -83,6 +56,7 @@ const Questions = (props) => {
 
       <button
         id="submit-answer-button"
+        disabled={questionLock}
         onClick={submitAnswer}
         className="place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl
         rounded-br-xl rounded-tr rounded-bl flex items-center justify-center w-full

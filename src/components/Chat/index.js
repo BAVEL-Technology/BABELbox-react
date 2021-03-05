@@ -1,16 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from 'react-dom';
 import io from "socket.io-client";
+import { useGame } from "games/LiarLiar/BabelBuilder/GameContext";
 import './Chat.css';
 
-const username = prompt("What is your name");
+// const username = prompt("What is your name");
 
 // add  "proxy": "http://localhost:3001", to package.json
 
 
-const Chat = (props) => {
+const Chat = () => {
+  const [chatOpen, setChatopen] = useState(false);
+  const gameState = useGame();
+  console.log(gameState);
+  const username = gameState.players[0].name;
     const socketRef = useRef();
-    
+    const [messages, setMessages] = useState([]);
+  const receivedMessage = (message) => {
+    console.log(messages);
+    setMessages([...messages, message]);}
+
     const [users, setUsers] = useState([]);
     const [message, setMessage] = useState("");
     // const [socket, setSocket] = useState(() => {
@@ -35,7 +44,8 @@ const Chat = (props) => {
             setUsers(users => [...users, user]);
         });
         socketRef.current.on('chat message', (msg) => {
-            props.message(msg);
+          console.log(messages);
+          setMessages([...messages, msg]);
         });
     
         socketRef.current.on('disconnect', id => {
@@ -48,7 +58,7 @@ const Chat = (props) => {
         return () => {
             socketRef.current.disconnect();
         };
-        }, [props.messages]);
+        }, [messages]);
 
         const handleSend = () => {
             if(message){
@@ -59,9 +69,10 @@ const Chat = (props) => {
         };
 
         return (
-            <div className="h-screen bg-gray-300">
-                <div className="flex justify-center items-center h-screen ">
-                    <div className="w-80 h-96 bg-white rounded shadow-2xl">
+            <div className="z-50 fixed bottom-12 right-12">
+                <div className="flex justify-center items-center">
+                  <div className={`bg-white rounded-full h-24 w-24 flex items-center justify-center text-babelBlue-500 ${chatOpen ? 'hidden' : 'nothing'}`} onClick={() => {setChatopen(!chatOpen)}}>C</div>
+                    <div className={`w-80 h-96 bg-white rounded shadow-2xl ${chatOpen ? 'nothing' : 'hidden'}`}>
                         {/* Top Header */}
                         <nav className="w-full h-10 bg-babelBlue-800 rounded-tr rounded-tl flex justify-between items-center">
                             <div className="flex justify-center items-center"> <i className="mdi mdi-arrow-left font-normal text-gray-300 ml-1"></i> <img src="https://i.imgur.com/IAgGUYF.jpg" className="rounded-full ml-1" width="25" height="25" /> <span className="text-xs font-medium text-gray-300 ml-1">{username}</span></div>
@@ -69,7 +80,7 @@ const Chat = (props) => {
                         </nav>
                         {/* Messages Map */}
                         <div className="overflow-auto px-1 py-1" style={{height: '19rem'}} id="journal-scroll">
-                            {props.messages.map(({user, text}, index) => (<div className="flex items-center pr-10 mb-1" key={index}>
+                            {messages.map(({user, text}, index) => (<div className="flex items-center pr-10 mb-1" key={index}>
                               <span>{user?.name}:</span>
                               <span className="flex ml-1 h-auto bg-babelBlue-800 text-gray-200 text-xs font-normal rounded-full px-1 p-1 items-end" style={{fontSize: "10px"}}>{text}</span> </div>))}
                             <div className=" " id="chatmsg"></div>
@@ -77,17 +88,14 @@ const Chat = (props) => {
                         {/* Input and Send Area */}
                         <div className="flex justify-between items-center p-1 ">
                             <div className="relative"> 
-                              <i className="mdi mdi-emoticon-excited-outline absolute top-1 left-1 text-gray-400" 
-                              style={{fontSize: "17px", fontWeight: "bold"}}>
-                              </i> 
                               <input type="text" 
-                              className="rounded-full pl-6 pr-12 py-2 focus:outline-none h-auto placeholder-gray-300 bg-babelBlue-800 text-white border-gray-300" 
-                              style={{fontSize: "11px", width: "275px"}} 
-                              placeholder="BabelChat..." 
-                              id="typemsg" value={message} 
-                              onKeyPress={event => event.key === 'Enter' ? handleSend(event) : null} 
-                              onSubmit={handleSend} 
-                              onChange={(event) => setMessage(event.target.value)} />
+                                className="rounded-full pl-6 pr-12 py-2 focus:outline-none h-auto placeholder-gray-300 bg-babelBlue-800 text-white border-gray-300" 
+                                style={{fontSize: "11px", width: "275px"}} 
+                                placeholder="BabelChat..." 
+                                id="typemsg" value={message} 
+                                onKeyPress={event => event.key === 'Enter' ? handleSend(event) : null} 
+                                onSubmit={handleSend} 
+                                onChange={(event) => setMessage(event.target.value)} />
                             </div>
 
                             <div className="w-7 h-7 pr-1 rounded-full text-center items-center flex justify-center"> 

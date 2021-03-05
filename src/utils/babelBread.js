@@ -26,7 +26,7 @@ Array.prototype.compare = function compare(param, dir) {
 class Babeljax {
   constructor() {
     this.base_url = "https://babelboxdb.herokuapp.com/api/";
-    this.data;
+    this.data = [];
     this.queue = Promise.resolve();
   }
 
@@ -81,6 +81,7 @@ class Babeljax {
       let data = await fetch(`${this.base_url}${table}?${query}`);
       data = await data.json();
       this.data = data;
+      // console.log('bb.read | ',this.data);
       return this.data;
     });
     return this;
@@ -203,6 +204,23 @@ class Babeljax {
       });
       console.log(data);
       return data;
+    });
+
+    return this;
+  }
+
+  first() {
+    this.chain(async (data) => {
+      if (data.length > 0)
+      {
+        // console.log("bb.first | ", data);
+        return data[0];
+      }
+      else
+      {
+        // console.log("bb.first | ELSE | ", data);
+        return data;
+      }
     });
 
     return this;
