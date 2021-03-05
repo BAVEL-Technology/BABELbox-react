@@ -1,4 +1,4 @@
-export const formatQuestion = (question) => {
-  const regex = "<(.*?)>";
-  question?.replaceAll(regex, '_____')
+export default function formatQuestion (question) {
+  const regex = /<BLANK>/g;
+  return question?.replaceAll(regex, '______');
 }

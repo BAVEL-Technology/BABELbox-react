@@ -6,6 +6,8 @@ import { useContext, useState, useEffect } from "react";
 import bb from "../../../../utils/babelBread";
 import { useGame } from "../../BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "../../utils/currentUserIndex"
+import formatQuestion from "games/LiarLiar/utils/formatQuestion";
+import ReactHtmlParser from 'react-html-parser'; 
 
 const Questions = (props) => {
   // Custom hook for getting game state.
@@ -49,7 +51,9 @@ const Questions = (props) => {
         className=" text-center w-full flex items-center justify-center py-8 lg:text-4xl md:text-3xl text-xl"
         style={{ fontFamily: props.font }}
       >
-        <p>{gameState?.rounds[gameState.rounds.length - 1]?.question?.question}</p>
+        <p>
+          {ReactHtmlParser (formatQuestion(gameState?.rounds[gameState.rounds.length - 1]?.question?.question))}
+        </p>
       </div>
 
       <input
