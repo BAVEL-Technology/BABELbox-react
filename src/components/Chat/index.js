@@ -86,7 +86,7 @@ const Chat = () => {
                         <div className="overflow-auto px-1 py-1" style={{height: '19rem'}} id="journal-scroll">
                             {messages.map(({user, text}, index) => (<div className="textShadow flex items-center pr-10 mb-1" key={index}>
                               <span>{user?.name}:</span>
-                              <span className="flex ml-1 h-auto bg-babelBlue-800 text-gray-200 text-sm font-normal rounded-full px-2 p-1 items-end" style={{fontSize: "10px"}}>{text}</span> </div>))}
+                              <span className="flex ml-1 h-auto bg-gradient-to-t from-blue-400 to-blue-600 text-gray-200 text-sm font-normal rounded-full px-2 p-1 items-end" style={{fontSize: "11px"}}>{text}</span> </div>))}
                             <div className=" " id="chatmsg"></div>
                         </div>
                         {/* Input and Send Area */}
