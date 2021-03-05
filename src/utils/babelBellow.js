@@ -3,6 +3,7 @@ import { io } from "socket.io-client";
 class Sockets {
   constructor () {
     this.socket = io('https://babelboxdb.herokuapp.com');
+    
   }
 
   on(key, callback) {

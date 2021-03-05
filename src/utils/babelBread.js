@@ -81,6 +81,7 @@ class Babeljax {
       let data = await fetch(`${this.base_url}${table}?${query}`);
       data = await data.json();
       this.data = data;
+      // console.log('bb.read | ',this.data);
       return this.data;
     });
     return this;
@@ -210,8 +211,16 @@ class Babeljax {
 
   first() {
     this.chain(async (data) => {
-      if (data.length > 0) return data[0]
-      else return data
+      if (data.length > 0)
+      {
+        // console.log("bb.first | ", data);
+        return data[0];
+      }
+      else
+      {
+        // console.log("bb.first | ELSE | ", data);
+        return data;
+      }
     });
 
     return this;

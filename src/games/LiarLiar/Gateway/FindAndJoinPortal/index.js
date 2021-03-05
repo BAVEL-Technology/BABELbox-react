@@ -34,7 +34,8 @@ export default function FindAndJoinPortal({
         { "params.players": player
       });
 
-      console.log(updates)
+      console.log(`FindAndJoin: new Player Obj | `, player);
+      console.log(`FindAndJoin: join `, updates);
 
       /* Log the initial user into the newly created portal */
       await context.login({ game, code: portal.code, user: player.id })
