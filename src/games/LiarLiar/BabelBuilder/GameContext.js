@@ -2,6 +2,7 @@
 import React, { useContext, useState } from "react";
 import babelBellow from "utils/babelBellow";
 import { io } from "socket.io-client";
+import bb from "utils/babelBread";
 
 /* Create a context to hold state and context to update state */
 const GameContext = React.createContext();
@@ -55,15 +56,23 @@ export function GameProvider({ children, state, portal, currentUser }) {
 
   const socket = io('https://babelboxdb.herokuapp.com');
   socket.on('connect', ()=>{
+    console.log(`Portal from a prop. | `, portal);
     socket.emit("room", portal._id);
     console.log('Connected');
   })
 
-  socket.on('room updated', (data) => {
-    const updatedState = organizeState(data[0]);
-    console.log('Room Updated, Updated State: ', updatedState);
-    updateGame(updatedState);
-    console.log('Room Updated: ',data);
+  socket.on('room updated', async (message) => {
+    let data;
+    if(message === 'room updated')
+    {
+      data = await bb().read('portals', {code: portal.code});
+
+      const updatedState = organizeState(data[0]);
+      updateGame(updatedState);
+      console.log('Data we got back from the db. | ', data);
+    }
+    // console.log('Room Updated, Updated State: ', updatedState);
+    // console.log('Room Updated: ',data);
   });
 
   // const socket = babelBellow()
