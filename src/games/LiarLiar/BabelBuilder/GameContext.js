@@ -1,12 +1,15 @@
 /* Import React dependencies */
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import babelBellow from "utils/babelBellow";
 import { io } from "socket.io-client";
 import bb from "utils/babelBread";
+import axios from 'axios';
 
 /* Create a context to hold state and context to update state */
 const GameContext = React.createContext();
 const GameUpdateContext = React.createContext();
+
+
 
 /* Export two custom hooks to view state and update state */
 export function useGame() {
@@ -23,30 +26,20 @@ export function useGameUpdate() {
 * Define your default and initial state here
 */
 export function GameProvider({ children, state, portal, currentUser }) {
-
-  // console.log(portal);
-
   const organizeState = (data) => {
-    let res = {}
+    let res = {};
     Object.keys(state).forEach((key) => {
-        if (key === "_id") res._id = data._id
-        else if (key === "code") res.code = data.code
+        if (key === "_id") res._id = data._id;
+        else if (key === "code") res.code = data.code;
         else 
         {
-          res[key] = data.params[key] || state[key]
-          // console.log(`Data: `,data);
+          res[key] = data.params[key] || state[key];
         }
-        
-        // console.log(`Organize State Key: ${key}`)
-        // console.log(`Organize State Value: `, data.params[key]);
       });
-      
-      // console.log(`Build Organize State: `, res);
-
       return res;
-    }
+    };
 
-  const initialState = organizeState(portal)
+  const initialState = organizeState(portal);
   initialState.currentUser = currentUser;
   const [gameState, setGameState] = useState(initialState);
 
@@ -54,37 +47,30 @@ export function GameProvider({ children, state, portal, currentUser }) {
     setGameState({...gameState, ...updates});
   };
 
-  const socket = io('https://babelboxdb.herokuapp.com');
-  socket.on('connect', ()=>{
-    console.log(`Portal from a prop. | `, portal);
-    socket.emit("room", portal._id);
-    console.log('Connected');
-  })
-
-  socket.on('room updated', async (message) => {
-    let data;
-    if(message === 'room updated')
-    {
-      data = await fetch(`https://babelboxdb.herokuapp.com/api/portals?code=${portal.code}`);
-      data = await data.json();
-
-      const updatedState = organizeState(data[0]);
+  useEffect(() => {
+      // const response = await axios.get(`https://babelboxdb.herokuapp.com/api/portals?code=${portal.code}`);
+    //   console.log(typeof response.data[0].params.players[0].id);
+    //   console.log(response.data[0].params.players[0].id);
+    //   console.log(`We tried this shit ${tries} amount of times...`);
+    //   console.log(JSON.stringify(response.data[0].params.players));
+    //   // console.log(`Socket Response | Round | `, res);
+    //   // const data = JSON.parse(res);
+    //   const updatedState = organizeState(response.data[0]);
+    //   updateGame(updatedState);
+    // })
+  
+  
+    const socket = babelBellow()
+    .join(portal._id, (res) => {
+      console.log(`Socket Response | Round | `, res);
+      console.log(`Stringify`, JSON.stringify(res));
+      const data = JSON.parse(res);
+      const updatedState = organizeState(data);
       updateGame(updatedState);
-      console.log('Data we got back from the db. | ', data);
-    }
-    // console.log('Room Updated, Updated State: ', updatedState);
-    // console.log('Room Updated: ',data);
-  });
+    });
+    // console.log(`React Game State: `, gameState);
 
-  // const socket = babelBellow()
-  // .join(portal._id, (res) => {
-  //   console.log(`Socket Response | Round | `, res);
-  //   const data = res[0];
-  //   const updatedState = organizeState(data);
-  //   updateGame(updatedState);
-  // })
-
-  // console.log(`React Game State: `, gameState);
+  }, []);
 
   return (
     <GameContext.Provider value={gameState}>
