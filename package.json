@@ -17,7 +17,9 @@
     "axios": "^0.21.1",
     "emailjs": "^3.4.0",
     "emailjs-com": "^2.6.4",
+    "express": "^4.17.1",
     "navi": "^0.14.0",
+    "path": "^0.12.7",
     "postcss": "^7.0.35",
     "react": "^17.0.1",
     "react-copy-to-clipboard": "^5.0.3",
@@ -39,10 +41,12 @@
   },
   "scripts": {
     "lint": "eslint \"**/*.js\"",
-    "start": "craco start",
+    "start": "node server.js",
+    "start-dev": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": [
