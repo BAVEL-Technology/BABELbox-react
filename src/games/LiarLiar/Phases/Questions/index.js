@@ -1,6 +1,6 @@
 import Lobby from "../../Lobby";
 import LiarLiarContext from "../../utils/LiarLiarContext";
-import UserCard from "../../../../components/UserCard";
+import UserCard from "games/LiarLiar/Components/UserCard";
 import PortalCodeCard from "../../../../components/LobbyCards/PortalCodeCard";
 import { useContext, useState, useEffect } from "react";
 import bb from "../../../../utils/babelBread";
