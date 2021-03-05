@@ -1,5 +1,5 @@
 import LiarLiarContext from "../utils/LiarLiarContext";
-import UserCard from "../../../components/UserCard";
+import UserCard from "../Components/UserCard";
 import PortalCodeCard from "../../../components/LobbyCards/PortalCodeCard";
 import PlayButton from "../PlayButton";
 import GameTitle from "../GameTitle";
@@ -7,11 +7,11 @@ import BBLogo from "../../../components/BBLogo";
 import bb from "../../../utils/babelBread";
 import { useGame } from "../BabelBuilder/GameContext";
 import babelBellow from "utils/babelBellow";
-
+import { findCurrentUserIndex } from "../utils/currentUserIndex"
 const Waiting = () =>
 {
   const gameState = useGame();
-
+  const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser);
   const startRound = async () => {
     const question = await bb().browse('questions').random(); //Faster Random
 
@@ -29,6 +29,11 @@ const Waiting = () =>
       }
     });
 
+    gameState.players.forEach((player, i) => {
+      const statement = `params.players.${i}.answerLock`
+      bb().edit('portals', { code: gameState.code }, { [statement]: false })
+    })
+
     babelBellow().emit('start timer', {
       function: `()=>{axios.put("https://babelboxdb.herokuapp.com/api/portals", {filters: {code: "${gameState.code}"} , updates: {'params.phase': 'answer'} });}`,
       time: 30000
@@ -41,6 +46,8 @@ const Waiting = () =>
     console.log(newRound);
   };
 
+
+
   return (
     <>
       <GameTitle
@@ -49,10 +56,13 @@ const Waiting = () =>
         name="Liar Liar"
       />
       <PlayButton onClick={startRound} />
-      <PortalCodeCard portalCode={gameState.code} />
+      <PortalCodeCard portalCode={gameState.code} roundNum={gameState.rounds.length}/>
+      <UserCard key="0" user={ gameState.players[currentUserIndex] }  />
       {gameState.players &&
         gameState.players.map((user, index) => {
-          return <UserCard key={index} user={{ ...user }}  />;
+          if (user.id != gameState.currentUser) {
+            return <UserCard key={index + 1} user={{ ...user }}  />;
+          }
         })}
     </>
   );

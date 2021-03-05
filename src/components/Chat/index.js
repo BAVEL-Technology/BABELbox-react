@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import { useGame } from "games/LiarLiar/BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "games/LiarLiar/utils/currentUserIndex";
 import './Chat.css';
+import Twemoji from 'react-twemoji';
 
 // const username = prompt("What is your name");
 
@@ -20,7 +21,7 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [users, setUsers] = useState([]);
     const [message, setMessage] = useState("");
-        
+
     useEffect(() => {
     socketRef.current = io("https://babelboxdb.herokuapp.com/");
     //captures event from server
@@ -75,7 +76,7 @@ const Chat = () => {
                         {/* Top Header */}
                         <nav className="w-full h-10 bg-gradient-to-r to-green-400 from-blue-500 flex justify-between items-center">
                             <div className="flex justify-center items-center ml-1">
-                              <div className="ml-1 textShadow">{avatar}</div>
+                              <div className="ml-1 textShadow"><Twemoji options={{ className: 'Chattwemoji' }}>{avatar}</Twemoji></div>
                               <span className="text-sm textShadow font-medium text-gray-200 ml-1">
                                 {username}
                               </span>
@@ -93,19 +94,19 @@ const Chat = () => {
                         </div>
                         {/* Input and Send Area */}
                         <div className="flex justify-between items-center p-1 ">
-                            <div className="relative"> 
-                              <input type="text" 
-                                className="rounded-full pl-4 pr-12 py-2 focus:outline-none h-auto placeholder-gray-300 bg-gradient-to-r from-purple-500 via-pink-600 to-red-400 text-white border-gray-300" 
-                                style={{fontSize: "11px", width: "275px"}} 
-                                placeholder="BabelChat..." 
-                                id="typemsg" value={message} 
-                                onKeyPress={event => event.key === 'Enter' ? handleSend(event) : null} 
-                                onSubmit={handleSend} 
+                            <div className="relative">
+                              <input type="text"
+                                className="rounded-full pl-4 pr-12 py-2 focus:outline-none h-auto placeholder-gray-300 bg-gradient-to-r from-purple-500 via-pink-600 to-red-400 text-white border-gray-300"
+                                style={{fontSize: "11px", width: "275px"}}
+                                placeholder="BabelChat..."
+                                id="typemsg" value={message}
+                                onKeyPress={event => event.key === 'Enter' ? handleSend(event) : null}
+                                onSubmit={handleSend}
                                 onChange={(event) => setMessage(event.target.value)} />
                             </div>
 
-                            <div className="w-8 h-7 pr-1 rounded-full text-center items-center flex justify-center"> 
-                              <button className="w-7 h-7 rounded-full text-center items-center flex justify-center focus:outline-none hover:bg-blue-300 hover:text-white" onClick={handleSend}> 
+                            <div className="w-8 h-7 pr-1 rounded-full text-center items-center flex justify-center">
+                              <button className="w-7 h-7 rounded-full text-center items-center flex justify-center focus:outline-none hover:bg-blue-300 hover:text-white" onClick={handleSend}>
                               <svg
                                 className="svg-inline--fa text-gray-400 hover:text-babelBlue-800 fa-paper-plane fa-w-16 w-7 h-7 py-1 mr-1"
                                 aria-hidden="true"
@@ -121,7 +122,7 @@ const Chat = () => {
                                   d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"
                                 />
                               </svg>
-                              </button> 
+                              </button>
                             </div>
                         </div>
                     </div>
@@ -130,4 +131,4 @@ const Chat = () => {
         );
 };
 
-export default Chat; 
+export default Chat;
