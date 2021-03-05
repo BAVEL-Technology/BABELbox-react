@@ -3,6 +3,8 @@ import { contextType } from "react-copy-to-clipboard";
 import { useGame } from "games/LiarLiar/BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "../../utils/currentUserIndex"
 import bb from "utils/babelBread";
+import formatQuestion from "games/LiarLiar/utils/formatQuestion";
+import ReactHtmlParser from 'react-html-parser'; 
 
 const Answer = (props) => {
   const gameState = useGame();
@@ -56,7 +58,7 @@ const Answer = (props) => {
       <div
         className="text-center w-full flex items-center justify-center py-8 lg:text-4xl md:text-3xl text-xl"
         style={{ fontFamily: props.font }}
-      >{gameState.rounds[gameState.rounds.length - 1].question.question}</div>
+      >{ReactHtmlParser (formatQuestion(gameState.rounds[gameState.rounds.length - 1].question.question))}</div>
 
       <div>
         {createButtons(gameState.rounds[gameState.rounds.length - 1].answers)}
