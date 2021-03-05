@@ -24,7 +24,7 @@ const Chat = () => {
     //captures event from server
     socketRef.current.on("connect", () => {
         console.log(username);
-        socketRef.current.emit('room', "603d63927c61750021fe872a");
+        socketRef.current.emit('room', gameState._id);
         socketRef.current.emit("new-user", username);
     });
 
