@@ -2,6 +2,10 @@ ul {
     list-style-type: none;
   }
 
+  .textShadow{
+    text-shadow: 2px 2px 4px #000000;
+}
+
   #journal-scroll::-webkit-scrollbar {
     width: 6px;
     cursor: pointer;

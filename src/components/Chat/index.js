@@ -64,32 +64,36 @@ const Chat = () => {
         return (
             <div className="z-50 fixed bottom-12 right-12">
                 <div className="flex justify-center items-center">
-                  <div className={`bg-white rounded-full h-24 w-24 flex items-center justify-center text-babelBlue-500 ${chatOpen ? 'hidden' : 'nothing'}`} onClick={() => {setChatOpen(!chatOpen)}}>C</div>
-                    <div className={`w-80 h-96 bg-white rounded-2xl overflow-hidden shadow-2xl ${chatOpen ? 'nothing' : 'hidden'}`}>
+                  <div className={`bg-gradient-to-r from-green-400 to-blue-500 shadow-md rounded-full  h-20 w-20 flex items-center justify-center text-babelBlue-500 ${chatOpen ? 'hidden' : 'nothing'}`} onClick={() => {setChatOpen(!chatOpen)}}>
+                    <svg className="text-babelYellow-500 transform w-12 h-12 cursor-pointer hover:scale-110 motion-reduce:transform-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                    <div className={`w-80 h-96 bg-gray-100 rounded-2xl overflow-hidden shadow-2xl ${chatOpen ? 'nothing' : 'hidden'}`}>
                         {/* Top Header */}
-                        <nav className="w-full h-10 bg-babelBlue-800 flex justify-between items-center">
+                        <nav className="w-full h-10 bg-gradient-to-r to-green-400 from-blue-500 flex justify-between items-center">
                             <div className="flex justify-center items-center ml-1">
-                              <div className="">{avatar}</div>
-                              <span className="text-xs font-medium text-gray-300 ml-1">
+                              <div className="ml-1 textShadow">{avatar}</div>
+                              <span className="text-sm textShadow font-medium text-gray-200 ml-1">
                                 {username}
                               </span>
                             </div>
-                              <svg className="text-babelRed-500 transform hover:scale-110 w-7 h-7 mr-2"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" onClick={() => {setChatOpen(!chatOpen)}}>
+                              <svg className="text-babelRed-500 transform hover:scale-110 w-7 h-7 mr-2 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" onClick={() => {setChatOpen(!chatOpen)}}>
                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
                               </svg>
                         </nav>
                         {/* Messages Map */}
                         <div className="overflow-auto px-1 py-1" style={{height: '19rem'}} id="journal-scroll">
-                            {messages.map(({user, text}, index) => (<div className="flex items-center pr-10 mb-1" key={index}>
+                            {messages.map(({user, text}, index) => (<div className="textShadow flex items-center pr-10 mb-1" key={index}>
                               <span>{user?.name}:</span>
-                              <span className="flex ml-1 h-auto bg-babelBlue-800 text-gray-200 text-xs font-normal rounded-full px-1 p-1 items-end" style={{fontSize: "10px"}}>{text}</span> </div>))}
+                              <span className="flex ml-1 h-auto bg-babelBlue-800 text-gray-200 text-sm font-normal rounded-full px-2 p-1 items-end" style={{fontSize: "10px"}}>{text}</span> </div>))}
                             <div className=" " id="chatmsg"></div>
                         </div>
                         {/* Input and Send Area */}
                         <div className="flex justify-between items-center p-1 ">
                             <div className="relative"> 
                               <input type="text" 
-                                className="rounded-full pl-6 pr-12 py-2 focus:outline-none h-auto placeholder-gray-300 bg-babelBlue-800 text-white border-gray-300" 
+                                className="rounded-full pl-4 pr-12 py-2 focus:outline-none h-auto placeholder-gray-300 bg-gradient-to-r from-purple-500 via-pink-600 to-red-400 text-white border-gray-300" 
                                 style={{fontSize: "11px", width: "275px"}} 
                                 placeholder="BabelChat..." 
                                 id="typemsg" value={message} 
