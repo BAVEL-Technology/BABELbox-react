@@ -8,6 +8,7 @@ import { useGame } from "../../BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "../../utils/currentUserIndex"
 import formatQuestion from "games/LiarLiar/utils/formatQuestion";
 import ReactHtmlParser from 'react-html-parser'; 
+import Timer from "games/LiarLiar/Components/Timer";
 
 const Questions = (props) => {
   // Custom hook for getting game state.
@@ -23,7 +24,7 @@ const Questions = (props) => {
   // State for user input (answer)
   const [ userInput, setUserInput ] = useState("");
   const statement = `params.rounds.${gameState.rounds.length - 1}.answers`;
-  // console.log(gameState);
+  console.log(gameState);
   const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser);
 
   
@@ -45,7 +46,7 @@ const Questions = (props) => {
   return (
     <div className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4">
       <div className="w-full flex justify-center pb-6">
-        <div id="timer" style={{ fontFamily: props.font }}></div>
+        <Timer startTimeStamp={gameState.rounds[gameState.rounds.length - 1]?.questionStartTime} endTimeStamp={gameState.rounds[gameState.rounds.length - 1]?.answerStartTime}/>
       </div>
       <div
         className=" text-center w-full flex items-center justify-center py-8 lg:text-4xl md:text-3xl text-xl"
