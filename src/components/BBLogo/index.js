@@ -12,7 +12,7 @@ const BBLogo = (props) => {
             "red"
         ];
         const randomIndex = Math.floor(Math.random() * colorChoices.length);
-        console.log(randomIndex);
+        // console.log(randomIndex);
         return colorChoices[randomIndex];
     };
 

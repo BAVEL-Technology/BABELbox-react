@@ -40,15 +40,17 @@ const Navbar = (props) => {
           className={`dropdown inline-block relative transition duration-500 ease-in-out transform hover:scale-110 hover:-translate-y-1 ${styles.navButton} ${styles.hoverTransform}`}
         >
           Games
-          <li className="dropdown-menu absolute hidden text-base pt-5">
-            <a
-              href="/liarliar"
-              style={{ fontFamily: "Sniglet" }}
-              className="px-4 py-2 rounded-md bg-white text-indigo-800 focus:outline-white"
-            >
-              LiarLiar
-            </a>
-          </li>
+          <ul>
+            <li className="dropdown-menu absolute hidden text-base pt-5">
+              <a
+                href="/liarliar"
+                style={{ fontFamily: "Sniglet" }}
+                className="px-4 py-2 rounded-md bg-white text-indigo-800 focus:outline-white"
+              >
+                LiarLiar
+              </a>
+            </li>
+          </ul>
         </li>
 
         <li className={`${styles.navButton} ${styles.hoverTransform}`}>
