@@ -7,6 +7,7 @@ import LiarLiar from "games/LiarLiar/index2.js";
 import HowToPlay from "games/LiarLiar/HowToPlay";
 import { JoinPortal, Gateway } from "games/LiarLiar/Gateway";
 
+
 /* Pull in your player and portal structures from the config file */
 import { game, playerStructure, portalStructure } from "../game.config.js";
 
