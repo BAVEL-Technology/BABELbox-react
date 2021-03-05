@@ -8,7 +8,7 @@ import bb from "../../../utils/babelBread";
 import { useGame } from "../BabelBuilder/GameContext";
 import babelBellow from "utils/babelBellow";
 
-const Waiting = () => 
+const Waiting = () =>
 {
   const gameState = useGame();
 
@@ -29,12 +29,12 @@ const Waiting = () =>
       }
     });
 
-    babelBellow().emit('start timer', { 
+    babelBellow().emit('start timer', {
       function: `()=>{axios.put("https://babelboxdb.herokuapp.com/api/portals", {filters: {code: "${gameState.code}"} , updates: {'params.phase': 'answer'} });}`,
       time: 30000
     });
-    babelBellow().emit('start timer', { 
-      function: `()=>{axios.put("https://babelboxdb.herokuapp.com/api/portals", {filters: {code: "${gameState.code}"} , updates: {'params.phase': 'answer'} });}`,
+    babelBellow().emit('start timer', {
+      function: `()=>{axios.put("https://babelboxdb.herokuapp.com/api/portals", {filters: {code: "${gameState.code}"} , updates: {'params.phase': 'waiting'} });}`,
       time: 60000
     });
 
