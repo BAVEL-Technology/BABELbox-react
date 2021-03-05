@@ -27,7 +27,7 @@ export default function FindAndJoinPortal({
       const player = {};
       Object.keys(playerStructure).forEach((key) => {
         if (playerStructure[key].input) player[key] = userName
-        if (key == 'leader') player[key] = playerStructure[key].default
+        else if (key == 'leader') player[key] = playerStructure['leader'].default
         else player[key] = playerStructure[key]
       })
       const updates = await babelBread().push("portals",
