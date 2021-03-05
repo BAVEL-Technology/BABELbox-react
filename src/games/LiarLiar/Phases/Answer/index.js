@@ -12,7 +12,8 @@ const Answer = (props) => {
   const [ answerLock, setAnswerLock ] = useState(gameState.players[currentUserIndex].answerLock);
   const statement = `params.players.${currentUserIndex}.answerLock`;
   const lockAnswer = () => {
-    bb().edit("portals", { code: gameState.code }, { [statement]: "true" });
+    console.log(`Current User Index: ${currentUserIndex}`);
+    bb().edit("portals", { code: gameState.code }, { [statement]: true });
   };
 
   //TODO check if answer is correct
@@ -24,10 +25,11 @@ const Answer = (props) => {
     const statement = `params.players.${user}.points`;
     const userPoints = gameState.players[user].points;
     bb().edit('portals', {code: gameState.code}, {[statement]: userPoints + 25 });
+    lockAnswer();
   }
 
   const createButtons = (answersArray) => {
-    answersArray.map((answer, index)=> {
+    return answersArray.map((answer, index)=> {
       return (
         <button
         key={index}
