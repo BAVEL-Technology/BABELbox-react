@@ -10,9 +10,10 @@ const Answer = (props) => {
   const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser);
   console.log(currentUserIndex);
   const [ answerLock, setAnswerLock ] = useState(gameState.players[currentUserIndex].answerLock);
+  console.log(gameState.players[currentUserIndex].answerLock);
   const statement = `params.players.${currentUserIndex}.answerLock`;
   const lockAnswer = () => {
-    console.log(`Current User Index: ${currentUserIndex}`);
+    // console.log(`Current User Index: ${currentUserIndex}`);
     bb().edit("portals", { code: gameState.code }, { [statement]: true });
   };
 
@@ -35,7 +36,7 @@ const Answer = (props) => {
         key={index}
         disabled={answerLock}
         onClick={()=>{selectAnswer(answer.user)}}
-        className="answer place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-xl flex items-center justify-center w-full lg:text-3xl md:text-2xl text-xl disabled:opacity-50"
+        className={`answer place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-xl flex items-center justify-center w-full lg:text-3xl md:text-2xl text-xl ${answerLock && 'opacity-40'}`}
       >
         {answer.answer}
       </button>
@@ -60,16 +61,6 @@ const Answer = (props) => {
       <div>
         {createButtons(gameState.rounds[gameState.rounds.length - 1].answers)}
       </div>
-{/* 
-      <button
-        disabled={answerLock}
-        onClick={true}
-        className="answer place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-xl flex
-              items-center justify-center w-full lg:text-3xl md:text-2xl text-xl disabled:opacity-50"
-      >
-        {rounds[rounds.length - 1].question.answer}
-        {rounds[rounds.length - 1].answers}
-      </button> */}
     </div>
   );
 };
