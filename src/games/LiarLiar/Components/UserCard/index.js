@@ -16,27 +16,22 @@ const UserCard = (props) => {
     // }
   };
 
-  const changeUserName = () => {
-    // TODO: After MVP
+  const changeUserName = (e) => {
+    const statement = `params.players.${userIndex}.name`
+    bb().edit('portals', { code: gameState.code }, { [statement]: e.target.value})
   };
-  const changeLeader = (userID) => {
-    // TODO: After MVP
-    //needs improvement
-    console.log(context);
-    const playerArray = context.liarLiarState.players;
-    for (let i = 0; i < playerArray.length; i++) {
-      if (playerArray[i].leader === true) {
-        playerArray[i].leader = false;
-      } else if (playerArray[i].id === userID) {
-        playerArray[i].leader = true;
-      }
+  const changeLeader = async (userID) => {
+    for (let i = 0; i < gameState.players.length; i++) {
+      const statement = `params.players.${i}.leader`
+      await bb().edit('portals', { code: gameState.code }, { [statement]: false })
     }
-    console.log(playerArray);
+    const thisUserIndex = findCurrentUserIndex(gameState.players, userID)
+    const statement = `params.players.${thisUserIndex}.leader`
+    bb().edit('portals', { code: gameState.code }, { [statement]: true})
   };
 
   const trashUser = (userID) => {
-    const thisUsersIndex = findCurrentUserIndex(gameState.players, userID)
-    const newPlayersArray = gameState.players.splice(thisUsersIndex, 1)
+    const newPlayersArray = gameState.players.filter((player) => player.id != userID)
     bb().edit('portals', { code: gameState.code }, {"params.players": newPlayersArray})
   };
 
@@ -53,12 +48,9 @@ const UserCard = (props) => {
       >
         {props.user.avatar}
       </div>
-      {/* TODO: Change the 'ReadOnly' prop to false when used as an input field again. */}
       <input
-        readOnly={true}
-        onKeyUp={() => {
-          changeUserName();
-        }}
+        readOnly={props.user.id === gameState.currentUser ? false : true}
+        onChange={changeUserName}
         type="text"
         id="user-name-change"
         value={props.user.name}
@@ -95,7 +87,7 @@ const UserCard = (props) => {
         </div>
         <div
           onClick={() => {
-            if (gameState.players[userIndex].leader) trashUser(props.user.id);
+            if (gameState.players[userIndex].leader && props.user.id != gameState.currentUser) trashUser(props.user.id);
             else return false
           }}
           className={`${gameState.players[userIndex].leader ? '' : 'hidden'} w-8 h-8 rounded-full hover:bg-blue-300 user-trash flex items-center justify-center pl-1 cursor-pointer`}
