@@ -6,16 +6,19 @@ import GameTitle from "../GameTitle";
 import BBLogo from "../../../components/BBLogo";
 import bb from "../../../utils/babelBread";
 import { useGame } from "../BabelBuilder/GameContext";
+import babelBellow from "utils/babelBellow";
 
-const Waiting = () => {
+const Waiting = () => 
+{
   const gameState = useGame();
+
   const startRound = async () => {
-    console.log('hello');
     const question = await bb().browse('questions').random(); //Faster Random
-    console.log(question);
+
     const portal = await bb().edit('portals', { code: gameState.code }, {
       "params.phase": 'question'
-    })
+    });
+
     const newRound = await bb().push('portals', { code: gameState.code }, {
       "params.rounds": {
         round: gameState.rounds.length++,
@@ -25,6 +28,12 @@ const Waiting = () => {
         answerStartTime: Date.now() + 30000
       }
     });
+
+    babelBellow().emit('start timer', { 
+      function: `()=>{axios.put("https://babelboxdb.herokuapp.com/api/portals", {filters: {code: "${gameState.code}"} , updates: {'params.phase': 'answer'} });}`,
+      time: 10000
+    });
+
     console.log(newRound);
   };
 
