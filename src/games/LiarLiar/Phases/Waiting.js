@@ -31,7 +31,11 @@ const Waiting = () =>
 
     babelBellow().emit('start timer', { 
       function: `()=>{axios.put("https://babelboxdb.herokuapp.com/api/portals", {filters: {code: "${gameState.code}"} , updates: {'params.phase': 'answer'} });}`,
-      time: 10000
+      time: 30000
+    });
+    babelBellow().emit('start timer', { 
+      function: `()=>{axios.put("https://babelboxdb.herokuapp.com/api/portals", {filters: {code: "${gameState.code}"} , updates: {'params.phase': 'answer'} });}`,
+      time: 60000
     });
 
     console.log(newRound);
