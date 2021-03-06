@@ -5,6 +5,7 @@ import { findCurrentUserIndex } from "../../utils/currentUserIndex"
 import bb from "utils/babelBread";
 import formatQuestion from "games/LiarLiar/utils/formatQuestion";
 import ReactHtmlParser from 'react-html-parser'; 
+import Timer from "games/LiarLiar/Components/Timer";
 
 const Answer = (props) => {
   const gameState = useGame();
@@ -84,7 +85,7 @@ const Answer = (props) => {
       className="font-sniglet"
     >
       <div className="w-full flex justify-center pb-6">
-        <div id="timer"></div>
+        <Timer startTimeStamp={gameState.rounds[gameState.rounds.length - 1]?.answerStartTime}/>
       </div>
 
       <div

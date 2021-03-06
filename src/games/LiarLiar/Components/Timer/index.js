@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 const index = (props) => {
-  const [percentComplete, setPercentComplete] = useState(0);
+  const [percentComplete, setPercentComplete] = useState(100);
 
   const startTimeStamp = props.startTimeStamp;
   const endTimeStamp = startTimeStamp + 30000;
 
   const timerStyles = {
-    width: percentComplete + '%'
+    width: percentComplete + '%',
+    bottom: '-50%'
   }
 
   console.log(timerStyles);
@@ -17,7 +18,7 @@ const index = (props) => {
   // `);
 
   const calculatePercentage = () => {
-    const percentage = Math.floor(((1 - (startTimeStamp - Date.now())) / (endTimeStamp - startTimeStamp)) * 100);
+    const percentage = 100 -Math.floor(((1 - (startTimeStamp - Date.now())) / (endTimeStamp - startTimeStamp)) * 100);
     // console.log(percentage);
     return percentage;
   }
@@ -28,7 +29,7 @@ const index = (props) => {
       
       setPercentComplete(calculatePercentage());
 
-      if(percentComplete >= 100)
+      if(percentComplete <= 0)
       {
         setPercentComplete(100);
         clearInterval(timer);
@@ -40,12 +41,16 @@ const index = (props) => {
 
   return (
     <div className="relative z-50 w-full">
-      {/* Foreground */}
-      <div className="absolute h-12 bg-green-500 rounded-full z-30 transition-all ease-in-out duration-150" style={timerStyles}>
-        Time Left
-      </div>
+      
       {/* Background */}
-      <div className="absolute w-full h-12 bg-blue-500 rounded-full z-20"></div>
+      <div className="absolute w-full h-8 border-2 border-babelBlue-500 rounded-xl"
+      style={{
+        overflow: 'hidden'
+      }}>
+        {/* Foreground */}
+        <div className="absolute h-12 bg-babelYellow-500 transition-all ease-in-out duration-500" style={timerStyles}>
+        </div>
+      </div>
     </div>
   );
 }
