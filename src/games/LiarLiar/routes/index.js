@@ -6,6 +6,7 @@ import { route, map, lazy, withContext } from 'navi'
 import LiarLiar from "games/LiarLiar/index2.js";
 import HowToPlay from "games/LiarLiar/HowToPlay";
 import { JoinPortal, Gateway } from "games/LiarLiar/Gateway";
+import Nav from "components/Nav";
 
 
 /* Pull in your player and portal structures from the config file */
@@ -66,9 +67,13 @@ export const LiarLiarRoutes = {
     onPortalNotFound: `/${game.route}`,
     onWrongUser: `/${game.route}/${request.params.code}/join`,
     onSuccess:
-    <div className="min-h-screen h-full bg-gradient-to-tl from-babelBlue-1000 via-babelBlue-900 to-babelCyan-700">
-      <LiarLiar />
+    <>
+    <div className="font-sniglet flex justify-center min-h-screen h-full bg-gradient-to-tl from-babelBlue-1000 via-babelBlue-900 to-babelCyan-700">
+      <div className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4">
+        <LiarLiar />
+      </div>
     </div>
+    </>
   }),
   lazy(() => {
       return import('../../../routes/portalRoutes')

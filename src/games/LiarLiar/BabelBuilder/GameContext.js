@@ -62,8 +62,8 @@ export function GameProvider({ children, state, portal, currentUser }) {
   
     const socket = babelBellow()
     .join(portal._id, (res) => {
-      console.log(`Socket Response | Round | `, res);
-      console.log(`Stringify`, JSON.stringify(res));
+      // console.log(`Socket Response | Round | `, res);
+      // console.log(`Stringify`, JSON.stringify(res));
       const data = JSON.parse(res);
       const updatedState = organizeState(data);
       updateGame(updatedState);

@@ -3,6 +3,7 @@ import io from "socket.io-client";
 import { useGame } from "games/LiarLiar/BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "games/LiarLiar/utils/currentUserIndex";
 import './Chat.css';
+import Twemoji from 'react-twemoji';
 
 // for testing local server use "http://localhost:3001"  for deployed server use  https://babelboxdb.herokuapp.com/
 
@@ -18,7 +19,7 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [users, setUsers] = useState([]);
     const [message, setMessage] = useState("");
-        
+
     useEffect(() => {
     socketRef.current = io("https://babelboxdb.herokuapp.com/");
 
@@ -76,7 +77,6 @@ const Chat = () => {
             setMessage("");
         }
     };
-
     return (
         <div className="z-50 fixed bottom-12 right-12">
             <div className="flex justify-center items-center">
@@ -199,4 +199,4 @@ const Chat = () => {
     );
 };
 
-export default Chat; 
+export default Chat;

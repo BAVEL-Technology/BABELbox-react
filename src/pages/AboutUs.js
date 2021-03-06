@@ -6,7 +6,7 @@ import Navbar from "../components/Nav";
 class AboutUs extends Component {
   render() {
     return (
-      <>
+      <div className="bg-pink-200">
         <Navbar />
         <header className="brand text-center font-bold block -mt-10">
           <div className="-mb-24">
@@ -63,7 +63,7 @@ class AboutUs extends Component {
           </div>
           <div className="col-span-1" />
         </div>
-      </>
+      </div>
     );
   }
 }

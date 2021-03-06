@@ -8,6 +8,7 @@ const styles = {
   label: "block uppercase tracking-wide text-black text-lg font-bold my-2 mr-2",
   inputField:
     "form-control appearance-none block w-full bg-gray-100 text-black border border-gray-500 rounded-sm py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200",
+  sendButton: "px-4 py-2 rounded-full text-black font-bold border border-gray-500"
 };
 
 const Help = () => {
@@ -32,10 +33,10 @@ const Help = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center bg-pink-200 min-h-screen">
       <Navbar />
       <h1 className="text-4xl font-semibold m-6">
-        Need help? Send an issue report
+        Need help? Send an issue report!
       </h1>
       <form
         id="contact-form"
@@ -73,7 +74,7 @@ const Help = () => {
             rows="5"
           ></textarea>
         </div>
-        <input type="submit" value="Send" />
+        <input className={styles.sendButton} type="submit" value="Send" />
       </form>
     </div>
   );
