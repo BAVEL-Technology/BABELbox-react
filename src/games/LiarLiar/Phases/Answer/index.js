@@ -18,6 +18,7 @@ const Answer = (props) => {
   const lockAnswer = () => {
     // console.log(`Current User Index: ${currentUserIndex}`);
     bb().edit("portals", { code: gameState.code }, { [statement]: true });
+    setAnswerLock(true);
   };
 
   //TODO check if answer is correct
