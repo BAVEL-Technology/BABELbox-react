@@ -4,7 +4,7 @@ import { useGame } from "games/LiarLiar/BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "../../utils/currentUserIndex"
 import bb from "utils/babelBread";
 import formatQuestion from "games/LiarLiar/utils/formatQuestion";
-import ReactHtmlParser from 'react-html-parser'; 
+import ReactHtmlParser from 'react-html-parser';
 import Timer from "games/LiarLiar/Components/Timer";
 
 const Answer = (props) => {
@@ -14,10 +14,12 @@ const Answer = (props) => {
   console.log(currentUserIndex);
   const [ answerLock, setAnswerLock ] = useState(gameState.players[currentUserIndex].answerLock);
   console.log(gameState.players[currentUserIndex].answerLock);
+  const [ answersShuffled, setAnswersShuffled ] = useState(false);
   const statement = `params.players.${currentUserIndex}.answerLock`;
   const lockAnswer = () => {
     // console.log(`Current User Index: ${currentUserIndex}`);
     bb().edit("portals", { code: gameState.code }, { [statement]: true });
+    setAnswerLock(true)
   };
 
   //TODO check if answer is correct
@@ -64,7 +66,10 @@ const Answer = (props) => {
         answer: gameState.rounds[gameState.rounds.length - 1].question.answer
       })
     }
-    shuffle(answersArray)
+    if (!answersShuffled) {
+      shuffle(answersArray)
+      setAnswersShuffled(true)
+    } 
     return answersArray.map((answer, index)=> {
       return (
         <button

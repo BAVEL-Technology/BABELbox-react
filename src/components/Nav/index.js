@@ -11,7 +11,7 @@ const styles = {
 
 const Navbar = (props) => {
   return (
-    <div className="navbar w-full px-12 z-50 pt-6 flex justify-between items-center absolute sticky top-0">
+    <div className="navbar w-full px-12 z-50 pt-6 flex justify-between items-center sticky top-0">
       <div className={`flex items-center space-x-4`}>
         <img src="./images/whitebox.png" className="h-12" />
         {/* <p
@@ -63,7 +63,7 @@ const Navbar = (props) => {
         >
           Sign Up
         </li>
-        
+
       </ul>
     </div>
   );

@@ -9,6 +9,7 @@ const GameTitle = (props) => {
   const gameState = useGame();
   // console.log(this.props);
   return (
+    <>
     <button
       className={`${props.className}`}
       onClick={() => {
@@ -20,8 +21,9 @@ const GameTitle = (props) => {
         <Twemoji options={{ className: "twemoji" }}>🤥 </Twemoji>
       </div>
       <p className="font-extrabold game-button-p ml-5">{props.name}</p>
-      <Scoreboard hidden={!scoreOpen} users={gameState.players} />
     </button>
+    <Scoreboard hidden={!scoreOpen} users={gameState.players} />
+    </>
   );
 };
 
