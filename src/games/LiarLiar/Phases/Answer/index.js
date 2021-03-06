@@ -22,10 +22,6 @@ const Answer = (props) => {
     setAnswerLock(true)
   };
 
-  //TODO check if answer is correct
-  //if correct give user point
-  //if incorrect find user that wrote that answer, give that user points
-
   function selectAnswer(userID) {
     if (userID === 'Roboto') {
       const statement = `params.players.${currentUserIndex}.points`;
@@ -69,7 +65,7 @@ const Answer = (props) => {
     if (!answersShuffled) {
       shuffle(answersArray)
       setAnswersShuffled(true)
-    } 
+    }
     return answersArray.map((answer, index)=> {
       return (
         <button
