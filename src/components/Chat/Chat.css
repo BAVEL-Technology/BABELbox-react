@@ -5,6 +5,12 @@ ul {
   .textShadow{
     text-shadow: 2px 2px 4px #000000;
 }
+img.Chattwemoji {
+   height: 1em;
+   width: 1em;
+   margin: 0 .05em 0 .1em;
+   vertical-align: -0.1em;
+}
 
   #journal-scroll::-webkit-scrollbar {
     width: 6px;

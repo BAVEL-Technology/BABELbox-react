@@ -7,16 +7,22 @@ import bb from "../../../../utils/babelBread";
 import { useGame } from "../../BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "../../utils/currentUserIndex"
 import formatQuestion from "games/LiarLiar/utils/formatQuestion";
+<<<<<<< HEAD
 import ReactHtmlParser from 'react-html-parser'; 
 import Timer from "games/LiarLiar/Components/Timer";
+=======
+import ReactHtmlParser from 'react-html-parser';
+>>>>>>> bbe84ced2be17cefe33883404558e979de0f801f
 
 const Questions = (props) => {
   // Custom hook for getting game state.
   const gameState = useGame();
   // Local lock for submitting a question. Sync this with db to keep value on refresh.
   const lockQuestionInputs = () => {
+    console.log(gameState.rounds[gameState.rounds.length - 1]?.answers)
+    console.log(gameState.rounds[gameState.rounds.length - 1]?.answers?.filter((ans)=> {ans.user === gameState.currentUser }).length)
     if(!gameState.rounds[gameState.rounds.length - 1]?.answers) return false;
-    if(!gameState.rounds[gameState.rounds.length - 1]?.answers?.filter((ans)=> {ans.user === gameState.currentUser }).length > 0) return true;
+    if(gameState.rounds[gameState.rounds.length - 1]?.answers?.filter((ans)=> {ans.user === gameState.currentUser }).length > 0) return true;
 
     return false;
   }
@@ -27,7 +33,7 @@ const Questions = (props) => {
   console.log(gameState);
   const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser);
 
-  
+
 
   const onInputChange = (e) => {
     setUserInput(e.target.value);
@@ -44,13 +50,12 @@ const Questions = (props) => {
   };
 
   return (
-    <div className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4">
+    <div className="font-sniglet">
       <div className="w-full flex justify-center pb-6">
         <Timer startTimeStamp={gameState.rounds[gameState.rounds.length - 1]?.questionStartTime} endTimeStamp={gameState.rounds[gameState.rounds.length - 1]?.answerStartTime}/>
       </div>
       <div
         className=" text-center w-full flex items-center justify-center py-8 lg:text-4xl md:text-3xl text-xl"
-        style={{ fontFamily: props.font }}
       >
         <p>
           {ReactHtmlParser (formatQuestion(gameState?.rounds[gameState.rounds.length - 1]?.question?.question))}
@@ -64,7 +69,6 @@ const Questions = (props) => {
         className="block appearance-none focus:outline-none border-b-4 border-gray-700
         bg-transparent lg:text-3xl md:text-2xl text-xl text-gray-700 w-full"
         disabled={questionLock}
-        style={{ fontFamily: props.font }}
         onChange={onInputChange}
         value={userInput}
       />
@@ -76,7 +80,6 @@ const Questions = (props) => {
         className={`place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl
         rounded-br-xl rounded-tr rounded-bl flex items-center justify-center w-full
         lg:text-3xl md:text-2xl text-xl ${questionLock && 'opacity-40'}`}
-        style={{ fontFamily: props.font }}
       >
         Submit
       </button>

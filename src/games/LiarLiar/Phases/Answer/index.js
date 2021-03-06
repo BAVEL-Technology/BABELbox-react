@@ -24,14 +24,46 @@ const Answer = (props) => {
   //if incorrect find user that wrote that answer, give that user points
 
   function selectAnswer(userID) {
-    const user = findCurrentUserIndex(gameState.players, userID);
-    const statement = `params.players.${user}.points`;
-    const userPoints = gameState.players[user].points;
-    bb().edit('portals', {code: gameState.code}, {[statement]: userPoints + 25 });
+    if (userID === 'Roboto') {
+      const statement = `params.players.${currentUserIndex}.points`;
+      const userPoints = gameState.players[currentUserIndex].points;
+      bb().edit('portals', {code: gameState.code}, {[statement]: userPoints + 100 });
+    } else {
+      const user = findCurrentUserIndex(gameState.players, userID);
+      const statement = `params.players.${user}.points`;
+      const userPoints = gameState.players[user].points;
+      bb().edit('portals', {code: gameState.code}, {[statement]: userPoints + 25 });
+    }
     lockAnswer();
   }
 
+  function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
   const createButtons = (answersArray) => {
+    if (answersArray.filter((ans) => ans.user == 'Roboto').length < 1) {
+      answersArray.push({
+        user: "Roboto",
+        answer: gameState.rounds[gameState.rounds.length - 1].question.answer
+      })
+    }
+    shuffle(answersArray)
     return answersArray.map((answer, index)=> {
       return (
         <button
@@ -45,14 +77,14 @@ const Answer = (props) => {
       )
     });
   }
-  
+
 
   return (
     <div
-      className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4"
+      className="font-sniglet"
     >
       <div className="w-full flex justify-center pb-6">
-        <div id="timer" style={{ fontFamily: props.font }}></div>
+        <div id="timer"></div>
       </div>
 
       <div

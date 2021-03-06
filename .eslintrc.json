@@ -16,6 +16,6 @@
       "prefer-const": "warn",
       "quotes": ["warn", "single"],
       "semi": ["warn", "always"],
-      "yoda": "error"
+      "yoda": "warn"
     }
   }

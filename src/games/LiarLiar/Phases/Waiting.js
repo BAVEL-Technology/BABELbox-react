@@ -8,7 +8,6 @@ import bb from "../../../utils/babelBread";
 import { useGame } from "../BabelBuilder/GameContext";
 import babelBellow from "utils/babelBellow";
 import { findCurrentUserIndex } from "../utils/currentUserIndex"
-
 const Waiting = () =>
 {
   const gameState = useGame();
@@ -29,6 +28,11 @@ const Waiting = () =>
         answerStartTime: Date.now() + 30000
       }
     });
+
+    gameState.players.forEach((player, i) => {
+      const statement = `params.players.${i}.answerLock`
+      bb().edit('portals', { code: gameState.code }, { [statement]: false })
+    })
 
     babelBellow().emit('start timer', {
       function: `()=>{axios.put("https://babelboxdb.herokuapp.com/api/portals", {filters: {code: "${gameState.code}"} , updates: {'params.phase': 'answer'} });}`,
@@ -52,7 +56,7 @@ const Waiting = () =>
         name="Liar Liar"
       />
       <PlayButton onClick={startRound} />
-      <PortalCodeCard portalCode={gameState.code} />
+      <PortalCodeCard portalCode={gameState.code} roundNum={gameState.rounds.length}/>
       <UserCard key="0" user={ gameState.players[currentUserIndex] }  />
       {gameState.players &&
         gameState.players.map((user, index) => {
