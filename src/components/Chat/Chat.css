@@ -7,7 +7,8 @@ ul {
 }
 
   #journal-scroll::-webkit-scrollbar {
-    width: 6px;
+    border-radius: 25px;
+    width: 10px;
     cursor: pointer;
 }
 
@@ -18,7 +19,7 @@ ul {
 
 #journal-scroll::-webkit-scrollbar-thumb {
     cursor: pointer;
-    background-color: #a0aec0;
+    background-color: #b5c3d5;
 }
 
 #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
