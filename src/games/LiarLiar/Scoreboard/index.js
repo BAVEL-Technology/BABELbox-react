@@ -20,6 +20,7 @@ const index = (props) => {
   }
 
   return (
+    <div className="flex items-center justify-center z-50 fixed">
     <div
       className={`bg-blue-400 p-4 m-4 rounded-xl text-center ${
         props.className
@@ -31,6 +32,7 @@ const index = (props) => {
         <div className="justify-self-center">{userNames}</div>
         <div className="justify-self-center">{userScores}</div>
       </div>
+    </div>
     </div>
   );
 };

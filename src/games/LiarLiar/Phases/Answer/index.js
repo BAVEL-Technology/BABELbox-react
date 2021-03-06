@@ -3,6 +3,9 @@ import { contextType } from "react-copy-to-clipboard";
 import { useGame } from "games/LiarLiar/BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "../../utils/currentUserIndex"
 import bb from "utils/babelBread";
+import formatQuestion from "games/LiarLiar/utils/formatQuestion";
+import ReactHtmlParser from 'react-html-parser';
+import Timer from "games/LiarLiar/Components/Timer";
 
 const Answer = (props) => {
   const gameState = useGame();
@@ -11,15 +14,13 @@ const Answer = (props) => {
   console.log(currentUserIndex);
   const [ answerLock, setAnswerLock ] = useState(gameState.players[currentUserIndex].answerLock);
   console.log(gameState.players[currentUserIndex].answerLock);
+  const [ answersShuffled, setAnswersShuffled ] = useState(false);
   const statement = `params.players.${currentUserIndex}.answerLock`;
   const lockAnswer = () => {
     // console.log(`Current User Index: ${currentUserIndex}`);
     bb().edit("portals", { code: gameState.code }, { [statement]: true });
+    setAnswerLock(true)
   };
-
-  //TODO check if answer is correct
-  //if correct give user point
-  //if incorrect find user that wrote that answer, give that user points
 
   function selectAnswer(userID) {
     if (userID === 'Roboto') {
@@ -61,7 +62,10 @@ const Answer = (props) => {
         answer: gameState.rounds[gameState.rounds.length - 1].question.answer
       })
     }
-    shuffle(answersArray)
+    if (!answersShuffled) {
+      shuffle(answersArray)
+      setAnswersShuffled(true)
+    }
     return answersArray.map((answer, index)=> {
       return (
         <button
@@ -82,12 +86,13 @@ const Answer = (props) => {
       className="font-sniglet"
     >
       <div className="w-full flex justify-center pb-6">
-        <div id="timer"></div>
+        <Timer startTimeStamp={gameState.rounds[gameState.rounds.length - 1]?.answerStartTime}/>
       </div>
 
       <div
         className="text-center w-full flex items-center justify-center py-8 lg:text-4xl md:text-3xl text-xl"
-      >{gameState.rounds[gameState.rounds.length - 1].question.question}</div>
+        style={{ fontFamily: props.font }}
+      >{ReactHtmlParser (formatQuestion(gameState.rounds[gameState.rounds.length - 1].question.question))}</div>
 
       <div>
         {createButtons(gameState.rounds[gameState.rounds.length - 1].answers)}
