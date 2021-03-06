@@ -67,16 +67,18 @@ const Answer = (props) => {
       setAnswersShuffled(true)
     }
     return answersArray.map((answer, index)=> {
-      return (
-        <button
-        key={index}
-        disabled={answerLock}
-        onClick={()=>{selectAnswer(answer.user)}}
-        className={`answer place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-xl flex items-center justify-center w-full lg:text-3xl md:text-2xl text-xl ${answerLock && 'opacity-40'}`}
-      >
-        {answer.answer}
-      </button>
-      )
+      if (answer.user != gameState.currentUser) {
+        return (
+          <button
+          key={index}
+          disabled={answerLock}
+          onClick={()=>{selectAnswer(answer.user)}}
+          className={`answer place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-xl flex items-center justify-center w-full lg:text-3xl md:text-2xl text-xl ${answerLock && 'opacity-40'}`}
+        >
+          {answer.answer}
+        </button>
+        )
+      }
     });
   }
 
