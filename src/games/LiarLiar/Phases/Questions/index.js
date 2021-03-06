@@ -7,12 +7,8 @@ import bb from "../../../../utils/babelBread";
 import { useGame } from "../../BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "../../utils/currentUserIndex"
 import formatQuestion from "games/LiarLiar/utils/formatQuestion";
-<<<<<<< HEAD
 import ReactHtmlParser from 'react-html-parser'; 
 import Timer from "games/LiarLiar/Components/Timer";
-=======
-import ReactHtmlParser from 'react-html-parser';
->>>>>>> bbe84ced2be17cefe33883404558e979de0f801f
 
 const Questions = (props) => {
   // Custom hook for getting game state.
