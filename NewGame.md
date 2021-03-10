@@ -27,7 +27,7 @@ pass to the game.config.js file
   * ./src/games/{GAME}/index.js
   * ./src/games/{GAME}/BabelBuilder
   * ./src/games/{GAME}/routes //Except in the ways outlined for adding your new game
-  At the end of the day, updating any file inside of your {GAME} will not break any other game, but it will be harder for us to debug each other, if we are all using different formats for controlling state and routing.
+  * At the end of the day, updating any file inside of your {GAME} will not break any other game, but it will be harder for us to debug each other, if we are all using different formats for controlling state and routing.
 ## Setting up your game
 1. Duplicate the "NewGame" folder and rename to something of your choosing
 2. Head into your new directory and edit the game.config.js file
