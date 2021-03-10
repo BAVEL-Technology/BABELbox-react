@@ -22,7 +22,7 @@ export const NewGameRoutes = {
         </script>
       </>,
       view:
-      <div className="min-h-screen h-full bg-gradient-to-tl from-babelBlue-1000 via-babelBlue-900 to-babelCyan-700">
+      <div className="min-h-screen h-full">
         <Gateway
         game={game.route}
         request={request}

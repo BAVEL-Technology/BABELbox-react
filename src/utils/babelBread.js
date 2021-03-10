@@ -77,7 +77,7 @@ class Babeljax {
   read(table, filter) {
     this.chain(async () => {
       const params = Object.keys(filter);
-      const query = params.map((p) => `${p}=${filter[p]}`).join("");
+      const query = params.map((p) => `${p}=${filter[p]}&`).join("");
       let data = await fetch(`${this.base_url}${table}?${query}`);
       data = await data.json();
       this.data = data;

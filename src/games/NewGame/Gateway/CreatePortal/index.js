@@ -36,6 +36,7 @@ export default function CreatePortal({
       if (key == 'players') portalParams.players = [player]
       else portalParams[key] = portalStructure[key]
     })
+    portalParams.game = game
     const portal = await babelBread().add("portals", {
       params: portalParams
     });
