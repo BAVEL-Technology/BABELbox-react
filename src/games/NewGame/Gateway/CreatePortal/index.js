@@ -44,7 +44,7 @@ export default function CreatePortal({
     await context.login({ game, code: portal.code, user: player.id })
 
     /* Navigate the user to the newly created portal */
-    navigation.navigate('/liarliar/'+encodeURIComponent(portal.code))
+    navigation.navigate('/' + game + '/' + encodeURIComponent(portal.code))
   }
 
   /* Handle the change in the username input */

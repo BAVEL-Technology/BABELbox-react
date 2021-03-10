@@ -8,6 +8,7 @@ import Help from "pages/Help";
 
 /* Pull in Each Game's Routes */
 import { LiarLiarRoutes } from "../games/LiarLiar/routes"
+import { NewGameRoutes } from "../games/NewGame/routes"
 
 export const routes = mount({
   '/': route({
@@ -41,5 +42,6 @@ export const routes = mount({
     view: <Help />,
   }),
   /* Spread Each Game's Routes Across Mount Matcher */
-  ...LiarLiarRoutes
+  ...LiarLiarRoutes,
+  ...NewGameRoutes
 })
