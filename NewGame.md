@@ -4,8 +4,8 @@
 1. Establishing the gameState of your game. It does this based on the state you
 pass to the game.config.js file
 2. Establishing a provider for two hooks:
-  a. useGame hook, that returns the gameState
-  b. useGameUpdate hook, that returns a funciton that accepts an object of changed state
+  a useGame hook, that returns the gameState
+  b useGameUpdate hook, that returns a funciton that accepts an object of changed state
   parameters
     * Note that you probably won't need to ever change the gameState yourself, explained next
 3. Establishing a socket connection to the portal and updating the gameState on all socket responses. Because of this, when you update the database, all games on all devices will have their state updated
