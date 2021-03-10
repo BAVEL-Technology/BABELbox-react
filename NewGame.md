@@ -1,4 +1,22 @@
 # Creating a new game for Babelbox
+## Understanding the set up
+### Basically, when you create a new game, the babel builder is responsible for:
+1. Establishing the gameState of your game. It does this based on the state you
+pass to the game.config.js file
+2. Establishing a provider for two hooks:
+  a. useGame hook, that returns the gameState
+  b. useGameUpdate hook, that returns a funciton that accepts an object of changed state
+  parameters
+    * Note that you probably won't need to ever change the gameState yourself, explained next
+3. Establishing a socket connection to the portal and updating the gameState on all socket responses. Because of this, when you update the database, all games on all devices will have their state updated
+4. Babelbuilder handles authentication into the games portal. Feel free to change the look of the GateWay files, but out of the box, it will:
+  a. Kick the user out of a portal that does not exist
+  b. Make the user sign in, if the portal they are trying to enter does not have them listed as a player
+  c. Route the user into their portal after they have joined one or created one
+5. Babelbuilder also handles "phase" changes. Assuming your game has multiple phases, when the gameState phase changes, meaning the db phase has changed, Babelbuilder will display the components you set up inside sets passed to the game.config.js file
+
+### What is your job:
+1. Basically everything else. But the cool thing is you don't need to handle anything but displaying an awesome game to the user, and updating the database in the way you see fit.
 ## Setting up your game
 1. Duplicate the "NewGame" folder and rename to something of your choosing
 2. Head into your new directory and edit the game.config.js file
