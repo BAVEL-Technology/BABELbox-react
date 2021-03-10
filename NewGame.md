@@ -10,9 +10,9 @@ pass to the game.config.js file
     * Note that you probably won't need to ever change the gameState yourself, explained next
 3. Establishing a socket connection to the portal and updating the gameState on all socket responses. Because of this, when you update the database, all games on all devices will have their state updated
 4. Babelbuilder handles authentication into the games portal. Feel free to change the look of the GateWay files, but out of the box, it will:
-  a. Kick the user out of a portal that does not exist
-  b. Make the user sign in, if the portal they are trying to enter does not have them listed as a player
-  c. Route the user into their portal after they have joined one or created one
+  * Kick the user out of a portal that does not exist
+  * Make the user sign in, if the portal they are trying to enter does not have them listed as a player
+  * Route the user into their portal after they have joined one or created one
 5. Babelbuilder also handles "phase" changes. Assuming your game has multiple phases, when the gameState phase changes, meaning the db phase has changed, Babelbuilder will display the components you set up inside sets passed to the game.config.js file
 
 ### What is your job:
@@ -31,8 +31,8 @@ pass to the game.config.js file
 ## Setting up your game
 1. Duplicate the "NewGame" folder and rename to something of your choosing
 2. Head into your new directory and edit the game.config.js file
-    a. Follow along with the comments to create the initial setup of your game
-    b. Be sure to include all necessary fields, the comments will mention this
+    * Follow along with the comments to create the initial setup of your game
+    * Be sure to include all necessary fields, the comments will mention this
 3. Head to the routes directory of your new game and edit line 13 of routes/index.js
     ```
     export const NewGameRoutes = {
