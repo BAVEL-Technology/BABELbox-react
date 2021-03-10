@@ -17,6 +17,17 @@ pass to the game.config.js file
 
 ### What is your job:
 1. Basically everything else. But the cool thing is you don't need to handle anything but displaying an awesome game to the user, and updating the database in the way you see fit.
+
+### Best practices:
+1. I think it is best if we keep most components inside the games themselves. Unless a component is not at all opinionated. This way anything inside of ./src/components can truly be used in every game.
+
+2. Things are probably going to be buggy a first. Lets try to be careful updating the following files or directories:
+  * ./src/App.js
+  * ./src/routes //Except in the ways outlined for adding your new game
+  * ./src/games/{GAME}/index.js
+  * ./src/games/{GAME}/BabelBuilder
+  * ./src/games/{GAME}/routes //Except in the ways outlined for adding your new game
+  At the end of the day, updating any file inside of your {GAME} will not break any other game, but it will be harder for us to debug each other, if we are all using different formats for controlling state and routing.
 ## Setting up your game
 1. Duplicate the "NewGame" folder and rename to something of your choosing
 2. Head into your new directory and edit the game.config.js file
