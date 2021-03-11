@@ -37,7 +37,7 @@ export const auth = {
   async authenticate({ game, code }) {
     try {
       /* Find the current portal, or return 401 error if it doesn't exist */
-      const portal = await babelBread().read('portals', { code }).first()
+      const portal = await babelBread().read('portals', { code, "params.game": game }).first()
       if (portal.length < 1) return 401
       /*
       * Find the current users and filter for only this game and code's user

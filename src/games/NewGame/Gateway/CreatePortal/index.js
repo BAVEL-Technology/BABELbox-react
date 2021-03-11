@@ -36,6 +36,7 @@ export default function CreatePortal({
       if (key == 'players') portalParams.players = [player]
       else portalParams[key] = portalStructure[key]
     })
+    portalParams.game = game
     const portal = await babelBread().add("portals", {
       params: portalParams
     });
@@ -44,7 +45,7 @@ export default function CreatePortal({
     await context.login({ game, code: portal.code, user: player.id })
 
     /* Navigate the user to the newly created portal */
-    navigation.navigate('/liarliar/'+encodeURIComponent(portal.code))
+    navigation.navigate('/' + game + '/' + encodeURIComponent(portal.code))
   }
 
   /* Handle the change in the username input */

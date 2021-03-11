@@ -2,6 +2,7 @@ import uuid from "utils/uuid";
 import Waiting from "./Phases/Waiting";
 import Questions from "./Phases/Questions";
 import Answer from "./Phases/Answer";
+import LiarLiar from "games/LiarLiar";
 
 const getAvatar = () => {
   const avatars = ["🐵", "🦊", "🐨", "🐲", "🥸", "🤓", "🤖", "👺", "🤡"];
@@ -11,7 +12,8 @@ const getAvatar = () => {
 export const game = {
   title: 'LiarLiar',
   route: 'liarliar',
-  description: 'The game where knowing the right answer, is only half the challenge.'
+  description: 'The game where knowing the right answer, is only half the challenge.',
+  main: <LiarLiar />
 }
 
 export const playerStructure = {
