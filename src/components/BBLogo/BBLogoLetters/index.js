@@ -1,5 +1,5 @@
 const BBLogoLetters = (props) => {
-  let classes = "inline-block duration-100 origin-bottom scale-75 transition duration-200 ease-in-out transform ";
+  let classes = "inline-block duration-100 origin-bottom transition duration-200 ease-in-out transform ";
 
   if(props.hover === true)
   {
