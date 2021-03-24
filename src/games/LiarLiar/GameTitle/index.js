@@ -22,7 +22,6 @@ const GameTitle = (props) => {
       </div>
       <p className="font-extrabold game-button-p ml-5">{props.name}</p>
     </button>
-    <Scoreboard hidden={!scoreOpen} users={gameState.players} />
     </>
   );
 };

@@ -20,19 +20,19 @@ const index = (props) => {
   }
 
   return (
-    <div className="flex items-center justify-center z-50 fixed">
-    <div
-      className={`bg-blue-400 p-4 m-4 rounded-xl text-center ${
-        props.className
-      } ${props.hidden ? "hidden" : "nothing"}`}
-      style={{ fontFamily: "Sniglet" }}
-    >
-      <h1 className="text-xl">Scores</h1>
-      <div className="grid grid-cols-2">
-        <div className="justify-self-center">{userNames}</div>
-        <div className="justify-self-center">{userScores}</div>
+    <div className="flex items-center justify-center w-full ">
+      <div
+        className={`bg-blue-400 p-4 m-4 rounded-xl text-center w-full ${
+          props.className
+        } ${props.hidden ? "hidden" : "nothing"}`}
+        style={{ fontFamily: "Sniglet" }}
+      >
+        <h1 className="text-xl">Scores</h1>
+        <div className="grid grid-cols-2">
+          <div className="justify-self-center">{userNames}</div>
+          <div className="justify-self-center">{userScores}</div>
+        </div>
       </div>
-    </div>
     </div>
   );
 };
