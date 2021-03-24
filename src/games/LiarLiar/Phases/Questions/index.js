@@ -3,12 +3,12 @@ import LiarLiarContext from "../../utils/LiarLiarContext";
 import UserCard from "games/LiarLiar/Components/UserCard";
 import PortalCodeCard from "../../../../components/LobbyCards/PortalCodeCard";
 import { useContext, useState, useEffect } from "react";
-import bb from "../../../../utils/babelBread";
 import { useGame } from "../../BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "../../utils/currentUserIndex"
 import formatQuestion from "games/LiarLiar/utils/formatQuestion";
 import ReactHtmlParser from 'react-html-parser'; 
 import Timer from "games/LiarLiar/Components/Timer";
+import QuestionInput from "./QuestionInput"
 
 const Questions = (props) => {
   // Custom hook for getting game state.
@@ -23,27 +23,10 @@ const Questions = (props) => {
     return false;
   }
   const [ questionLock, setQuestionLock ] = useState(lockQuestionInputs());
-  // State for user input (answer)
-  const [ userInput, setUserInput ] = useState("");
-  const statement = `params.rounds.${gameState.rounds.length - 1}.answers`;
-  console.log(gameState);
-  const currentUserIndex = findCurrentUserIndex(gameState.players, gameState.currentUser);
 
+  
 
-
-  const onInputChange = (e) => {
-    setUserInput(e.target.value);
-  };
-
-  const submitAnswer = async () => {
-    const response = await bb().push(
-      "portals",
-      { code: gameState.code },
-      { [statement] : { user: gameState.currentUser, answer: userInput } }
-    );
-
-    setQuestionLock(gameState.rounds[ gameState.rounds.length - 1 ]?.answers?.filter((ans) => ans.id == gameState.currentUser));
-  };
+  
 
   return (
     <div className="font-sniglet">
@@ -57,28 +40,7 @@ const Questions = (props) => {
           {ReactHtmlParser (formatQuestion(gameState?.rounds[gameState.rounds.length - 1]?.question?.question))}
         </p>
       </div>
-
-      <input
-        id="user-answer"
-        type="text"
-        name="portal-name"
-        className="block appearance-none focus:outline-none border-b-4 border-gray-700
-        bg-transparent lg:text-3xl md:text-2xl text-xl text-gray-700 w-full"
-        disabled={questionLock}
-        onChange={onInputChange}
-        value={userInput}
-      />
-
-      <button
-        id="submit-answer-button"
-        disabled={questionLock}
-        onClick={submitAnswer}
-        className={`place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl
-        rounded-br-xl rounded-tr rounded-bl flex items-center justify-center w-full
-        lg:text-3xl md:text-2xl text-xl ${questionLock && 'opacity-40'}`}
-      >
-        Submit
-      </button>
+      <QuestionInput questionLockObj={{questionLock,setQuestionLock}}/>
     </div>
   );
 };
