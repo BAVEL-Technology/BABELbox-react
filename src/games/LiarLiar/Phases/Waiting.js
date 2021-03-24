@@ -55,7 +55,6 @@ const Waiting = () =>
     <div className="w-full">
       <GameTitle
         className="font-bold w-full my-4 flex items-center justify-between bg-babelBlue-600 text-yellow-600 p-4 lg:text-5xl md:text-5xl text-3xl text-center rounded-xl tracking-widest"
-        src="https://twemoji.maxcdn.com/v/13.0.1/72x72/1f925.png"
         name="Liar Liar"
       />
       <Scoreboard hidden={!scoreOpen} users={gameState.players} />
