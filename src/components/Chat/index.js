@@ -86,8 +86,8 @@ const Chat = () => {
               <div 
               className={`bg-gradient-to-r from-green-400 to-blue-500 shadow-md rounded-full  h-20 w-20 flex items-center justify-center text-babelBlue-500 ${newMsg ? 'animate-bounce': 'nothing'} ${chatOpen ? 'hidden' : 'nothing'}`} 
               onClick={() => {setChatOpen(!chatOpen)}}>
-              {/* <span class="z-0 animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75">
-              </span> */}
+              <span className={`-z-10 absolute inline-flex h-full w-full rounded-full bg-babelYellow-400 opacity-75 ${newMsg ? 'animate-ping-slow': 'hidden'}`}>
+              </span>
                 <svg 
                 className="text-babelYellow-500 transform w-12 h-12 cursor-pointer hover:scale-110 motion-reduce:transform-none" 
                 xmlns="http://www.w3.org/2000/svg" 
