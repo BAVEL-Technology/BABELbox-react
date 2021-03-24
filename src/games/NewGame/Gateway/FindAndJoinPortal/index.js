@@ -16,29 +16,35 @@ export default function FindAndJoinPortal({
   let navigation = useNavigation()
 
   const join = async () => {
-    const portal = await babelBread()
-    .read('portals', { code: portalName })
-    .first()
+    try {
+      const portal = await babelBread()
+      .read('portals', { code: portalName })
+      .first()
 
-    if (!portal) return
+      if (!portal) return
 
+      /* Create a new player based on player structure*/
+      const player = {};
+      Object.keys(playerStructure).forEach((key) => {
+        if (playerStructure[key].input) player[key] = userName
+        else if (key == 'leader') player[key] = playerStructure['leader'].default
+        else player[key] = playerStructure[key]
+      })
+      const updates = await babelBread().push("portals",
+        { code: portalName },
+        { "params.players": player
+      });
 
-    /* Create a new player based on player structure*/
-    const player = {};
-    Object.keys(playerStructure).forEach((key) => {
-      if (playerStructure[key].input) player[key] = userName
-      else if (playerStructure[key].initial) player[key] = playerStructure[key].initial
-      else player[key] = playerStructure[key]
-    })
-    const updates = await babelBread().push("portals",
-      { code: portalName },
-      { "params.players": player
-    });
+      console.log(`FindAndJoin: new Player Obj | `, player);
+      console.log(`FindAndJoin: join `, updates);
 
-    /* Log the initial user into the newly created portal */
-    await context.login({ game, code: portal.code, user: player.id })
+      /* Log the initial user into the newly created portal */
+      await context.login({ game, code: portal.code, user: player.id })
 
-    navigation.navigate('/liarliar/'+encodeURIComponent(portalName))
+      navigation.navigate('/liarliar/'+encodeURIComponent(portalName))
+    } catch(err) {
+      console.log(err)
+    }
   };
 
   /* Handle the change in the username input */

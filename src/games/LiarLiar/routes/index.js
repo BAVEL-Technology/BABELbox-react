@@ -3,10 +3,9 @@ import React from "react";
 import { route, map, lazy, withContext } from 'navi'
 
 /* Pull in Major Components */
-import LiarLiar from "games/LiarLiar/index2.js";
-import HowToPlay from "games/LiarLiar/HowToPlay";
-import { JoinPortal, Gateway } from "games/LiarLiar/Gateway";
-import Nav from "components/Nav";
+import LiarLiar from "games/LiarLiar";
+import HowToPlay from "../HowToPlay";
+import { JoinPortal, Gateway } from "../Gateway";
 
 
 /* Pull in your player and portal structures from the config file */
@@ -48,7 +47,7 @@ export const LiarLiarRoutes = {
   /* 🤗 Join specific portal route */
   [`/${game.route}/:code/join`]: map(async (request, context) => {
     return route({
-      title: 'LiarLiar',
+      title: game.title,
       head: <>
         <meta name="description" content={game.description} />
         <script>
