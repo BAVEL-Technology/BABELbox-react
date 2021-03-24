@@ -1,35 +1,57 @@
-import React, { useState } from 'react'
-import { useNavigation } from 'react-navi'
-import babelBread from "../../../utils/babelBread"
-import uuid from "../../../utils/uuid"
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useNavigation } from "react-navi";
+import babelBread from "../../../utils/babelBread";
+import uuid from "../../../utils/uuid";
 import CreatePortal from "./CreatePortal";
 import FindAndJoinPortal from "./FindAndJoinPortal";
 import Join from "./Join";
+import HowToPlay from "../HowToPlay";
 
 export function JoinPortal({ game, request, context }) {
-  return <Join game={game} request={request} context={context} />
+  return <Join game={game} request={request} context={context} />;
 }
 
-export function Gateway({ game, request, context, playerStructure, portalStructure }) {
+export function Gateway({
+  game,
+  request,
+  context,
+  playerStructure,
+  portalStructure,
+}) {
   return (
     <div className="flex flex-col w-full items-center min-h-screen">
       <div className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4">
+        <button className="w-full">
+          <a href="/liarliar/how-to-play" className="w-full">
+            <div
+              class={`my-6 flex items-center justify-center bg-babelYellow-700 w-full text-white p-4 font-semibold text-2xl lg:text-4xl md:text-3xl text-center rounded-xl tracking-widest shadow-lg hover:shadow-xl transform hover:-translate-y-2`}
+              style={{ fontFamily: "Sniglet" }}
+            >
+              <p id="how-to-play" class="p-4 flex-grow">
+                How To Play
+              </p>
+            </div>
+          </a>
+        </button>
         <FindAndJoinPortal
-        game={game}
-        request={request}
-        context={context}
-        playerStructure={playerStructure}
-        color="babelYellow-700"
-        font=" 'Sniglet', cursive" />
+          game={game}
+          request={request}
+          context={context}
+          playerStructure={playerStructure}
+          color="babelYellow-700"
+          font=" 'Sniglet', cursive"
+        />
         <CreatePortal
-        game={game}
-        request={request}
-        context={context}
-        playerStructure={playerStructure}
-        portalStructure={portalStructure}
-        color="babelYellow-700"
-        font=" 'Sniglet', cursive" />
+          game={game}
+          request={request}
+          context={context}
+          playerStructure={playerStructure}
+          portalStructure={portalStructure}
+          color="babelYellow-700"
+          font=" 'Sniglet', cursive"
+        />
       </div>
     </div>
-  )
+  );
 }
