@@ -80,7 +80,7 @@ const Chat = () => {
         }
     };
     return (
-        <div className="z-50 fixed bottom-12 right-12">
+        <div className="z-50 fixed bottom-5 right-5 md:bottom-10 md:right-10 ">
             <div className="flex justify-center items-center">
               {/* Closed Chat */}
               <div 
@@ -150,7 +150,8 @@ const Chat = () => {
                         return (
                         <div 
                         className="textShadow flex items-center pr-10 mb-1" 
-                        key={index}>
+                        key={index}
+                        ref={messageBottomRef}>
                           <span className="ml-1">
                             {user?.name}:
                           </span>
