@@ -8,7 +8,8 @@ const styles = {
   label: "block uppercase tracking-wide text-black text-lg font-bold my-2 mr-2",
   inputField:
     "form-control appearance-none block w-full bg-gray-100 text-black border border-gray-500 rounded-sm py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-200",
-  sendButton: "px-4 py-2 rounded-full text-black font-bold border border-gray-500"
+  sendButton:
+    "px-4 py-2 rounded-full text-black font-bold border border-gray-500",
 };
 
 const Help = () => {
