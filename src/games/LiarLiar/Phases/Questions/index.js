@@ -3,12 +3,12 @@ import LiarLiarContext from "../../utils/LiarLiarContext";
 import UserCard from "games/LiarLiar/Components/UserCard";
 import PortalCodeCard from "../../../../components/LobbyCards/PortalCodeCard";
 import { useContext, useState, useEffect } from "react";
-import bb from "../../../../utils/babelBread";
 import { useGame } from "../../BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "../../utils/currentUserIndex";
 import formatQuestion from "games/LiarLiar/utils/formatQuestion";
-import ReactHtmlParser from "react-html-parser";
+import ReactHtmlParser from 'react-html-parser';
 import Timer from "games/LiarLiar/Components/Timer";
+import QuestionInput from "./QuestionInput"
 
 const Questions = (props) => {
   // Custom hook for getting game state.
@@ -30,6 +30,7 @@ const Questions = (props) => {
       return true;
 
     return false;
+<<<<<<< HEAD
   };
   const [questionLock, setQuestionLock] = useState(lockQuestionInputs());
   // State for user input (answer)
@@ -40,11 +41,15 @@ const Questions = (props) => {
     gameState.players,
     gameState.currentUser
   );
+=======
+  }
+  const [ questionLock, setQuestionLock ] = useState(lockQuestionInputs());
 
-  const onInputChange = (e) => {
-    setUserInput(e.target.value);
-  };
 
+>>>>>>> 805b395a2b6f38d48e5d06d19efb54b00ba83d6b
+
+
+<<<<<<< HEAD
   const submitAnswer = async () => {
     const response = await bb().push(
       "portals",
@@ -58,6 +63,8 @@ const Questions = (props) => {
       )
     );
   };
+=======
+>>>>>>> 805b395a2b6f38d48e5d06d19efb54b00ba83d6b
 
   return (
     <div className="font-sniglet">
@@ -77,6 +84,7 @@ const Questions = (props) => {
           )}
         </p>
       </div>
+<<<<<<< HEAD
 
       <input
         id="user-answer"
@@ -102,6 +110,9 @@ const Questions = (props) => {
       >
         Submit
       </button>
+=======
+      <QuestionInput questionLockObj={{questionLock,setQuestionLock}}/>
+>>>>>>> 805b395a2b6f38d48e5d06d19efb54b00ba83d6b
     </div>
   );
 };

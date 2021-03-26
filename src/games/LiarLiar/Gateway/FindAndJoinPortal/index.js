@@ -54,7 +54,7 @@ export default function FindAndJoinPortal({
 
   /* Handle the change in the username input */
   const handlePortalChange = (event) => {
-    setPortalName(event.target.value);
+    setPortalName(event.target.value.toLowerCase());
   };
 
   return (
@@ -77,6 +77,9 @@ export default function FindAndJoinPortal({
               id="portal-name"
               type="text"
               name="portal-name"
+              autocomplete='off'
+              spellcheck='false' 
+              autocorrect='off'
               placeholder="Portal Name"
               className="block appearance-none focus:outline-none border-b-4 border-gray-100 mb-8 w-full bg-transparent text-xl text-gray-700 rounded-lg px-4 py-3"
             />
