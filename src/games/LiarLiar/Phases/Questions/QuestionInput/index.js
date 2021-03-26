@@ -30,7 +30,7 @@ const QuestionInput = (props) => {
       type="text"
       name="portal-name"
       className="bg-blue-400 p-2 rounded-lg apperance-none lg:text-3xl text-gray-100 placeholder-white md:text-2xl text-xl w-full"
-      disabled={questionLock}
+      disabled={props.questionLockObj.questionLock}
       onChange={onInputChange}
       value={userInput}
       placeholder={gameState?.rounds[gameState.rounds.length - 1]?.question?.suggestions.split(',')[0]}
@@ -38,7 +38,7 @@ const QuestionInput = (props) => {
 
     <button
       id="submit-answer-button"
-      disabled={questionLock}
+      disabled={props.questionLockObj.questionLock}
       onClick={submitAnswer}
       className={`place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl
       rounded-br-xl rounded-tr rounded-bl flex items-center justify-center w-full
