@@ -6,7 +6,7 @@ import { useContext, useState, useEffect } from "react";
 import { useGame } from "../../BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "../../utils/currentUserIndex"
 import formatQuestion from "games/LiarLiar/utils/formatQuestion";
-import ReactHtmlParser from 'react-html-parser'; 
+import ReactHtmlParser from 'react-html-parser';
 import Timer from "games/LiarLiar/Components/Timer";
 import QuestionInput from "./QuestionInput"
 
@@ -24,9 +24,9 @@ const Questions = (props) => {
   }
   const [ questionLock, setQuestionLock ] = useState(lockQuestionInputs());
 
-  
 
-  
+
+
 
   return (
     <div className="font-sniglet">
