@@ -30,9 +30,9 @@ const Answer = (props) => {
   };
 
   function selectAnswer(userID) {
-    console.log("current user:", userID.id);
+    console.log("current user:", userID);
     console.log("other user:", gameState.currentUser);
-    if (userID.id === gameState.currentUser) {
+    if (userID === gameState.currentUser) {
       toast()
         .success(" ", " You fooled someone! + $25!")
         .with({ shape: "pill", icon: "🤑" })
