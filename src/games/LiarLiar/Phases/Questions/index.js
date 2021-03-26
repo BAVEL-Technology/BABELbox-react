@@ -7,7 +7,7 @@ import bb from "../../../../utils/babelBread";
 import { useGame } from "../../BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "../../utils/currentUserIndex"
 import formatQuestion from "games/LiarLiar/utils/formatQuestion";
-import ReactHtmlParser from 'react-html-parser'; 
+import ReactHtmlParser from 'react-html-parser';
 import Timer from "games/LiarLiar/Components/Timer";
 
 const Questions = (props) => {
@@ -62,11 +62,11 @@ const Questions = (props) => {
         id="user-answer"
         type="text"
         name="portal-name"
-        className="block appearance-none focus:outline-none border-b-4 border-gray-700
-        bg-transparent lg:text-3xl md:text-2xl text-xl text-gray-700 w-full"
+        className="bg-blue-400 p-2 rounded-lg apperance-none lg:text-3xl text-gray-100 placeholder-white md:text-2xl text-xl w-full"
         disabled={questionLock}
         onChange={onInputChange}
         value={userInput}
+        placeholder={gameState?.rounds[gameState.rounds.length - 1]?.question?.suggestions.split(',')[0]}
       />
 
       <button
