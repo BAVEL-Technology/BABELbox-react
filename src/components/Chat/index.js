@@ -19,6 +19,7 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [users, setUsers] = useState([]);
     const [message, setMessage] = useState("");
+    const [newMsg, setNewMsg] = useState(0);
 
     useEffect(() => {
     socketRef.current = io("https://babelboxdb.herokuapp.com/");
@@ -45,6 +46,7 @@ const Chat = () => {
     socketRef.current.on('chat message', (msg) => {
       console.log(messages);
       setMessages([...messages, msg]);
+      setNewMsg(newMsg+1);
     });
 
     //runs disconnect event
@@ -78,12 +80,14 @@ const Chat = () => {
         }
     };
     return (
-        <div className="z-50 fixed bottom-12 right-12">
+        <div className="z-50 fixed bottom-5 right-5 md:bottom-10 md:right-10 ">
             <div className="flex justify-center items-center">
               {/* Closed Chat */}
               <div 
-              className={`bg-gradient-to-r from-green-400 to-blue-500 shadow-md rounded-full  h-20 w-20 flex items-center justify-center text-babelBlue-500 ${chatOpen ? 'hidden' : 'nothing'}`} 
+              className={`bg-gradient-to-r from-green-400 to-blue-500 shadow-md rounded-full  h-20 w-20 flex items-center justify-center text-babelBlue-500 ${newMsg ? 'animate-bounce': 'nothing'} ${chatOpen ? 'hidden' : 'nothing'}`} 
               onClick={() => {setChatOpen(!chatOpen)}}>
+              <span className={`-z-10 absolute inline-flex h-full w-full rounded-full bg-babelYellow-400 opacity-75 ${newMsg ? 'animate-ping-slow': 'hidden'}`}>
+              </span>
                 <svg 
                 className="text-babelYellow-500 transform w-12 h-12 cursor-pointer hover:scale-110 motion-reduce:transform-none" 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -111,7 +115,7 @@ const Chat = () => {
                           className="text-babelRed-500 transform hover:scale-110 w-7 h-7 mr-2 cursor-pointer" 
                           xmlns="http://www.w3.org/2000/svg" 
                           viewBox="0 0 20 20" fill="currentColor" 
-                          onClick={() => {setChatOpen(!chatOpen)}}>
+                          onClick={() => {setChatOpen(!chatOpen); setNewMsg(0)}}>
                             <path 
                             fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" 
                             clipRule="evenodd" 
@@ -146,7 +150,8 @@ const Chat = () => {
                         return (
                         <div 
                         className="textShadow flex items-center pr-10 mb-1" 
-                        key={index}>
+                        key={index}
+                        ref={messageBottomRef}>
                           <span className="ml-1">
                             {user?.name}:
                           </span>
