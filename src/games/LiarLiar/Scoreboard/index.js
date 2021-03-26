@@ -8,7 +8,7 @@ const Scoreboard = (props) => {
     if (users && users.length > 0) {
       users.sort(compareScore);
       users.forEach((user, index) => {
-        userNames.push(<p key={index}>{user.name}</p>);
+        userNames.push(<p key={index}><span className="">{`${(index+1) + getPlace(index+1)}`}:</span> {`${user.name}`}</p>);
         userScores.push(
           <p className="text-emerald-600" key={index}>
             ${user.points}
@@ -24,6 +24,14 @@ const Scoreboard = (props) => {
     if(firstEl.points > secondEl.points) return -1;
     if(firstEl.points < secondEl.points) return 1;
     if(firstEl.points == secondEl.points) return 0;
+  }
+
+  function getPlace (index)
+  {
+    if(index === 1) return 'st';
+    if(index === 2) return 'nd';
+    if(index === 3) return 'rd';
+    return 'th';
   }
 
   return (
