@@ -1,11 +1,12 @@
 import React from "react";
 
-const index = (props) => {
+const Scoreboard = (props) => {
   const users = props.users;
   const userScores = [];
   const userNames = [];
   try {
     if (users && users.length > 0) {
+      users.sort(compareScore);
       users.forEach((user, index) => {
         userNames.push(<p key={index}>{user.name}</p>);
         userScores.push(
@@ -19,6 +20,12 @@ const index = (props) => {
     console.error("Could not parse users. | " + e);
   }
 
+  function compareScore (firstEl, secondEl) {
+    if(firstEl.points > secondEl.points) return -1;
+    if(firstEl.points < secondEl.points) return 1;
+    if(firstEl.points == secondEl.points) return 0;
+  }
+
   return (
     <div className="flex items-center justify-center w-full ">
       <div
@@ -29,12 +36,12 @@ const index = (props) => {
       >
         <h1 className="text-xl">Scores</h1>
         <div className="grid grid-cols-2">
-          <div className="justify-self-center">{userNames}</div>
-          <div className="justify-self-center">{userScores}</div>
+          <div className="justify-self-center text-xl">{userNames}</div>
+          <div className="justify-self-center text-xl">{userScores}</div>
         </div>
       </div>
     </div>
   );
 };
 
-export default index;
+export default Scoreboard;
