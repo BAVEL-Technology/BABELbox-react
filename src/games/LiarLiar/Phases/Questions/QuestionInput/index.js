@@ -29,7 +29,7 @@ const QuestionInput = (props) => {
       id="user-answer"
       type="text"
       name="portal-name"
-      className="bg-blue-400 p-2 rounded-lg apperance-none lg:text-3xl text-gray-100 placeholder-white md:text-2xl text-xl w-full"
+      className={`bg-blue-400 p-2 rounded-lg apperance-none lg:text-3xl text-gray-100 placeholder-white md:text-2xl text-xl w-full ${props.questionLockObj.questionLock && 'opacity-40'}`}
       disabled={props.questionLockObj.questionLock}
       onChange={onInputChange}
       value={userInput}
@@ -42,7 +42,7 @@ const QuestionInput = (props) => {
       onClick={submitAnswer}
       className={`place-self-center my-12 bg-blue-400 h-12 text-gray-100 p-4 rounded-tl-xl
       rounded-br-xl rounded-tr rounded-bl flex items-center justify-center w-full
-      lg:text-3xl md:text-2xl text-xl ${questionLock && 'opacity-40'}`}
+      lg:text-3xl md:text-2xl text-xl ${props.questionLockObj.questionLock && 'opacity-40'}`}
     >
       Submit
     </button>
