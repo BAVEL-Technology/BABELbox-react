@@ -103,6 +103,9 @@ export default function FindAndJoinPortal({
               name="user-name"
               placeholder="Username"
               className="block appearance-none focus:outline-none border-b-4 border-gray-100 mb-8 w-full bg-transparent text-xl text-gray-700 rounded-lg px-4 py-3"
+              onKeyPress={(event) =>
+                event.key === "Enter" ? FindAndJoinPortal(event) : null
+              }
             />
           </div>
         </div>
