@@ -11,18 +11,18 @@ const GameTitle = (props) => {
   // console.log(this.props);
   return (
     <>
-    <button
-      className={`${props.className}`}
-      onClick={() => {
-        setScoreOpen(!scoreOpen);
-        console.log("score open ", scoreOpen);
-      }}
-    >
-      <BBLogo small={true} className="text-7xl"/>
-      <p className="font-extrabold game-button-p">{props.name}</p>
-      <Twemoji options={{ className: "twemoji" }}>🤥 </Twemoji>
-    </button>
-    {/* <Scoreboard hidden={!scoreOpen} users={gameState.players} /> */}
+      <button
+        className={`${props.className}`}
+        onClick={() => {
+          setScoreOpen(!scoreOpen);
+          console.log("score open ", scoreOpen);
+        }}
+      >
+        <BBLogo small={true} className="text-7xl" />
+        <p className="font-extrabold game-button-p">{props.name}</p>
+        <Twemoji options={{ className: "twemoji" }}>🤥 </Twemoji>
+      </button>
+      {/* <Scoreboard hidden={!scoreOpen} users={gameState.players} /> */}
     </>
   );
 };

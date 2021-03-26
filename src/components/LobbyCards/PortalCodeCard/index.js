@@ -6,6 +6,13 @@ import { faCopy } from "@fortawesome/free-solid-svg-icons";
 const PortalCodeCard = (props) => {
   const [copied, setCopied] = useState(false);
 
+  const copiedTimer = () => {
+    setCopied(true);
+    setTimeout(()=> {
+      setCopied(false);
+    }, 5000);
+  }
+
   return (
     <div
       id="#cards-wrapper"
@@ -26,7 +33,7 @@ const PortalCodeCard = (props) => {
           <div className="w-8 h-8 rounded-full text-gray-100 flex items-center justify-center pl-1 cursor-pointer">
             <CopyToClipboard
               text={props.portalCode}
-              onCopy={() => setCopied(true)}
+              onCopy={() => copiedTimer()}
             >
               <FontAwesomeIcon className="w-24 h-24" icon={faCopy} />
             </CopyToClipboard>
@@ -39,18 +46,6 @@ const PortalCodeCard = (props) => {
         className="absolute -mt-44 -ml-8 flex flex-col items-center"
         id="roundNum"
       >
-        <p
-          style={{ fontFamily: "Sniglet" }}
-          className={`font-bold font-semibold text-xl tracking-wide lg:text-xl md:text-xl`}
-        >
-          ROUND
-        </p>
-        <p
-          style={{ fontFamily: "Sniglet" }}
-          className={`bg-red-500 text-xl px-4 py-2 lg:text-2xl md:text-2xl text-gray-100 font-bold h-10 lg:h-12 md:h-12 w-10 lg:w-12 md:w-12 rounded-full ${props.roundBackground}`}
-        >
-          {props.roundNum}
-        </p>
       </div>
     </div>
   );
