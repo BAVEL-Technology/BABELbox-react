@@ -10,20 +10,24 @@ const GameTitle = (props) => {
   const gameState = useGame();
   // console.log(this.props);
   return (
-    <>
-      <button
-        className={`${props.className}`}
-        onClick={() => {
-          setScoreOpen(!scoreOpen);
-          console.log("score open ", scoreOpen);
+    <div className={`${props.className}`}>
+      <BBLogo small={true} className="text-7xl" />
+      <p 
+      onClick={() => {
+          window.location='/liarliar'
         }}
-      >
-        <BBLogo small={true} className="text-7xl" />
-        <p className="font-extrabold game-button-p">{props.name}</p>
-        <Twemoji options={{ className: "twemoji" }}>🤥 </Twemoji>
-      </button>
+      className="cursor-pointer font-extrabold game-button-p">{props.name}
+      </p>
+      
+      <Twemoji 
+      className="cursor-pointer"
+      onClick={() => {
+        window.location='/liarliar'
+      }} 
+      options={{ className: "twemoji" }}>🤥 
+      </Twemoji>
       {/* <Scoreboard hidden={!scoreOpen} users={gameState.players} /> */}
-    </>
+    </div>
   );
 };
 
