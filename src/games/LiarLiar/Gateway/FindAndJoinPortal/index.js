@@ -1,49 +1,51 @@
-import React, { useState } from 'react'
-import { useNavigation } from 'react-navi'
-import babelBread from "utils/babelBread"
-import uuid from "utils/uuid"
+import React, { useState } from "react";
+import { useNavigation } from "react-navi";
+import babelBread from "utils/babelBread";
+import uuid from "utils/uuid";
 
 export default function FindAndJoinPortal({
-    game,
-    request,
-    context,
-    color,
-    font,
-    playerStructure
-  }) {
+  game,
+  request,
+  context,
+  color,
+  font,
+  playerStructure,
+}) {
   const [userName, setUserName] = useState(0);
   const [portalName, setPortalName] = useState(0);
-  let navigation = useNavigation()
+  let navigation = useNavigation();
 
   const join = async () => {
     try {
       const portal = await babelBread()
-      .read('portals', { code: portalName })
-      .first()
+        .read("portals", { code: portalName })
+        .first();
 
-      if (!portal) return
+      if (!portal) return;
 
       /* Create a new player based on player structure*/
       const player = {};
       Object.keys(playerStructure).forEach((key) => {
-        if (playerStructure[key].input) player[key] = userName
-        else if (key == 'leader') player[key] = playerStructure['leader'].default
-        else player[key] = playerStructure[key]
-      })
-      const updates = await babelBread().push("portals",
-        { code: portalName },
-        { "params.players": player
+        if (playerStructure[key].input) player[key] = userName;
+        else if (key == "leader")
+          player[key] = playerStructure["leader"].default;
+        else player[key] = playerStructure[key];
       });
+      const updates = await babelBread().push(
+        "portals",
+        { code: portalName },
+        { "params.players": player }
+      );
 
       console.log(`FindAndJoin: new Player Obj | `, player);
       console.log(`FindAndJoin: join `, updates);
 
       /* Log the initial user into the newly created portal */
-      await context.login({ game, code: portal.code, user: player.id })
+      await context.login({ game, code: portal.code, user: player.id });
 
-      navigation.navigate('/liarliar/'+encodeURIComponent(portalName))
-    } catch(err) {
-      console.log(err)
+      navigation.navigate("/liarliar/" + encodeURIComponent(portalName));
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -77,11 +79,14 @@ export default function FindAndJoinPortal({
               id="portal-name"
               type="text"
               name="portal-name"
-              autoComplete='off'
-              spellCheck='false' 
-              autoCorrect='off'
+              autoComplete="off"
+              spellCheck="false"
+              autoCorrect="off"
               placeholder="Portal Name"
               className="block appearance-none focus:outline-none border-b-4 border-gray-100 mb-8 w-full bg-transparent text-xl text-gray-700 rounded-lg px-4 py-3"
+              onKeyPress={(event) =>
+                event.key === "Enter" ? FindAndJoinPortal(event) : null
+              }
             />
           </div>
 
@@ -112,4 +117,4 @@ export default function FindAndJoinPortal({
       </div>
     </>
   );
-};
+}
