@@ -4,8 +4,8 @@ import Blob from "../Blob";
 
 const Hero = () => {
   return (
-    <div className="w-full h-screen grid grid-cols-12 gap-12 bg-pink-200 px-24 items-center md:w-32 lg:w-48">
-      <div className="col-span-5 md:w-32 lg:w-48">
+    <div className="w-full h-screen grid grid-cols-12 gap-12 bg-pink-200 px-24 items-center md:w-32 lg:w-full">
+      <div className="col-span-5 md:w-32 lg:w-full">
         <img
           src="./images/doodle-5.png"
           className="absolute z-30 h-48 top-12 left-24 transform -rotate-45"
@@ -45,7 +45,7 @@ const Hero = () => {
           />
         </svg>
         <div className="space-y-4 relative">
-          <p className="text-4xl font-bold mb-24 text-babelPink-500 p-1 rounded-md leading-normal md:w-32 lg:w-48">
+          <p className="text-4xl font-bold mb-24 text-babelPink-500 p-1 rounded-md leading-normal md:w-32 lg:w-full">
             <span className="ul-bg">BABELBOX</span>
             &nbsp;is a collection of awesome games that work in&nbsp;
             <span className="ul-bg">real time</span> with you and your crew.

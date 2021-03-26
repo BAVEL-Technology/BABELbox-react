@@ -31,7 +31,7 @@ function Main() {
       {/* <About /> */}
       {/* TODO: Once we have more games, uncomment this and make cool cards for each game in the component */}
       {/* <Games /> */}
-      <div className="w-full h-full flex flex-col bg-pink-200 md:w-32 lg:w-48">
+      <div className="w-full h-full flex flex-col bg-pink-200 md:w-32 lg:w-full">
         <div className="px-24">
           <Steps
             className={`${isVisible ? "is-visible" : ""}`}
@@ -57,7 +57,7 @@ function Main() {
           />
         </div>
       </div>
-      <p className="text-xl font-semibold text-center w-5/12 italic text-white animate__animated animate__fadeInUp animation-delay-500 md:w-32 lg:w-48">
+      <p className="text-xl font-semibold text-center w-5/12 italic text-white animate__animated animate__fadeInUp animation-delay-500 md:w-32 lg:w-full">
         A collection of games for the whole crew weather you are together or
         apart, to help leave you laugh, cry, and unlock your competative side,
         leaving you more connected with your loved ones.
