@@ -86,8 +86,6 @@ const Chat = () => {
               <div 
               className={`bg-gradient-to-r from-green-400 to-blue-500 shadow-md rounded-full  h-20 w-20 flex items-center justify-center text-babelBlue-500 ${newMsg ? 'animate-bounce': 'nothing'} ${chatOpen ? 'hidden' : 'nothing'}`} 
               onClick={() => {setChatOpen(!chatOpen)}}>
-              <span className={`-z-10 absolute inline-flex h-full w-full rounded-full bg-babelYellow-400 opacity-75 ${newMsg ? 'animate-ping-slow': 'hidden'}`}>
-              </span>
                 <svg 
                 className="text-babelYellow-500 transform w-12 h-12 cursor-pointer hover:scale-110 motion-reduce:transform-none" 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -98,6 +96,8 @@ const Chat = () => {
                   clipRule="evenodd" 
                   />
                 </svg>
+              <span className={`z-0 absolute inline-flex h-full w-full rounded-full bg-babelYellow-400 opacity-75 ${newMsg ? 'animate-ping-slow': 'hidden'}`}>
+              </span>
               </div>
                 {/* Open Chat */}
                 <div className={`w-80 h-96 bg-gray-100 rounded-2xl overflow-hidden shadow-2xl ${chatOpen ? 'nothing' : 'hidden'}`}>
