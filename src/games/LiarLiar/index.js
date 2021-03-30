@@ -16,8 +16,8 @@ export default function LiarLiar({ request, context }) {
 
   return (
       <GameProvider state={state} portal={data.portal} currentUser={data.currentUser}>
-        <Chat />
         <GameStage sets={sets} />
+        <Chat />
       </GameProvider>
   );
 };

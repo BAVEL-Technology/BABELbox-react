@@ -4,6 +4,8 @@ import babelBellow from "utils/babelBellow";
 import { io } from "socket.io-client";
 import bb from "utils/babelBread";
 import axios from 'axios';
+import { useNavigation } from "react-navi";
+
 
 /* Create a context to hold state and context to update state */
 const GameContext = React.createContext();
@@ -26,12 +28,13 @@ export function useGameUpdate() {
 * Define your default and initial state here
 */
 export function GameProvider({ children, state, portal, currentUser }) {
+  const navigation = useNavigation();
   const organizeState = (data) => {
     let res = {};
     Object.keys(state).forEach((key) => {
         if (key === "_id") res._id = data._id;
         else if (key === "code") res.code = data.code;
-        else 
+        else
         {
           res[key] = data.params[key] || state[key];
         }
@@ -58,8 +61,7 @@ export function GameProvider({ children, state, portal, currentUser }) {
     //   const updatedState = organizeState(response.data[0]);
     //   updateGame(updatedState);
     // })
-  
-  
+
     const socket = babelBellow()
     .join(portal._id, (res) => {
       // console.log(`Socket Response | Round | `, res);

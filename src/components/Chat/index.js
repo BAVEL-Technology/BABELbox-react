@@ -12,8 +12,8 @@ const Chat = () => {
     const messageBottomRef = useRef(null);
     const gameState = useGame();
     const userIndex = findCurrentUserIndex(gameState.players, gameState.currentUser);
-    const username = gameState.players[userIndex].name;
-    const avatar = gameState.players[userIndex].avatar;
+    const username = userIndex < 0 ? 'Spartacus' : gameState.players[userIndex].name;
+    const avatar = userIndex < 0 ? '🐛' :  gameState.players[userIndex].avatar;
     const socketRef = useRef();
     const [chatOpen, setChatOpen] = useState(false);
     const [messages, setMessages] = useState([]);
@@ -21,7 +21,7 @@ const Chat = () => {
     const [message, setMessage] = useState("");
     const [newMsg, setNewMsg] = useState(0);
     const [otherUserColor, setOtherUserColor] = useState([]);
-    
+
     //random color bubbles
     const randomColor = ()=> {
       const colorChoices = [
@@ -36,23 +36,23 @@ const Chat = () => {
       console.log(colorChoices[randomIndex]);
       return colorChoices[randomIndex];
     };
-    
+
     const setRandomColors = () => {
       setOtherUserColor(randomColor());
     }
-    
+
     useEffect(() => {
       setRandomColors()
     }, [])
-    
+
     useEffect(() => {
     socketRef.current = io("https://babelboxdb.herokuapp.com/");
 
     //captures event from server
     socketRef.current.on("connect", () => {
-        console.log(username);
+        console.log(username || 'Spartacus');
         socketRef.current.emit('room', gameState._id);
-        socketRef.current.emit("new-user", username);
+        socketRef.current.emit("new-user", username || 'Spartacus');
     });
 
     //listens to message event from backend
@@ -108,12 +108,12 @@ const Chat = () => {
         <div className="z-50 fixed bottom-5 right-5 md:bottom-10 md:right-10 ">
             <div className="flex justify-center items-center">
               {/* Closed Chat */}
-              <div 
-              className={`bg-gradient-to-r from-green-400 to-blue-500 shadow-md rounded-full  h-20 w-20 flex items-center justify-center text-babelBlue-500 ${newMsg ? 'animate-bounce': 'nothing'} ${chatOpen ? 'hidden' : 'nothing'}`} 
+              <div
+              className={`bg-gradient-to-r from-green-400 to-blue-500 shadow-md rounded-full  h-20 w-20 flex items-center justify-center text-babelBlue-500 ${newMsg ? 'animate-bounce': 'nothing'} ${chatOpen ? 'hidden' : 'nothing'}`}
               onClick={() => {setChatOpen(!chatOpen); setRandomColors()}}>
-                <svg 
-                className="text-babelYellow-500 transform w-12 h-12 cursor-pointer hover:scale-110 motion-reduce:transform-none" 
-                xmlns="http://www.w3.org/2000/svg" 
+                <svg
+                className="text-babelYellow-500 transform w-12 h-12 cursor-pointer hover:scale-110 motion-reduce:transform-none"
+                xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20" fill="currentColor">
                   <path
                   fillRule="evenodd"
@@ -133,17 +133,17 @@ const Chat = () => {
                           <Twemoji options={{ className: "chat-emoji twemoji" }}> {avatar} </Twemoji>
                           </div>
                           <span className="text-sm textShadow font-medium text-gray-200 ml-1">
-                            {username}
+                            {username || 'Spartacus'}
                           </span>
                         </div>
-                          <svg 
-                          className="text-babelRed-500 transform hover:scale-110 w-7 h-7 mr-2 cursor-pointer" 
-                          xmlns="http://www.w3.org/2000/svg" 
-                          viewBox="0 0 20 20" fill="currentColor" 
+                          <svg
+                          className="text-babelRed-500 transform hover:scale-110 w-7 h-7 mr-2 cursor-pointer"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20" fill="currentColor"
                           onClick={() => {setChatOpen(!chatOpen); setNewMsg(0); }}>
-                            <path 
-                            fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" 
-                            clipRule="evenodd" 
+                            <path
+                            fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"
+                            clipRule="evenodd"
                             />
                           </svg>
                     </nav>
@@ -180,8 +180,8 @@ const Chat = () => {
                           <span className="ml-1">
                             {user?.name}:
                           </span>
-                          <span 
-                          className={`flex ml-1 h-auto ${otherUserColor} text-black text-sm font-normal rounded-full px-2 p-1 items-end`} 
+                          <span
+                          className={`flex ml-1 h-auto ${otherUserColor} text-black text-sm font-normal rounded-full px-2 p-1 items-end`}
 
                           style={{fontSize: "11px"}}>
                             <Twemoji options={{ className: "chat-emoji twemoji" }}> {text} </Twemoji>
@@ -204,9 +204,9 @@ const Chat = () => {
                         </div>
                         <div className="w-8 h-7 pr-1 rounded-full text-center items-center flex justify-center">
 
-                          <button 
-                          className="w-7 h-7 rounded-full text-center items-center flex justify-center focus:outline-none hover:bg-blue-300 hover:text-white" 
-                          onClick={handleSend}> 
+                          <button
+                          className="w-7 h-7 rounded-full text-center items-center flex justify-center focus:outline-none hover:bg-blue-300 hover:text-white"
+                          onClick={handleSend}>
                             <svg
                               className="svg-inline--fa text-gray-400 hover:text-babelBlue-800 fa-paper-plane fa-w-16 w-7 h-7 py-1 mr-1"
                               aria-hidden="true"
