@@ -17,10 +17,11 @@ export default function FindAndJoinPortal({
 
   const join = async () => {
     try {
+      if (userName == false) return;
+
       const portal = await babelBread()
         .read("portals", { code: portalName })
         .first();
-
       if (!portal) return;
 
       /* Create a new player based on player structure*/
@@ -85,7 +86,7 @@ export default function FindAndJoinPortal({
               placeholder="Portal Name"
               className="block appearance-none focus:outline-none border-b-4 border-gray-100 mb-8 w-full bg-transparent text-xl text-gray-700 rounded-lg px-4 py-3"
               onKeyPress={(event) =>
-                event.key === "Enter" ? FindAndJoinPortal(event) : null
+                event.key === "Enter" ? join(event) : null
               }
             />
           </div>
@@ -104,7 +105,7 @@ export default function FindAndJoinPortal({
               placeholder="Username"
               className="block appearance-none focus:outline-none border-b-4 border-gray-100 mb-8 w-full bg-transparent text-xl text-gray-700 rounded-lg px-4 py-3"
               onKeyPress={(event) =>
-                event.key === "Enter" ? FindAndJoinPortal(event) : null
+                event.key === "Enter" ? join(event) : null
               }
             />
           </div>

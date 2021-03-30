@@ -19,6 +19,8 @@ export default function CreatePortal({
 
   /* Create Portal Function */
   const createPortal = async () => {
+    if (userName == false) return;
+
     /*
      * Create the portals initial player
      * based on player structure defined in config
