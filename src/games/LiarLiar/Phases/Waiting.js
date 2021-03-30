@@ -10,8 +10,10 @@ import { useGame } from "../BabelBuilder/GameContext";
 import babelBellow from "utils/babelBellow";
 import { findCurrentUserIndex } from "../utils/currentUserIndex";
 import Scoreboard from "../Scoreboard";
+import { useNavigation } from "react-navi";
 
 const Waiting = () => {
+  let navigation = useNavigation();
   const [scoreOpen, setScoreOpen] = useState(true);
   const gameState = useGame();
   const currentUserIndex = findCurrentUserIndex(
@@ -83,7 +85,7 @@ const Waiting = () => {
       {/* Settings and Play Div */}
       <div className="flex justify-around w-full items-center">
         {/* Play Button */}
-        <PlayButton onClick={startRound} />;
+        <PlayButton onClick={startRound} />
         {/* Dynamically render the round in the center of the screen. */}
         {gameState.rounds.length > 0 ? (
           <div className="flex flex-col items-center justify-center space-y-2">
