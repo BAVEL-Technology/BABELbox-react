@@ -43,10 +43,15 @@ export const auth = {
       * Find the current users and filter for only this game and code's user
       * and if we can't find a user, return a 402 error
       */
+      // console.log(`This users: ${this.users}`);
+      if(!this.users) return 403;
+
       const users = this.users.filter((user) => user.game == game)
       const user = users.filter((user) => {
         return user.code == code
       })
+      // console.log(`Users: ${users}`);
+      // console.log(`User: ${user}`);
       if (user.length < 1) return 402
       /*
       * Make sure that the Local DB user exists in the portal, if it doesn't

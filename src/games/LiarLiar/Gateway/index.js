@@ -31,10 +31,10 @@ export function Gateway({
         <button className="w-full">
           <a href="/liarliar/how-to-play" className="w-full">
             <div
-              class={`my-6 flex items-center justify-center bg-babelYellow-700 w-full text-white p-4 font-semibold text-2xl lg:text-4xl md:text-3xl text-center rounded-xl tracking-widest shadow-lg hover:shadow-xl transform hover:-translate-y-2`}
+              className={`my-6 flex items-center justify-center bg-babelYellow-700 w-full text-white p-4 font-semibold text-2xl lg:text-4xl md:text-3xl text-center rounded-xl tracking-widest shadow-lg hover:shadow-xl transform hover:-translate-y-2`}
               style={{ fontFamily: "Sniglet" }}
             >
-              <p id="how-to-play" class="p-4 flex-grow">
+              <p id="how-to-play" className="p-4 flex-grow">
                 How To Play
               </p>
             </div>
