@@ -26,7 +26,11 @@ const Waiting = () => {
   );
 
   console.log(`GameState: ${JSON.stringify(gameState)}`);
-
+  console.log(`User Index: ${userIndex}`);
+  if (userIndex < 0) {
+    navigation.navigate('/liarliar/');
+    return null;
+  }
   const isLeader = gameState.players[userIndex].leader;
 
   // Start a new round.
