@@ -41,7 +41,7 @@ const HowToPlay = () => {
           <HowToPlayCard
             color="pink-600"
             type="Waiting Phase:"
-            rule="See all players and scores and change your name. Host can kick rude players or change the host."
+            rule="See all players and scores and change your name. Host has the ability to kick players or change the host. Host is also the person who will start the round."
           />
           <div className="my-6 flex items-center justify-center w-full text-white p-4 text-center rounded-xl tracking-widest">
             <a
