@@ -30,6 +30,7 @@ const Chat = () => {
         "bg-gradient-to-t from-babelCyan-400 to-babelCyan-600",
         "bg-gradient-to-t from-babelRed-400 to-babelRed-600",
         "bg-gradient-to-t from-gray-300 to-gray-400",
+        "bg-gradient-to-t from-green-400 to-green-600",
       ];
       const randomIndex = Math.floor(Math.random() * colorChoices.length);
       console.log(colorChoices[randomIndex]);
