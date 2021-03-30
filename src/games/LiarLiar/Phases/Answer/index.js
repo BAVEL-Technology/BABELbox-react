@@ -23,6 +23,7 @@ const Answer = (props) => {
   );
   console.log(gameState.players[currentUserIndex].answerLock);
   const [answersShuffled, setAnswersShuffled] = useState(false);
+  const [answerOrder, setAnswerOrder] = useState([]);
   const statement = `params.players.${currentUserIndex}.answerLock`;
   const lockAnswer = () => {
     // console.log(`Current User Index: ${currentUserIndex}`);
@@ -82,10 +83,13 @@ const Answer = (props) => {
       });
     }
     if (!answersShuffled) {
-      shuffle(answersArray);
+      console.log('shuffleing')
+      let shuffledAnswers = shuffle(answersArray);
       setAnswersShuffled(true);
+      setAnswerOrder(shuffledAnswers)
     }
-    return answersArray.map((answer, index) => {
+
+    return answerOrder.map((answer, index) => {
       if (answer.user != gameState.currentUser) {
         return (
           <button
@@ -106,11 +110,12 @@ const Answer = (props) => {
   };
 
   useEffect(() => {
-    if(gameState.players[currentUserIndex].points === startingPoints) {
-
-    } else {
+    if(gameState.players[currentUserIndex].points === startingPoints + 25) {
       console.log(gameState.players[currentUserIndex].points, startingPoints)
+      setStartingPoints(gameState.players[currentUserIndex].points)
       toast(" You fooled someone! + $25!")
+    } else {
+
     }
   }, [gameState.players[currentUserIndex].points])
 

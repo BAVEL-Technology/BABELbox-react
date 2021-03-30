@@ -9,8 +9,8 @@ import Join from "./Join";
 import HowToPlay from "../HowToPlay";
 import GameTitle from "../GameTitle";
 
-export function JoinPortal({ game, request, context }) {
-  return <Join game={game} request={request} context={context} />;
+export function JoinPortal({ game, request, context, playerStructure, portalStructure }) {
+  return <Join game={game} request={request} context={context} playerStructure={playerStructure} portalStructure={portalStructure}/>;
 }
 
 export function Gateway({

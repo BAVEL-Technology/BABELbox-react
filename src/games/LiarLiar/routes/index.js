@@ -54,7 +54,14 @@ export const LiarLiarRoutes = {
           {/* ADD SCRIPTS HERE FOR ANALYTICS */}
         </script>
       </>,
-      view: <JoinPortal game={game.route} request={request} context={context}/>,
+      view: <div className="min-h-screen h-full bg-gradient-to-tl from-babelBlue-1000 via-babelBlue-900 to-babelCyan-700">
+              <JoinPortal
+              game={game.route}
+              request={request}
+              context={context}
+              playerStructure={playerStructure}
+              portalStructure={portalStructure} />
+            </div>,
     })
   }),
 

@@ -1,40 +1,30 @@
-import React, { useState } from 'react'
-import { useNavigation } from 'react-navi'
-import babelBread from "utils/babelBread"
-import uuid from "utils/uuid"
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useNavigation } from "react-navi";
+import babelBread from "../../../../utils/babelBread";
+import uuid from "../../../../utils/uuid";
+import JoinPortal from "./JoinPortal";
 
-export default function Join({ game, request, context }) {
-  let [name, setName] = useState('Spartacus')
-
-  // `useNavigation()` returns a navigation object
-  let navigation = useNavigation()
-  let handleSubmit = async (e) => {
-    try {
-      e.preventDefault()
-      const id = uuid()
-      const user = await babelBread()
-      .push('portals', { code: request.params.code }, { "params.players": {
-          id,
-          name: name,
-          leader: false,
-          avatar: "🐛",
-          points: 0
-        }
-      })
-      console.log(user)
-      context.login({ game, code: request.params.code, user: id })
-      console.log(context.getUsers())
-      // You can then call `navigation.navigate()` to navigate to a new page.
-      navigation.navigate('/liarliar/'+encodeURIComponent(request.params.code))
-    } catch (err) {
-      console.log(err)
-    }
-  }
+export default function Join({
+  game,
+  request,
+  context,
+  playerStructure,
+  portalStructure,
+}) {
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Enter Name</h1>
-      <input value={name} onChange={e => setName(e.target.value)} />
-      <button>Ok</button>
-    </form>
-  )
+    <div className="flex flex-col w-full items-center min-h-screen">
+      <div className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4">
+        <JoinPortal
+          game={game}
+          request={request}
+          context={context}
+          playerStructure={playerStructure}
+          portalStructure={portalStructure}
+          color="babelYellow-700"
+          font=" 'Sniglet', cursive"
+        />
+      </div>
+    </div>
+  );
 }
