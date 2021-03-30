@@ -20,7 +20,30 @@ const Chat = () => {
     const [users, setUsers] = useState([]);
     const [message, setMessage] = useState("");
     const [newMsg, setNewMsg] = useState(0);
-
+    const [otherUserColor, setOtherUserColor] = useState([]);
+    
+    //random color bubbles
+    const randomColor = ()=> {
+      const colorChoices = [
+        "bg-gradient-to-t from-babelYellow-400 to-babelYellow-600",
+        "bg-gradient-to-t from-pink-400 to-pink-600",
+        "bg-gradient-to-t from-babelCyan-400 to-babelCyan-600",
+        "bg-gradient-to-t from-babelRed-400 to-babelRed-600",
+        "bg-gradient-to-t from-gray-400 to-gray-600",
+      ];
+      const randomIndex = Math.floor(Math.random() * colorChoices.length);
+      console.log(colorChoices[randomIndex]);
+      return colorChoices[randomIndex];
+    };
+    
+    const setRandomColors = () => {
+      setOtherUserColor(randomColor());
+    }
+    
+    useEffect(() => {
+      setRandomColors()
+    }, [])
+    
     useEffect(() => {
     socketRef.current = io("https://babelboxdb.herokuapp.com/");
 
@@ -79,13 +102,14 @@ const Chat = () => {
             setMessage("");
         }
     };
+
     return (
         <div className="z-50 fixed bottom-5 right-5 md:bottom-10 md:right-10 ">
             <div className="flex justify-center items-center">
               {/* Closed Chat */}
               <div 
               className={`bg-gradient-to-r from-green-400 to-blue-500 shadow-md rounded-full  h-20 w-20 flex items-center justify-center text-babelBlue-500 ${newMsg ? 'animate-bounce': 'nothing'} ${chatOpen ? 'hidden' : 'nothing'}`} 
-              onClick={() => {setChatOpen(!chatOpen)}}>
+              onClick={() => {setChatOpen(!chatOpen); setRandomColors()}}>
                 <svg 
                 className="text-babelYellow-500 transform w-12 h-12 cursor-pointer hover:scale-110 motion-reduce:transform-none" 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -115,7 +139,7 @@ const Chat = () => {
                           className="text-babelRed-500 transform hover:scale-110 w-7 h-7 mr-2 cursor-pointer" 
                           xmlns="http://www.w3.org/2000/svg" 
                           viewBox="0 0 20 20" fill="currentColor" 
-                          onClick={() => {setChatOpen(!chatOpen); setNewMsg(0)}}>
+                          onClick={() => {setChatOpen(!chatOpen); setNewMsg(0); }}>
                             <path 
                             fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" 
                             clipRule="evenodd" 
@@ -156,7 +180,7 @@ const Chat = () => {
                             {user?.name}:
                           </span>
                           <span 
-                          className="flex ml-1 h-auto bg-gradient-to-t from-babelYellow-400 to-babelYellow-600 text-black text-sm font-normal rounded-full px-2 p-1 items-end" 
+                          className={`flex ml-1 h-auto ${otherUserColor} text-black text-sm font-normal rounded-full px-2 p-1 items-end`} 
                           style={{fontSize: "11px"}}>
                             {text}
                           </span>
@@ -176,7 +200,8 @@ const Chat = () => {
                             onChange={(event) => setMessage(event.target.value)} 
                           />
                         </div>
-                        <div className="w-8 h-7 pr-1 rounded-full text-center items-center flex justify-center"> 
+                        <div className="w-8 h-7 pr-1 rounded-full text-center items-center flex justify-center">
+
                           <button 
                           className="w-7 h-7 rounded-full text-center items-center flex justify-center focus:outline-none hover:bg-blue-300 hover:text-white" 
                           onClick={handleSend}> 
