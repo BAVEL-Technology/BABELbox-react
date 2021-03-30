@@ -16,16 +16,20 @@ const QuestionInput = (props) => {
   };
 
   const submitAnswer = async () => {
-    await bb().push(
-      "portals",
-      { code: gameState.code },
-      { [statement]: { user: gameState.currentUser, answer: userInput } }
-    );
-    props.questionLockObj.setQuestionLock(
-      gameState.rounds[gameState.rounds.length - 1]?.answers?.filter(
-        (ans) => ans.id == gameState.currentUser
-      )
-    );
+    if (userInput) {
+      await bb().push(
+        "portals",
+        { code: gameState.code },
+        { [statement]: { user: gameState.currentUser, answer: userInput } }
+      );
+      props.questionLockObj.setQuestionLock(
+        gameState.rounds[gameState.rounds.length - 1]?.answers?.filter(
+          (ans) => ans.id == gameState.currentUser
+        )
+      );
+    } else {
+      console.log('You did not submit anything')
+    }
   };
   return (
     <div>
@@ -33,13 +37,13 @@ const QuestionInput = (props) => {
         id="user-answer"
         type="text"
         name="portal-name"
-        className={`bg-blue-400 p-2 rounded-lg apperance-none lg:text-3xl text-gray-100 placeholder-white md:text-2xl text-xl w-full ${
+        className={`bg-blue-400 p-2 rounded-lg apperance-none lg:text-3xl text-gray-100 placeholder-opacity-50 placeholder-gray-200 md:text-2xl text-xl w-full ${
           props.questionLockObj.questionLock && "opacity-40"
         }`}
         disabled={props.questionLockObj.questionLock}
         onChange={onInputChange}
         value={userInput}
-        placeholder={
+        placeholder={'say something like...' +
           gameState?.rounds[
             gameState.rounds.length - 1
           ]?.question?.suggestions.split(",")[0]
