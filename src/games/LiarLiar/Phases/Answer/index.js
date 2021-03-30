@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { contextType } from "react-copy-to-clipboard";
 import { useGame } from "games/LiarLiar/BabelBuilder/GameContext";
 import { findCurrentUserIndex } from "../../utils/currentUserIndex";
@@ -6,8 +6,8 @@ import bb from "utils/babelBread";
 import formatQuestion from "games/LiarLiar/utils/formatQuestion";
 import ReactHtmlParser from "react-html-parser";
 import Timer from "games/LiarLiar/Components/Timer";
-
-const { toast } = require("../../../../utils/tailwind-toast/twtoast");
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Answer = (props) => {
   const gameState = useGame();
@@ -16,6 +16,7 @@ const Answer = (props) => {
     gameState.players,
     gameState.currentUser
   );
+  const [startingPoints, setStartingPoints] = useState(gameState.players[currentUserIndex].points)
   console.log(currentUserIndex);
   const [answerLock, setAnswerLock] = useState(
     gameState.players[currentUserIndex].answerLock
@@ -29,15 +30,9 @@ const Answer = (props) => {
     setAnswerLock(true);
   };
 
+  //If I gained points then do the toast
+
   function selectAnswer(userID) {
-    console.log("current user:", userID);
-    console.log("other user:", gameState.currentUser);
-    if (userID === gameState.currentUser) {
-      toast()
-        .success(" ", " You fooled someone! + $25!")
-        .with({ shape: "pill", icon: "🤑" })
-        .show();
-    }
     if (userID === "Roboto") {
       const statement = `params.players.${currentUserIndex}.points`;
       const userPoints = gameState.players[currentUserIndex].points;
@@ -110,6 +105,15 @@ const Answer = (props) => {
     });
   };
 
+  useEffect(() => {
+    if(gameState.players[currentUserIndex].points === startingPoints) {
+
+    } else {
+      console.log(gameState.players[currentUserIndex].points, startingPoints)
+      toast(" You fooled someone! + $25!")
+    }
+  }, [gameState.players[currentUserIndex].points])
+
   return (
     <div className="font-sniglet">
       <div className="w-full flex justify-center pb-6">
@@ -134,6 +138,7 @@ const Answer = (props) => {
       <div>
         {createButtons(gameState.rounds[gameState.rounds.length - 1].answers)}
       </div>
+      <ToastContainer />
     </div>
   );
 };

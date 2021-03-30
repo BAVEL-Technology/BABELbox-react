@@ -1,52 +1,60 @@
 /* Import React, Navi, and utilities */
-import React, { useState } from 'react'
-import { useNavigation } from 'react-navi'
-import babelBread from "utils/babelBread"
-import uuid from "utils/uuid"
+import React, { useState } from "react";
+import { useNavigation } from "react-navi";
+import babelBread from "utils/babelBread";
+import uuid from "utils/uuid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function CreatePortal({
-    game,
-    request,
-    context,
-    color,
-    font,
-    playerStructure,
-    portalStructure
-  }) {
+  game,
+  request,
+  context,
+  color,
+  font,
+  playerStructure,
+  portalStructure,
+}) {
   /* State for User Input and Navigation Hook for Navi */
   const [userName, setUserName] = useState(0);
-  let navigation = useNavigation()
+  let navigation = useNavigation();
 
   /* Create Portal Function */
   const createPortal = async () => {
+    if (userName == false) {
+      toast("You did not create a username! Create username to make a portal!");
+      return;
+    }
+
     /*
-    * Create the portals initial player
-    * based on player structure defined in config
-    */
+     * Create the portals initial player
+     * based on player structure defined in config
+     */
     const player = {};
     Object.keys(playerStructure).forEach((key) => {
-      if (playerStructure[key].input) player[key] = userName
-      else if (playerStructure[key].initial) player[key] = playerStructure[key].initial
-      else player[key] = playerStructure[key]
-    })
+      if (playerStructure[key].input) player[key] = userName;
+      else if (playerStructure[key].initial)
+        player[key] = playerStructure[key].initial;
+      else player[key] = playerStructure[key];
+    });
 
     /* Create the portal based on the portal structure defined in config */
-    const portalParams = {}
+    const portalParams = {};
     Object.keys(portalStructure).forEach((key) => {
-      if (key == 'players') portalParams.players = [player]
-      else portalParams[key] = portalStructure[key]
-    })
-    portalParams.game = game
+      if (key == "players") portalParams.players = [player];
+      else portalParams[key] = portalStructure[key];
+    });
+    portalParams.game = game;
     const portal = await babelBread().add("portals", {
-      params: portalParams
+      params: portalParams,
     });
 
     /* Log the initial user into the newly created portal */
-    await context.login({ game, code: portal.code, user: player.id })
+    await context.login({ game, code: portal.code, user: player.id });
 
     /* Navigate the user to the newly created portal */
-    navigation.navigate('/liarliar/'+encodeURIComponent(portal.code))
-  }
+    navigation.navigate("/liarliar/" + encodeURIComponent(portal.code));
+  };
 
   /* Handle the change in the username input */
   const handleChange = (event) => {
@@ -76,6 +84,9 @@ export default function CreatePortal({
             name="user-name"
             placeholder="Username"
             className="block appearance-none focus:outline-none border-b-4 border-gray-100 mb-8 w-full bg-transparent text-xl text-gray-700 rounded-lg px-4 py-3"
+            onKeyPress={(event) =>
+              event.key === "Enter" ? createPortal(event) : null
+            }
           />
         </div>
       </div>
@@ -88,6 +99,7 @@ export default function CreatePortal({
       >
         Create Portal
       </button>
+      <ToastContainer />
     </div>
   );
 }
