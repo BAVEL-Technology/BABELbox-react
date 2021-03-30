@@ -7,6 +7,7 @@ import CreatePortal from "./CreatePortal";
 import FindAndJoinPortal from "./FindAndJoinPortal";
 import Join from "./Join";
 import HowToPlay from "../HowToPlay";
+import GameTitle from "../GameTitle";
 
 export function JoinPortal({ game, request, context }) {
   return <Join game={game} request={request} context={context} />;
@@ -22,6 +23,11 @@ export function Gateway({
   return (
     <div className="flex flex-col w-full items-center min-h-screen">
       <div className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4">
+        <div>
+            <GameTitle className="font-bold w-full my-4 flex items-center justify-around text-yellow-600 p-4 lg:text-5xl md:text-5xl text-3xl text-center rounded-xl tracking-widest"
+              src="https://twemoji.maxcdn.com/v/13.0.1/72x72/1f925.png"
+              name="Liar Liar" />
+        </div>
         <button className="w-full">
           <a href="/liarliar/how-to-play" className="w-full">
             <div
