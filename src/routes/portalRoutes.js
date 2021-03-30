@@ -8,7 +8,7 @@ export default mount({
     const authResponse = await context.authenticate({
       game: context.game, code: request.params.code
     })
-    // console.log(authResponse)
+    // console.log(`Auth Response: ${authResponse}`)
     /*
     * If we get a 401 (the portal wasn't found) redirect the user to the
     * onPortalNotFound route, or if the portal exists, but the user isn't

@@ -10,6 +10,7 @@ import { useGame } from "../BabelBuilder/GameContext";
 import babelBellow from "utils/babelBellow";
 import { findCurrentUserIndex } from "../utils/currentUserIndex";
 import Scoreboard from "../Scoreboard";
+import { useNavigation } from 'react-navi';
 
 const Waiting = () => {
   const [scoreOpen, setScoreOpen] = useState(true);
@@ -22,6 +23,14 @@ const Waiting = () => {
     gameState.players,
     gameState.currentUser
   );
+  const navigation = useNavigation();
+
+  console.log(`GameState: ${JSON.stringify(gameState)}`);
+  if(!gameState.players[userIndex])
+  {
+    navigation.navigate('/liarliar/');
+  }
+
   const isLeader = gameState.players[userIndex].leader;
 
   // Start a new round.

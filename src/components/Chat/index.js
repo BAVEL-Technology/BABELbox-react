@@ -9,17 +9,18 @@ import Twemoji from 'react-twemoji';
 
 
 const Chat = () => {
-    const messageBottomRef = useRef(null);
-    const gameState = useGame();
-    const userIndex = findCurrentUserIndex(gameState.players, gameState.currentUser);
-    const username = gameState.players[userIndex].name;
-    const avatar = gameState.players[userIndex].avatar;
-    const socketRef = useRef();
-    const [chatOpen, setChatOpen] = useState(false);
-    const [messages, setMessages] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [message, setMessage] = useState("");
-    const [newMsg, setNewMsg] = useState(0);
+  const gameState = useGame();
+  // console.log(`GameState: ${JSON.stringify(gameState)}`);
+  const userIndex = findCurrentUserIndex(gameState?.players, gameState.currentUser);
+  const messageBottomRef = useRef(null);
+  const username = gameState?.players[userIndex].name;
+  const avatar = gameState?.players[userIndex].avatar;
+  const socketRef = useRef();
+  const [chatOpen, setChatOpen] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [message, setMessage] = useState("");
+  const [newMsg, setNewMsg] = useState(0);
 
     useEffect(() => {
     socketRef.current = io("https://babelboxdb.herokuapp.com/");
