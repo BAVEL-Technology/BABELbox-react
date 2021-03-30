@@ -10,6 +10,7 @@ import { useGame } from "../BabelBuilder/GameContext";
 import babelBellow from "utils/babelBellow";
 import { findCurrentUserIndex } from "../utils/currentUserIndex";
 import Scoreboard from "../Scoreboard";
+
 const Waiting = () => {
   const [scoreOpen, setScoreOpen] = useState(true);
   const gameState = useGame();
@@ -17,9 +18,16 @@ const Waiting = () => {
     gameState.players,
     gameState.currentUser
   );
+  const userIndex = findCurrentUserIndex(
+    gameState.players,
+    gameState.currentUser
+  );
+  const isLeader = gameState.players[userIndex].leader;
 
   // Start a new round.
   const startRound = async () => {
+    if (!isLeader) return;
+
     const question = await bb().browse("questions").random(); //Faster Random
 
     const portal = await bb().edit(
@@ -61,14 +69,6 @@ const Waiting = () => {
     console.log(newRound);
   };
 
-  const Start = () => {
-    if (leader == true) {
-      <PlayButton onClick={startRound} />;
-    } else {
-      disable: <PlayButton />;
-    }
-  };
-
   return (
     <div className="w-full">
       {/* Game Title */}
@@ -83,7 +83,7 @@ const Waiting = () => {
       {/* Settings and Play Div */}
       <div className="flex justify-around w-full items-center">
         {/* Play Button */}
-        <PlayButton onClick={Start} />;
+        <PlayButton onClick={startRound} />;
         {/* Dynamically render the round in the center of the screen. */}
         {gameState.rounds.length > 0 ? (
           <div className="flex flex-col items-center justify-center space-y-2">
