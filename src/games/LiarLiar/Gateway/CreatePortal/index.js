@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useNavigation } from "react-navi";
 import babelBread from "utils/babelBread";
 import uuid from "utils/uuid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function CreatePortal({
   game,
@@ -19,7 +21,10 @@ export default function CreatePortal({
 
   /* Create Portal Function */
   const createPortal = async () => {
-    if (userName == false) return;
+    if (userName == false) {
+      toast("You did not create a username! Create username to make a portal!");
+      return;
+    }
 
     /*
      * Create the portals initial player
@@ -94,6 +99,7 @@ export default function CreatePortal({
       >
         Create Portal
       </button>
+      <ToastContainer />
     </div>
   );
 }
