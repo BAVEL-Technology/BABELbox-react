@@ -24,13 +24,8 @@ const Waiting = () => {
     gameState.players,
     gameState.currentUser
   );
-  const navigation = useNavigation();
 
   console.log(`GameState: ${JSON.stringify(gameState)}`);
-  if(!gameState.players[userIndex])
-  {
-    navigation.navigate('/liarliar/');
-  }
 
   const isLeader = gameState.players[userIndex].leader;
 
