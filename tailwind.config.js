@@ -27,6 +27,7 @@ module.exports = {
         'slide-up-vertical-fast': 'slideUpY 4s linear infinite',
         'game-on': 'gameOn 4s ease-in-out forwards',
         'ping-slow': 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite',
+        'bounce-short': 'bounce 1s infinite'
       },
       keyframes: {
         wiggle: {
