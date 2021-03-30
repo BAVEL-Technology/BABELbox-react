@@ -9,17 +9,18 @@ const HowToPlay = () => {
         className="h-full w-11/12 md:w-3/4 lg:w-1/3 rounded-xl p-4"
         style={{ fontFamily: "Sniglet" }}
       >
-        <div
+        <GameTitle
+          className="font-bold w-full my-4 flex items-center justify-between text-yellow-600 p-4 lg:text-5xl md:text-5xl text-3xl text-center rounded-xl tracking-widest"
+          name="Liar Liar"
+        />
+        {/* <div
           className={`my-6 flex items-center justify-center bg-babelYellow-700 w-full text-white p-4 font-semibold text-2xl lg:text-4xl md:text-3xl text-center rounded-xl tracking-widest shadow-lg hover:shadow-xl transform hover:-translate-y-2`}
           style={{ fontFamily: "Sniglet" }}
         >
           <h1 className="p-4 flex-grow">
-            <GameTitle
-              className="font-bold w-full my-4 flex items-center justify-between bg-babelBlue-600 text-yellow-600 p-4 lg:text-5xl md:text-5xl text-3xl text-center rounded-xl tracking-widest"
-              name="Liar Liar"
-            />{" "}
+            {" "}
           </h1>
-        </div>
+        </div> */}
 
         <div
           className={`my-6 flex-1 items-center justify-center bg-babelYellow-700 w-full text-white p-4 text-center rounded-xl tracking-widest shadow-lg`}
