@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigation } from "react-navi";
 import babelBread from "utils/babelBread";
 import uuid from "utils/uuid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function FindAndJoinPortal({
   game,
@@ -17,12 +19,18 @@ export default function FindAndJoinPortal({
 
   const join = async () => {
     try {
-      if (userName == false) return;
-
       const portal = await babelBread()
         .read("portals", { code: portalName })
         .first();
-      if (!portal) return;
+      if (!portalName) {
+        toast(
+          "You did not enter or have an incorrect portal name! Please check your portal name again!"
+        );
+        return;
+      } else if (userName == false) {
+        toast("You did not create a username! Create username to join portal!");
+        return;
+      }
 
       /* Create a new player based on player structure*/
       const player = {};
@@ -118,6 +126,7 @@ export default function FindAndJoinPortal({
         >
           Join Portal
         </button>
+        <ToastContainer />
       </div>
     </>
   );
