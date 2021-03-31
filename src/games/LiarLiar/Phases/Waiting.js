@@ -15,6 +15,8 @@ import { useNavigation } from "react-navi";
 const Waiting = () => {
   let navigation = useNavigation();
   const [scoreOpen, setScoreOpen] = useState(true);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  console.log(`settings ${settingsOpen}`)
   const gameState = useGame();
   const currentUserIndex = findCurrentUserIndex(
     gameState.players,
@@ -24,7 +26,7 @@ const Waiting = () => {
     gameState.players,
     gameState.currentUser
   );
-
+  console.log(`Phase Time: ${gameState.phaseTime}`)
   console.log(`GameState: ${JSON.stringify(gameState)}`);
   console.log(`User Index: ${userIndex}`);
   if (userIndex < 0) {
@@ -35,6 +37,7 @@ const Waiting = () => {
 
   // Start a new round.
   const startRound = async () => {
+    console.log(gameState.phaseTime * 1000)
     if (!isLeader) return;
 
     const question = await bb().browse("questions").random(); //Faster Random
@@ -56,7 +59,7 @@ const Waiting = () => {
           question: question,
           answers: [],
           questionStartTime: Date.now(),
-          answerStartTime: Date.now() + 30000,
+          answerStartTime: Date.now() + gameState.phaseTime * 1000,
         },
       }
     );
@@ -68,15 +71,19 @@ const Waiting = () => {
 
     babelBellow().emit("start timer", {
       function: `()=>{axios.put("https://babelboxdb.herokuapp.com/api/portals", {filters: {code: "${gameState.code}"} , updates: {'params.phase': 'answer'} });}`,
-      time: 30000,
+      time: gameState.phaseTime * 1000,
     });
     babelBellow().emit("start timer", {
       function: `()=>{axios.put("https://babelboxdb.herokuapp.com/api/portals", {filters: {code: "${gameState.code}"} , updates: {'params.phase': 'waiting'} });}`,
-      time: 60000,
+      time: (gameState.phaseTime * 1000) + (gameState.phaseTime * 1000),
     });
 
     console.log(newRound);
   };
+
+  const openSettings = () => {
+    setSettingsOpen(true)
+  }
 
   return (
     <div className="w-full">
@@ -111,7 +118,7 @@ const Waiting = () => {
           </div>
         ) : null}
         {/* Settings Icon */}
-        <div className="flex flex-col items-center justify-center space-y-2">
+        <div onClick={openSettings} className="flex flex-col items-center justify-center space-y-2">
           {/* Settings Cog SVG */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -138,6 +145,9 @@ const Waiting = () => {
           >
             SETTINGS
           </p>
+        </div>
+        <div className={`z-50 fixed w-screen h-screen flex items-center justify-center ${settingsOpen ? '' : 'hidden'}`}>
+          <p>Settings</p>
         </div>
       </div>
 

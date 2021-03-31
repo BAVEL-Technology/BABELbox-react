@@ -27,6 +27,7 @@ export const playerStructure = {
 
 export const portalStructure = {
   phase: 'waiting',
+  phaseTime: 30,
   players: [],
   rounds: []
 }
@@ -43,5 +44,6 @@ export const state = {
   game: null,
   phase: null,
   players: null,
+  phaseTime: 30,
   rounds: []
 }

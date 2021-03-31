@@ -16,18 +16,18 @@ const Questions = (props) => {
   // Local lock for submitting a question. Sync this with db to keep value on refresh.
   const lockQuestionInputs = () => {
     console.log(gameState.rounds[gameState.rounds.length - 1]?.answers);
-    console.log(
-      gameState.rounds[gameState.rounds.length - 1]?.answers?.filter((ans) => {
-        ans.user === gameState.currentUser;
-      }).length
-    );
+    console.log(gameState.currentUser);
     if (!gameState.rounds[gameState.rounds.length - 1]?.answers) return false;
+    console.log(gameState.rounds[gameState.rounds.length - 1]?.answers?.filter((ans) => {
+      ans.user === gameState.currentUser;
+    }).length > 0)
     if (
-      gameState.rounds[gameState.rounds.length - 1]?.answers?.filter((ans) => {
+      gameState.rounds[gameState.rounds.length - 1]?.answers.filter((ans) => {
         ans.user === gameState.currentUser;
       }).length > 0
-    )
+    ) {
       return true;
+    }
 
     return false;
   };
