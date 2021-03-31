@@ -13,13 +13,14 @@ const Navbar = (props) => {
   return (
     <div className="navbar w-full px-12 z-50 pt-6 flex justify-between items-center sticky top-0">
       <div className={`flex items-center space-x-4`}>
-        <img src="./images/whitebox.png" className="h-12" />
+        {/* <img src="./images/babelbox.png" className="h-20" /> */}
         {/* <p
           className={`font-poppins uppercase text-babelPink-500 text-lg font-bold`}
         >
           {props.brandName || "BABELBOX"}
         </p> */}
-        <BBLogo small={true} className={`pb-3 ${styles.hoverTransform}`} />
+        {/* <BBLogo className={`pb-3 ${styles.hoverTransform}`} /> */}
+        <p className={`pb-3 ${styles.hoverTransform} text-4xl text-babelYellow-600`} style={{fontFamily: "Bungee Outline"}}>BABELBOX</p>
       </div>
       <ul
         className={`flex items-center font-semibold cursor-pointer space-x-7 text-${props.color} font-roboto font-medium text-sm`}

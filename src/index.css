@@ -272,4 +272,5 @@ input:focus-within~label,
   .navbar {
   backdrop-filter: blur(8px) grayscale(0.5);
   -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
 }
